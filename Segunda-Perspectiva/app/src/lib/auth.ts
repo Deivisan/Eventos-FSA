@@ -1,8 +1,11 @@
 // EventosFSA - Utilitários de Autenticação
-import { cookies } from 'next/headers'
-import prisma from './db'
+// Modo: Demo/Estático para GitHub Pages
+// Autenticação real é feita via Zustand store (lib/store.ts)
 
-const JWT_SECRET = process.env.JWT_SECRET || 'eventosfsa-secret-2024'
+/**
+ * Este arquivo fornece utilitários de autenticação para modo demo.
+ * Em produção com backend real, usar API routes do Next.js ou backend separado.
+ */
 
 // Simples hash para demo (em produção usar bcrypt)
 export function hashPassword(password: string): string {
@@ -24,52 +27,31 @@ export function generateToken(): string {
   return `token_${Date.now()}_${Math.random().toString(36).substring(2, 15)}`
 }
 
-// Criar sessão
+// Criar sessão (modo demo - armazenado no Zustand/localStorage)
 export async function createSession(userId: string): Promise<string> {
   const token = generateToken()
-  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 7 dias
-  
-  await prisma.session.create({
-    data: {
-      userId,
-      token,
-      expiresAt
-    }
-  })
-  
+  // Em modo demo, sessão é gerenciada pelo Zustand store
+  console.log('[Demo] Sessão criada para:', userId)
   return token
 }
 
-// Verificar sessão
+// Verificar sessão (modo demo)
 export async function verifySession(token: string) {
-  const session = await prisma.session.findUnique({
-    where: { token },
-    include: { user: true }
-  })
-  
-  if (!session) return null
-  if (session.expiresAt < new Date()) {
-    await prisma.session.delete({ where: { id: session.id } })
-    return null
-  }
-  
-  return session.user
+  // Em modo demo, verificação é feita pelo Zustand store
+  console.log('[Demo] Verificando sessão:', token?.substring(0, 20) + '...')
+  return null // Zustand gerencia o estado
 }
 
-// Obter usuário atual
+// Obter usuário atual (modo demo)
 export async function getCurrentUser() {
-  const cookieStore = await cookies()
-  const token = cookieStore.get('auth_token')?.value
-  
-  if (!token) return null
-  return verifySession(token)
+  // Em modo demo, usuário é obtido do Zustand store
+  console.log('[Demo] getCurrentUser - use useAuthStore() no client')
+  return null
 }
 
-// Invalidar sessão
+// Invalidar sessão (modo demo)
 export async function invalidateSession(token: string) {
-  await prisma.session.deleteMany({
-    where: { token }
-  })
+  console.log('[Demo] Sessão invalidada')
 }
 
 // Tipo de usuário para respostas

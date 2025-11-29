@@ -1,23 +1,23 @@
-// EventosFSA - Conexão com Banco de Dados
-// Prisma 7 com adapter para SQLite
-import { PrismaClient } from '@prisma/client'
+// EventosFSA - Módulo de Dados
+// Modo: Demo/Estático para GitHub Pages
+// Para produção com banco real, usar a branch 'production' com Prisma
 
-// Singleton pattern para evitar múltiplas instâncias em dev
-const globalForPrisma = global as unknown as {
-  prisma: PrismaClient | undefined
+/**
+ * Este arquivo é um placeholder para compatibilidade.
+ * Em modo demo/estático (GitHub Pages), usamos dados mockados via Zustand.
+ * Para backend real, veja: /backend/src/database/index.js
+ */
+
+// Mock do cliente para compatibilidade de imports
+const mockPrisma = {
+  $connect: async () => console.log('[Demo] Prisma connect simulado'),
+  $disconnect: async () => console.log('[Demo] Prisma disconnect simulado'),
+  user: { findMany: async () => [], findUnique: async () => null },
+  artist: { findMany: async () => [], findUnique: async () => null },
+  venue: { findMany: async () => [], findUnique: async () => null },
+  event: { findMany: async () => [], findUnique: async () => null },
+  session: { create: async () => null, findUnique: async () => null, delete: async () => null, deleteMany: async () => null },
 }
 
-// Criar cliente Prisma com adapter
-function createPrismaClient() {
-  return new PrismaClient({
-    log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
-  })
-}
-
-export const prisma = globalForPrisma.prisma ?? createPrismaClient()
-
-if (process.env.NODE_ENV !== 'production') {
-  globalForPrisma.prisma = prisma
-}
-
+export const prisma = mockPrisma
 export default prisma
