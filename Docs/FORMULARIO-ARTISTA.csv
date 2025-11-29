@@ -1,0 +1,129 @@
+FORMULÁRIO DE CADASTRO - ARTISTAS - EventosFSA
+Preencha todos os campos obrigatórios (*) e envie para cadastro
+
+=== DADOS PESSOAIS ===
+Campo,Valor,Obrigatório,Exemplo
+Nome Completo*,,Sim,João Silva Santos
+E-mail*,,Sim,joao.musico@email.com
+Telefone/WhatsApp*,,Sim,(75) 99999-1234
+CPF,,Não,123.456.789-00
+
+=== DADOS ARTÍSTICOS ===
+Campo,Valor,Obrigatório,Exemplo
+Nome Artístico*,,Sim,João Viola
+Estilo Musical 1*,,Sim,MPB
+Estilo Musical 2,,Não,Samba
+Estilo Musical 3,,Não,Pagode
+
+=== BIOGRAFIA ===
+"Escreva sua biografia aqui (50-300 palavras). Conte sua história, experiência, formação musical, principais shows realizados, etc."
+
+Biografia:
+
+
+=== CONTATOS E REDES SOCIAIS ===
+Campo,Valor,Obrigatório,Exemplo
+Chave PIX*,,Sim,joaoviola@pix.com ou CPF
+Instagram,,Não,@joaoviola
+Facebook,,Não,facebook.com/joaoviola
+YouTube,,Não,youtube.com/@joaoviola
+Spotify/Deezer,,Não,open.spotify.com/artist/xxx
+Site Pessoal,,Não,www.joaoviola.com.br
+
+=== VÍDEO DE APRESENTAÇÃO ===
+Campo,Valor,Obrigatório,Exemplo
+Link do Vídeo (1-2 min),,Recomendado,youtube.com/watch?v=xxx
+
+=== FORMAÇÃO E EQUIPAMENTO ===
+Campo,Valor,Obrigatório,Exemplo
+Tipo de Formação*,,Sim,"Solo / Dupla / Trio / Banda"
+Quantidade de Músicos,,Não,3 músicos
+Instrumentos que Toca,,Não,"Violão, Cavaquinho, Percussão"
+Tem Equipamento Próprio?,,Não,Sim (caixa 150W + microfone)
+Necessita Som do Local?,,Não,"Não / Sim / Para eventos grandes"
+
+=== CACHÊ E VALORES ===
+Campo,Valor,Obrigatório,Exemplo
+Cachê Mínimo (2-3h)*,,Sim,R$ 300
+Cachê Sugerido (3-4h),,Não,R$ 500
+Cachê Eventos Especiais (4h+),,Não,R$ 800
+Aceita Negociação?,,Não,Sim / Não
+
+=== DISPONIBILIDADE ===
+"Marque X nos dias e horários que você está disponível"
+
+Dia,Manhã (8h-12h),Tarde (12h-18h),Noite (18h-00h)
+Segunda,,,
+Terça,,,
+Quarta,,,
+Quinta,,,
+Sexta,,,
+Sábado,,,
+Domingo,,,
+
+=== REPERTÓRIO MUSICAL ===
+"Liste pelo menos 20 músicas que você toca regularmente"
+
+Nº,Nome da Música,Artista Original,Estilo
+1,,,
+2,,,
+3,,,
+4,,,
+5,,,
+6,,,
+7,,,
+8,,,
+9,,,
+10,,,
+11,,,
+12,,,
+13,,,
+14,,,
+15,,,
+16,,,
+17,,,
+18,,,
+19,,,
+20,,,
+21,,,
+22,,,
+23,,,
+24,,,
+25,,,
+
+=== MÚSICAS AUTORAIS (se houver) ===
+Nº,Nome da Música,Estilo,Link (Spotify/YouTube)
+1,,,
+2,,,
+3,,,
+4,,,
+5,,,
+
+=== NECESSIDADES TÉCNICAS (Rider) ===
+"Descreva suas necessidades técnicas para shows"
+
+Quantidade de canais de áudio:
+Necessita retorno de palco?:
+Outras necessidades:
+
+=== OBSERVAÇÕES ADICIONAIS ===
+"Informações extras que julgar importantes"
+
+
+
+=== ARQUIVOS PARA ENVIAR ===
+"Prepare estes arquivos para envio junto com este formulário"
+
+Arquivo,Formato,Tamanho Mín,Enviado?
+Foto de Perfil,JPEG ou PNG,500x500px,
+Foto em Show (opcional),JPEG,1200x800px,
+Logo (se tiver),PNG fundo transparente,-,
+
+=== TERMOS ===
+"Ao enviar este formulário, declaro que:"
+[ ] As informações são verdadeiras
+[ ] Autorizo uso da imagem na plataforma
+[ ] Li e aceito os Termos de Uso
+
+Data de Preenchimento:
+Assinatura/Nome:

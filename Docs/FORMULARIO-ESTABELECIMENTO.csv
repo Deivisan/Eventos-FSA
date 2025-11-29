@@ -1,0 +1,144 @@
+FORMULÁRIO DE CADASTRO - ESTABELECIMENTOS - EventosFSA
+Preencha todos os campos obrigatórios (*) e envie para cadastro
+
+=== DADOS DO RESPONSÁVEL ===
+Campo,Valor,Obrigatório,Exemplo
+Nome do Responsável*,,Sim,Carlos Pereira Silva
+Cargo/Função,,Não,Proprietário / Gerente
+E-mail*,,Sim,contato@botecocentral.com
+Telefone Comercial*,,Sim,(75) 3623-4567
+WhatsApp*,,Sim,(75) 99888-7777
+CPF do Responsável,,Não,123.456.789-00
+
+=== DADOS DO ESTABELECIMENTO ===
+Campo,Valor,Obrigatório,Exemplo
+Nome do Estabelecimento*,,Sim,Boteco Central
+Razão Social (se tiver),,Não,Boteco Central Ltda
+CNPJ,,Não,12.345.678/0001-90
+Tipo/Categoria*,,Sim,Bar / Restaurante / Pub / Casa de Show
+
+Tipos disponíveis: Bar | Restaurante | Pub | Choperia | Hamburgueria | Pizzaria | Casa de Show | Lounge | Espaço de Eventos
+
+=== DESCRIÇÃO ===
+"Escreva uma descrição do seu estabelecimento (50-200 palavras). Fale sobre o ambiente, público-alvo, diferenciais, história, etc."
+
+Descrição:
+
+
+=== LOCALIZAÇÃO ===
+Campo,Valor,Obrigatório,Exemplo
+Endereço (Rua e Número)*,,Sim,Av. Getúlio Vargas 1500
+Complemento,,Não,Sala 2 / Loja A
+Bairro*,,Sim,Centro
+Cidade,,Não (padrão FSA),Feira de Santana
+Estado,,Não (padrão BA),BA
+CEP,,Não,44001-000
+Ponto de Referência,,Não,Próximo ao Shopping Boulevard
+
+Bairros de Feira de Santana:
+Centro | Ponto Central | Cidade Nova | Santa Mônica | Mangabeira | SIM | Tomba | Capuchinhos | Kalilândia | Brasília | Sobradinho | Feira X | Campo Limpo | Queimadinha | Caseb | Santo Antônio dos Prazeres | Outros
+
+=== CONTATOS E REDES SOCIAIS ===
+Campo,Valor,Obrigatório,Exemplo
+Telefone Fixo,,Não,(75) 3623-4567
+WhatsApp do Estabelecimento*,,Sim,(75) 99888-7777
+Instagram*,,Recomendado,@botecocentral
+Facebook,,Não,facebook.com/botecocentral
+Site,,Não,www.botecocentral.com.br
+Google Maps (link),,Não,goo.gl/maps/xxx
+
+=== INFRAESTRUTURA ===
+Campo,Valor,Obrigatório,Exemplo
+Capacidade Total (pessoas)*,,Sim,150 pessoas
+Capacidade Área Interna,,Não,80 pessoas
+Capacidade Área Externa,,Não,70 pessoas
+Tem Estacionamento?*,,Sim,Sim / Não / Convênio
+Quantas Vagas?,,Não,20 vagas
+Tem Ar Condicionado?*,,Sim,Sim / Não / Parcial
+Acessibilidade (rampa/elevador)?,,Não,Sim / Não
+Wi-Fi para Clientes?,,Não,Sim / Não
+
+=== ESTRUTURA PARA SHOWS ===
+Campo,Valor,Obrigatório,Exemplo
+Tem Palco/Área para Show?*,,Sim,Sim / Não
+Tamanho do Palco (metros),,Não,3x3 metros
+Tem Equipamento de Som?*,,Sim,Sim / Não / Básico
+Potência do Som (se tiver),,Não,500W
+Tem Microfones?,,Não,Sim (2 microfones)
+Tem Iluminação de Palco?,,Não,Sim / Básica / Não
+
+=== PREFERÊNCIAS MUSICAIS ===
+"Marque X nos estilos que combinam com seu estabelecimento"
+
+Estilo,Aceita?,Estilo,Aceita?
+MPB,,Rock,
+Samba,,Pop,
+Pagode,,Reggae,
+Forró,,Axé,
+Sertanejo,,Jazz/Blues,
+Bossa Nova,,Eletrônica,
+
+Estilos que NÃO quer no estabelecimento:
+
+
+=== DIAS E HORÁRIOS COM MÚSICA AO VIVO ===
+"Marque X nos dias/horários que costuma ter shows"
+
+Dia,Noite (19h-00h),Happy Hour (17h-20h),Almoço (12h-15h)
+Segunda,,,
+Terça,,,
+Quarta,,,
+Quinta,,,
+Sexta,,,
+Sábado,,,
+Domingo,,,
+
+=== CACHÊ E PAGAMENTO ===
+Campo,Valor,Obrigatório,Exemplo
+Cachê Mínimo que Paga*,,Sim,R$ 250
+Cachê Médio que Paga,,Não,R$ 400
+Cachê Máximo que Paga,,Não,R$ 600
+Forma de Pagamento*,,Sim,PIX no dia / Dinheiro / Transferência
+Paga Antes ou Depois do Show?,,Não,Depois do show
+
+=== FREQUÊNCIA DE SHOWS ===
+Campo,Valor,Obrigatório,Exemplo
+Quantos shows por semana?,,Não,2-3 shows
+Quantos shows por mês?,,Não,8-12 shows
+Tem artistas fixos/frequentes?,,Não,Sim / Não
+
+=== ARQUIVOS PARA ENVIAR ===
+"Prepare estes arquivos para envio junto com este formulário"
+
+Arquivo,Formato,Quantidade,Enviado?
+Logo do Estabelecimento,PNG (fundo transp.),1,
+Fotos do Ambiente (salão),JPEG,3-5,
+Foto do Palco/Área do Show,JPEG,1-2,
+Cardápio (opcional),PDF ou imagens,1,
+Alvará de Funcionamento,PDF,1 (opcional),
+
+=== HORÁRIO DE FUNCIONAMENTO ===
+Dia,Abre,Fecha
+Segunda,,
+Terça,,
+Quarta,,
+Quinta,,
+Sexta,,
+Sábado,,
+Domingo,,
+
+=== OBSERVAÇÕES ADICIONAIS ===
+"Informações extras sobre seu estabelecimento, regras para artistas, etc."
+
+
+
+=== TERMOS ===
+"Ao enviar este formulário, declaro que:"
+[ ] As informações são verdadeiras
+[ ] Sou responsável legal pelo estabelecimento
+[ ] Autorizo uso das imagens na plataforma
+[ ] Li e aceito os Termos de Uso e Política de Taxas
+
+Data de Preenchimento:
+Assinatura/Nome:
+Cargo:
