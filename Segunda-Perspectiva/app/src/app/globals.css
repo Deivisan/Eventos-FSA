@@ -364,75 +364,82 @@ body {
     radial-gradient(at 0% 50%, rgba(245, 158, 11, 0.1) 0px, transparent 50%);
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  * {
-    border-color: #334155;
-  }
-  
-  body {
-    background-color: #020617;
-    color: #f1f5f9;
-  }
-  
-  .glass {
-    background-color: rgba(15, 23, 42, 0.8);
-  }
-  
-  .card-base,
-  .card-interactive {
-    background-color: #1e293b;
-  }
-  
-  .btn-secondary {
-    color: #e2e8f0;
-    background-color: #334155;
-  }
-  
-  .btn-secondary:hover {
-    background-color: #475569;
-  }
-  
-  .btn-ghost {
-    color: #cbd5e1;
-  }
-  
-  .btn-ghost:hover {
-    background-color: #1e293b;
-  }
-  
-  .input-base {
-    background-color: #1e293b;
-    border-color: #334155;
-    color: #f1f5f9;
-  }
-  
-  .input-base:focus {
-    border-color: #dc2626;
-  }
-  
-  .bottom-nav {
-    background-color: rgba(15, 23, 42, 0.8);
-    border-color: #334155;
-  }
-  
-  .bottom-nav-item {
-    color: #94a3b8;
-  }
-  
-  .bottom-nav-item.active {
-    color: #ef4444;
-  }
-  
-  .paragraph {
-    color: #94a3b8;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background-color: #0f172a;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: #475569;
-  }
+/* Dark mode support - usando classe .dark do next-themes */
+.dark {
+  color-scheme: dark;
+}
+
+.dark * {
+  border-color: #334155;
+}
+
+.dark body,
+html.dark body {
+  background-color: #020617;
+  color: #f1f5f9;
+}
+
+html.dark {
+  background-color: #020617;
+}
+
+.dark .glass {
+  background-color: rgba(15, 23, 42, 0.8);
+}
+
+.dark .card-base,
+.dark .card-interactive {
+  background-color: #1e293b;
+}
+
+.dark .btn-secondary {
+  color: #e2e8f0;
+  background-color: #334155;
+}
+
+.dark .btn-secondary:hover {
+  background-color: #475569;
+}
+
+.dark .btn-ghost {
+  color: #cbd5e1;
+}
+
+.dark .btn-ghost:hover {
+  background-color: #1e293b;
+}
+
+.dark .input-base {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+.dark .input-base:focus {
+  border-color: #dc2626;
+}
+
+.dark .bottom-nav {
+  background-color: rgba(15, 23, 42, 0.8);
+  border-color: #334155;
+}
+
+.dark .bottom-nav-item {
+  color: #94a3b8;
+}
+
+.dark .bottom-nav-item.active {
+  color: #ef4444;
+}
+
+.dark .paragraph {
+  color: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background-color: #0f172a;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #475569;
 }

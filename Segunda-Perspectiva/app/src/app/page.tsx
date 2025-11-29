@@ -30,10 +30,10 @@ const featuredEvents = [
 ]
 
 const topArtists = [
-  { id: '1', name: 'Canindé', style: 'MPB', rating: 4.9, totalShows: 156, ranking: 1 },
-  { id: '2', name: 'Oz Pretus', style: 'Regional', rating: 4.8, totalShows: 98, ranking: 2 },
-  { id: '3', name: 'Victoria Alencar', style: 'Sertanejo', rating: 4.7, totalShows: 67, ranking: 3 },
-  { id: '4', name: 'Fábio Fanal', style: 'Voz e Violão', rating: 4.6, totalShows: 203 },
+  { id: '1', name: 'Canindé', style: 'MPB', rating: 4.9, totalShows: 156, ranking: 1, imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop' },
+  { id: '2', name: 'Oz Pretus', style: 'Regional', rating: 4.8, totalShows: 98, ranking: 2, imageUrl: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=400&h=400&fit=crop' },
+  { id: '3', name: 'Victoria Alencar', style: 'Sertanejo', rating: 4.7, totalShows: 67, ranking: 3, imageUrl: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=400&h=400&fit=crop' },
+  { id: '4', name: 'Fábio Fanal', style: 'Voz e Violão', rating: 4.6, totalShows: 203, imageUrl: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400&h=400&fit=crop' },
 ]
 
 const liveNowVenues = [

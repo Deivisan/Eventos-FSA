@@ -39,6 +39,7 @@ const artistsData: Record<string, {
     totalShows: 156,
     totalTips: 2340,
     followers: 1250,
+    imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop',
     genres: ['MPB', 'Bossa Nova', 'Samba'],
     nextShows: [
       { venue: 'Cidade da Cultura', date: '30/11', time: '20h' },
@@ -59,6 +60,7 @@ const artistsData: Record<string, {
     totalShows: 98,
     totalTips: 1560,
     followers: 890,
+    imageUrl: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=400&h=400&fit=crop',
     genres: ['Forró', 'Xote', 'Baião'],
     nextShows: [
       { venue: 'Seu Zé Lounge', date: '01/12', time: '22h' },
@@ -77,6 +79,7 @@ const artistsData: Record<string, {
     totalShows: 67,
     totalTips: 980,
     followers: 2100,
+    imageUrl: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=400&h=400&fit=crop',
     genres: ['Sertanejo', 'Sertanejo Universitário', 'Sofrência'],
     nextShows: [
       { venue: 'Casa Parrilla', date: '03/12', time: '20h' },
@@ -162,8 +165,18 @@ export default function ArtistaPage({ id }: { id: string }) {
         {/* Avatar */}
         <div className="container-custom relative -mt-16 z-10">
           <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4 sm:gap-6">
-            <div className="w-32 h-32 bg-gradient-to-br from-red-500 to-amber-500 rounded-2xl flex items-center justify-center shadow-xl border-4 border-white dark:border-slate-800">
-              <Music className="w-16 h-16 text-white" />
+            <div className="w-32 h-32 rounded-2xl shadow-xl border-4 border-white dark:border-slate-800 overflow-hidden">
+              {artist.imageUrl ? (
+                <img
+                  src={artist.imageUrl}
+                  alt={artist.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-red-500 to-amber-500 flex items-center justify-center">
+                  <Music className="w-16 h-16 text-white" />
+                </div>
+              )}
             </div>
             <div className="text-center sm:text-left flex-1 pb-2">
               <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">

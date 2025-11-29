@@ -9,20 +9,20 @@ import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations'
 import { useToast } from '@/components/toast'
 import { formatCurrency } from '@/lib/utils'
 
-// Mock data expandido
+// Mock data expandido com imagens
 const allArtists = [
-  { id: '1', name: 'Canindé', style: 'MPB', rating: 4.9, totalShows: 156, ranking: 1 },
-  { id: '2', name: 'Oz Pretus', style: 'Regional', rating: 4.8, totalShows: 98, ranking: 2 },
-  { id: '3', name: 'Victoria Alencar', style: 'Sertanejo', rating: 4.7, totalShows: 67, ranking: 3 },
-  { id: '4', name: 'Fábio Fanal', style: 'Voz e Violão', rating: 4.6, totalShows: 203 },
-  { id: '5', name: 'Banda Mesa de Bar', style: 'Sertanejo', rating: 4.5, totalShows: 145 },
-  { id: '6', name: 'Grupo Revelação FSA', style: 'Pagode', rating: 4.7, totalShows: 89 },
-  { id: '7', name: 'Trio Nordestino', style: 'Forró', rating: 4.4, totalShows: 112 },
-  { id: '8', name: 'DJ Lucas Beat', style: 'Eletrônica', rating: 4.3, totalShows: 78 },
-  { id: '9', name: 'Cúpula Sessions', style: 'Rock', rating: 4.6, totalShows: 56 },
-  { id: '10', name: 'Banda Raízes', style: 'Reggae', rating: 4.5, totalShows: 67 },
-  { id: '11', name: 'Duo Acústico', style: 'Pop', rating: 4.2, totalShows: 134 },
-  { id: '12', name: 'Samba Prime', style: 'Samba', rating: 4.6, totalShows: 91 },
+  { id: '1', name: 'Canindé', style: 'MPB', rating: 4.9, totalShows: 156, ranking: 1, imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop' },
+  { id: '2', name: 'Oz Pretus', style: 'Regional', rating: 4.8, totalShows: 98, ranking: 2, imageUrl: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=400&h=400&fit=crop' },
+  { id: '3', name: 'Victoria Alencar', style: 'Sertanejo', rating: 4.7, totalShows: 67, ranking: 3, imageUrl: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=400&h=400&fit=crop' },
+  { id: '4', name: 'Fábio Fanal', style: 'Voz e Violão', rating: 4.6, totalShows: 203, imageUrl: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400&h=400&fit=crop' },
+  { id: '5', name: 'Banda Mesa de Bar', style: 'Sertanejo', rating: 4.5, totalShows: 145, imageUrl: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=400&h=400&fit=crop' },
+  { id: '6', name: 'Grupo Revelação FSA', style: 'Pagode', rating: 4.7, totalShows: 89, imageUrl: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=400&h=400&fit=crop' },
+  { id: '7', name: 'Trio Nordestino', style: 'Forró', rating: 4.4, totalShows: 112, imageUrl: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=400&h=400&fit=crop' },
+  { id: '8', name: 'DJ Lucas Beat', style: 'Eletrônica', rating: 4.3, totalShows: 78, imageUrl: 'https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=400&h=400&fit=crop' },
+  { id: '9', name: 'Cúpula Sessions', style: 'Rock', rating: 4.6, totalShows: 56, imageUrl: 'https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?w=400&h=400&fit=crop' },
+  { id: '10', name: 'Banda Raízes', style: 'Reggae', rating: 4.5, totalShows: 67, imageUrl: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400&h=400&fit=crop' },
+  { id: '11', name: 'Duo Acústico', style: 'Pop', rating: 4.2, totalShows: 134, imageUrl: 'https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?w=400&h=400&fit=crop' },
+  { id: '12', name: 'Samba Prime', style: 'Samba', rating: 4.6, totalShows: 91, imageUrl: 'https://images.unsplash.com/photo-1504704911898-68304a7d2807?w=400&h=400&fit=crop' },
 ]
 
 const styles = ['Todos', 'MPB', 'Sertanejo', 'Forró', 'Rock', 'Pagode', 'Eletrônica', 'Reggae', 'Pop', 'Samba', 'Regional']
