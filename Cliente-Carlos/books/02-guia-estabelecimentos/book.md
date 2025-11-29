@@ -1,137 +1,114 @@
-<style>
-@page { size: A4; margin: 2cm; }
-body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; color: #1a1a2e; }
-h1 { color: #DC2626; border-bottom: 3px solid #DC2626; padding-bottom: 10px; }
-h2 { color: #16213e; margin-top: 30px; }
-h3 { color: #0f3460; }
-.highlight { background: #FEF3C7; padding: 15px; border-radius: 8px; border-left: 4px solid #F59E0B; margin: 20px 0; }
-.success { background: #D1FAE5; padding: 15px; border-radius: 8px; border-left: 4px solid #10B981; margin: 20px 0; }
-.info { background: #DBEAFE; padding: 15px; border-radius: 8px; border-left: 4px solid #3B82F6; margin: 20px 0; }
-.warning { background: #FEE2E2; padding: 15px; border-radius: 8px; border-left: 4px solid #DC2626; margin: 20px 0; }
-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-th, td { border: 1px solid #E5E7EB; padding: 12px; text-align: left; }
-th { background: #DC2626; color: white; }
-tr:nth-child(even) { background: #F9FAFB; }
-.cover { text-align: center; padding: 100px 0; page-break-after: always; }
-.cover h1 { font-size: 3em; border: none; }
-.step { background: #F3F4F6; padding: 20px; border-radius: 12px; margin: 15px 0; }
-.step-number { display: inline-block; background: #DC2626; color: white; width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 30px; margin-right: 10px; }
-</style>
-
 <div class="cover">
-
-# 🍺 EventosFSA
-
-## Guia Completo para Bares e Restaurantes
-
-### Como usar a plataforma para ter música ao vivo de qualidade no seu estabelecimento
+  <div class="logo-icon">🍺</div>
+  <h1>EventosFSA</h1>
+  <h2>Guia para Estabelecimentos</h2>
+  <h3>Como usar a plataforma para ter música ao vivo de qualidade e lotar seu bar</h3>
+  <div class="version">
+    <strong>Versão 2.0</strong> | Novembro 2025<br>
+    Manual prático para bares, restaurantes e casas de show
+  </div>
+</div>
 
 ---
-
-**Versão 1.0 | Novembro 2025**
-
-*Manual prático em linguagem simples*
-
-</div>
 
 # Bem-vindo ao EventosFSA!
 
-Se você tem um **bar, restaurante, pub, choperia, hamburgueria ou casa de show** em Feira de Santana, este guia é para você.
+Se você tem um **bar, restaurante, pub, choperia, hamburgueria, pizzaria ou casa de show** em Feira de Santana, este guia é para você.
 
 <div class="success">
 
-✅ **Objetivo:** Mostrar passo a passo como usar a plataforma para contratar artistas e lotar seu estabelecimento com música ao vivo.
+✅ **Objetivo deste manual:** Mostrar passo a passo como usar a plataforma para contratar os melhores artistas e lotar seu estabelecimento com música ao vivo de qualidade.
 
 </div>
+
+## Por que o EventosFSA foi criado?
+
+A música ao vivo é um **diferencial competitivo** poderoso. Estabelecimentos com entretenimento faturam até 40% mais que os sem. Porém, encontrar e contratar bons músicos sempre foi difícil:
+
+| Antes do EventosFSA | Com o EventosFSA |
+|---------------------|------------------|
+| ❌ Depender de indicações | ✅ Catálogo completo de artistas |
+| ❌ Não conhecer o artista antes | ✅ Vídeos e avaliações disponíveis |
+| ❌ Negociar por WhatsApp | ✅ Propostas formais pela plataforma |
+| ❌ Divulgação manual | ✅ Divulgação automática |
+| ❌ Clientes não sabiam do show | ✅ QR Code nas mesas |
 
 ---
 
-# Por que usar o EventosFSA?
+# Cadastrando seu Estabelecimento
 
-## Antes do EventosFSA:
-
-❌ Você dependia de indicações para encontrar músicos
-❌ Não sabia se o artista era bom antes de contratar
-❌ Negociação por WhatsApp, tudo informal
-❌ Dificuldade para divulgar seus eventos
-❌ Clientes não sabiam que tinha show
-
-## Com o EventosFSA:
-
-✅ **Catálogo completo** de artistas avaliados
-✅ **Vídeos e avaliações** antes de contratar
-✅ **Contratação formal** pela plataforma
-✅ **Divulgação automática** para milhares de pessoas
-✅ **QR Code** nas mesas para engajar clientes
-
----
-
-# Passo a Passo: Cadastrando seu Estabelecimento
+## Passo a Passo Completo
 
 <div class="step">
-
-<span class="step-number">1</span> **Acesse o site** eventosfsá.com.br
-
+<span class="step-number">1</span>
+<div><strong>Acesse o site</strong> — Entre em eventosfsa.com.br pelo computador ou celular</div>
 </div>
 
 <div class="step">
-
-<span class="step-number">2</span> **Clique em "Cadastrar"** e selecione "Estabelecimento"
-
+<span class="step-number">2</span>
+<div><strong>Clique em "Cadastrar"</strong> — Selecione a opção "Sou Estabelecimento"</div>
 </div>
 
 <div class="step">
-
-<span class="step-number">3</span> **Preencha os dados básicos:**
-- Nome do estabelecimento
-- Endereço completo
-- Telefone/WhatsApp
-- E-mail
-
+<span class="step-number">3</span>
+<div><strong>Preencha os dados básicos:</strong>
+<ul>
+<li>Nome fantasia do estabelecimento</li>
+<li>CNPJ (opcional, mas recomendado)</li>
+<li>Endereço completo com bairro</li>
+<li>Telefone/WhatsApp para contato</li>
+<li>E-mail do responsável</li>
+</ul>
+</div>
 </div>
 
 <div class="step">
+<span class="step-number">4</span>
+<div><strong>Escolha o tipo do negócio:</strong>
 
-<span class="step-number">4</span> **Escolha o tipo do seu negócio:**
-- 🍺 Bar/Boteco
-- 🍽️ Restaurante
-- 🍻 Pub
-- 🍺 Choperia
-- 🍔 Hamburgueria
-- 🍕 Pizzaria
-- 🎤 Casa de Show
+| Tipo | Exemplos |
+|------|----------|
+| 🍺 Bar/Boteco | Bar do Zé, Boteco Central |
+| 🍽️ Restaurante | Casa Parrilla, Empório |
+| 🍻 Pub/Lounge | Pub Rock, Wine Lounge |
+| 🍺 Choperia | Choperia Brasil |
+| 🍔 Hamburgueria | Burger House |
+| 🍕 Pizzaria | Pizza na Pedra |
+| 🎤 Casa de Show | Cúpula do Som |
+| 🌳 Espaço Ao Ar Livre | Villa Santana |
 
+</div>
 </div>
 
 <div class="step">
+<span class="step-number">5</span>
+<div><strong>Informe os estilos musicais</strong> que combinam com seu público:
 
-<span class="step-number">5</span> **Informe os estilos musicais** que combinam com seu público:
-- MPB
-- Sertanejo
-- Forró
-- Pagode/Samba
-- Rock
-- Pop
-- Reggae
-- E outros...
+MPB • Sertanejo • Forró • Pagode/Samba • Rock • Pop • Reggae • Axé • Jazz/Blues • MPB/Bossa Nova • Eletrônica • Acústico
 
+</div>
 </div>
 
 <div class="step">
-
-<span class="step-number">6</span> **Adicione fotos** do seu espaço (mínimo 3 fotos)
-
+<span class="step-number">6</span>
+<div><strong>Adicione fotos do seu espaço</strong> — Mínimo 3 fotos de qualidade:
+<ul>
+<li>Fachada externa</li>
+<li>Ambiente interno</li>
+<li>Área do palco/som (se houver)</li>
+<li>Mesas e cadeiras</li>
+</ul>
+</div>
 </div>
 
 <div class="step">
-
-<span class="step-number">7</span> **Aguarde aprovação** (geralmente em 24 horas)
-
+<span class="step-number">7</span>
+<div><strong>Aguarde a aprovação</strong> — Nossa equipe analisa em até 24 horas úteis</div>
 </div>
 
 <div class="success">
 
-🎉 **Pronto!** Seu estabelecimento já aparece na plataforma e você pode começar a contratar artistas!
+🎉 **Pronto!** Seu estabelecimento aparecerá na plataforma e você poderá começar a contratar artistas imediatamente!
 
 </div>
 
@@ -139,50 +116,71 @@ Se você tem um **bar, restaurante, pub, choperia, hamburgueria ou casa de show*
 
 # Como Contratar um Artista
 
-## Passo 1: Acesse seu Painel
+## Seu Painel de Controle
 
-Depois de fazer login, você verá o **Dashboard do Estabelecimento** com todas as informações do seu negócio.
+Depois de fazer login, você terá acesso ao **Dashboard do Estabelecimento** com:
 
-## Passo 2: Clique em "Contratar Artista"
+- 📅 Calendário de eventos confirmados
+- 📬 Caixa de propostas enviadas/recebidas
+- 📊 Estatísticas de engajamento
+- ⭐ Avaliações recebidas
+- 📱 QR Codes para download
 
-Você será levado para o catálogo de artistas disponíveis em Feira de Santana.
+## Encontrando o Artista Ideal
 
-## Passo 3: Use os Filtros
+### Use os Filtros Inteligentes
 
-| Filtro | Para que serve |
-|--------|----------------|
-| **Estilo musical** | MPB, Sertanejo, Forró, Rock... |
-| **Faixa de cachê** | R$ 200 até R$ 2.000 |
-| **Avaliação mínima** | 4 estrelas ou mais |
-| **Disponibilidade** | Só artistas livres na data |
+| Filtro | Para que serve | Exemplo |
+|--------|----------------|---------|
+| **Estilo musical** | Encontrar artistas do gênero certo | MPB, Sertanejo, Rock |
+| **Faixa de cachê** | Filtrar pelo seu orçamento | R$ 200 - R$ 500 |
+| **Avaliação** | Ver apenas os mais bem avaliados | 4 estrelas ou mais |
+| **Disponibilidade** | Só quem está livre na data | Sábado, dia 30/11 |
+| **Região** | Artistas de FSA ou região | Feira de Santana |
 
-## Passo 4: Veja o Perfil do Artista
+### Analisando o Perfil do Artista
 
-Antes de contratar, você pode ver:
-- ⭐ **Avaliações** de outros estabelecimentos
-- 🎥 **Vídeo** de apresentação
-- 🎵 **Repertório** com exemplos de músicas
-- 📅 **Calendário** de disponibilidade
-- 💰 **Faixa de cachê** estimada
-
-## Passo 5: Envie uma Proposta
-
-Clique em "Enviar Proposta" e preencha:
-- 📅 Data do evento
-- ⏰ Horário (início e fim)
-- 💰 Valor do cachê oferecido
-- 📝 Observações especiais
-
-## Passo 6: Aguarde Resposta
-
-O artista receberá uma notificação e pode:
-- ✅ **Aceitar** - evento confirmado!
-- 💬 **Negociar** - propor outro valor ou horário
-- ❌ **Recusar** - você pode tentar outro artista
+Antes de contratar, você pode verificar:
 
 <div class="highlight">
 
-💡 **Dica:** Artistas com mais avaliações costumam ter agenda mais cheia. Envie propostas com antecedência!
+⭐ **Avaliações** — O que outros estabelecimentos acharam
+
+🎥 **Vídeo de apresentação** — Veja o artista em ação
+
+🎵 **Repertório** — Lista de músicas que ele toca
+
+📅 **Calendário** — Datas disponíveis
+
+💰 **Cachê médio** — Faixa de preço estimada
+
+📊 **Estatísticas** — Quantidade de shows, tempo de carreira
+
+</div>
+
+## Enviando uma Proposta
+
+Clique em **"Enviar Proposta"** e preencha:
+
+| Campo | O que preencher |
+|-------|-----------------|
+| 📅 Data | Dia do evento |
+| ⏰ Horário início | Ex: 20:00 |
+| ⏰ Horário fim | Ex: 23:00 |
+| 💰 Cachê oferecido | Valor em reais |
+| 📝 Observações | Detalhes especiais |
+
+## Possíveis Respostas
+
+O artista pode:
+
+- ✅ **Aceitar** — Evento confirmado automaticamente!
+- 💬 **Negociar** — Propor ajuste no valor ou horário
+- ❌ **Recusar** — Sem problemas, tente outro artista
+
+<div class="info">
+
+💡 **Dica de ouro:** Artistas bem avaliados têm agenda cheia. Envie propostas com pelo menos 1 semana de antecedência!
 
 </div>
 
@@ -190,124 +188,189 @@ O artista receberá uma notificação e pode:
 
 # O Sistema de QR Code
 
-## O que é?
+## O Que Você Recebe
 
-Quando você confirma um evento, a plataforma gera um **QR Code exclusivo** para aquela noite.
+Quando confirma um evento, a plataforma gera automaticamente:
 
-## Como funciona?
+| Material | Formato | Uso |
+|----------|---------|-----|
+| **QR Code do Evento** | Digital + Imprimível | Mesas, balcão |
+| **Display de Mesa** | PDF A6 (10x15cm) | Cada mesa |
+| **Cartaz** | PDF A3/A4 | Parede, porta |
+| **Story/Post** | Imagem 1080x1920 | Instagram, WhatsApp |
 
-1. **Você imprime** o QR Code (ou usa em display digital)
-2. **Coloca nas mesas** e no balcão
-3. **Clientes escaneiam** com o celular
-4. **Acessam uma página especial** mostrando o artista que está tocando
-5. **Podem enviar gorjeta** via PIX (100% vai pro artista!)
+## Como Funciona para o Cliente
 
-<div class="info">
-
-📱 **Importante:** O QR Code conecta diretamente à rede Wi-Fi do seu estabelecimento. É uma experiência integrada!
-
+<div class="diagram">
+<div class="flow-box">👤 Cliente<br>chega no bar</div>
+<span class="arrow">→</span>
+<div class="flow-box">📱 Escaneia<br>QR Code</div>
+<span class="arrow">→</span>
+<div class="flow-box">🎤 Vê o artista<br>tocando agora</div>
+<span class="arrow">→</span>
+<div class="flow-box">💝 Pode enviar<br>gorjeta</div>
+<span class="arrow">→</span>
+<div class="flow-box">⭐ Avalia<br>o show</div>
 </div>
 
-## Benefícios para você:
+## Benefícios para seu Estabelecimento
 
-- 🎯 **Engajamento** - clientes interagem com a plataforma
-- ⭐ **Avaliações** - clientes avaliam o show
-- 📢 **Divulgação** - próximos eventos aparecem na página
-- 💝 **Gorjetas** - artistas felizes = parceria duradoura
+<div class="success">
+
+✅ **Engajamento** — Clientes interagem com a plataforma
+
+✅ **Divulgação** — Próximos eventos aparecem na página
+
+✅ **Avaliações** — Feedback real dos clientes
+
+✅ **Fidelização** — Clientes seguem seu estabelecimento
+
+✅ **Dados** — Você sabe quantos escanearam
+
+</div>
 
 ---
 
 # Custos e Taxas
 
-## Quanto custa usar o EventosFSA?
+## Quanto Custa Usar o EventosFSA?
 
 <div class="success">
 
-✅ **Cadastro:** GRATUITO
+### ✅ GRATUITO para começar!
+
+O cadastro, busca de artistas e uso da plataforma são **100% gratuitos**.
 
 </div>
 
-### Taxa por evento:
+### Taxa por Evento Confirmado
 
-| Cachê do Artista | Taxa da Plataforma (5%) |
-|------------------|-------------------------|
+Cobramos apenas **5% sobre o cachê** quando você confirma um evento:
+
+| Cachê do Artista | Taxa EventosFSA (5%) |
+|------------------|----------------------|
+| R$ 200 | R$ 10 |
 | R$ 300 | R$ 15 |
 | R$ 400 | R$ 20 |
 | R$ 500 | R$ 25 |
+| R$ 800 | R$ 40 |
 | R$ 1.000 | R$ 50 |
 
 <div class="highlight">
 
-💡 **A taxa é cobrada apenas quando você confirma um evento.** Não tem mensalidade!
+💡 **Sem mensalidade!** Você só paga quando usa. Não usou? Não paga nada.
 
 </div>
 
-### Plano Premium (Opcional)
+### Plano Premium para Estabelecimentos (Opcional)
 
-Por **R$ 49,90/mês** você tem:
-- 🏆 Destaque nas buscas
-- 📢 Banner na página inicial
-- 📊 Relatórios detalhados
-- ⭐ Selo "Estabelecimento Verificado"
-- 📞 Suporte prioritário
+Por **R$ 49,90/mês** você tem benefícios exclusivos:
+
+| Benefício | Descrição |
+|-----------|-----------|
+| 🏆 **Destaque nas buscas** | Aparece primeiro para os artistas |
+| 📢 **Banner na página inicial** | Visibilidade máxima |
+| 📊 **Relatórios avançados** | Dados de engajamento detalhados |
+| ⭐ **Selo Verificado** | Transmite mais confiança |
+| 📞 **Suporte prioritário** | Atendimento em até 2 horas |
+| 🎨 **QR Codes personalizados** | Com a logo do seu estabelecimento |
+
+---
+
+# Boas Práticas
+
+## Para Ter Sucesso na Plataforma
+
+<div class="step">
+<span class="step-number">1</span>
+<div><strong>Mantenha o perfil atualizado</strong> — Fotos recentes, horário de funcionamento correto</div>
+</div>
+
+<div class="step">
+<span class="step-number">2</span>
+<div><strong>Responda rápido às mensagens</strong> — Artistas preferem quem é ágil</div>
+</div>
+
+<div class="step">
+<span class="step-number">3</span>
+<div><strong>Seja justo no cachê</strong> — Pesquise os valores de mercado</div>
+</div>
+
+<div class="step">
+<span class="step-number">4</span>
+<div><strong>Peça avaliações</strong> — Quanto mais avaliações, mais credibilidade</div>
+</div>
+
+<div class="step">
+<span class="step-number">5</span>
+<div><strong>Use o QR Code</strong> — Coloque em todas as mesas, balcão e porta</div>
+</div>
+
+<div class="step">
+<span class="step-number">6</span>
+<div><strong>Divulgue nas redes</strong> — Compartilhe o link do evento no Instagram</div>
+</div>
+
+## Erros Comuns a Evitar
+
+| ❌ Erro | ✅ Solução |
+|--------|-----------|
+| Cancelar em cima da hora | Avise com antecedência, respeite o artista |
+| Não ter estrutura de som | Informe no perfil se precisa trazer equipamento |
+| Cachê muito abaixo do mercado | Pesquise valores justos, artistas bons custam mais |
+| Não divulgar o evento | Use as redes sociais, o QR Code e o boca a boca |
 
 ---
 
 # Dúvidas Frequentes
 
-## "E se o artista cancelar?"
+## Perguntas e Respostas
 
-A plataforma tem política de cancelamento. Se o artista cancelar sem justificativa, ele perde pontos no ranking e pode ser suspenso.
+**"E se o artista cancelar?"**
+> A plataforma tem política de cancelamento. Artistas que cancelam sem justificativa perdem pontos no ranking e podem ser suspensos. Você será notificado imediatamente.
 
-## "Posso negociar o cachê?"
+**"Posso negociar o cachê?"**
+> Sim! Ao enviar a proposta, sugira qualquer valor. O artista decide se aceita, negocia ou recusa.
 
-Sim! Ao enviar a proposta, você pode sugerir qualquer valor. O artista decide se aceita, negocia ou recusa.
+**"O pagamento é feito pela plataforma?"**
+> Atualmente, o cachê é pago diretamente ao artista (PIX ou dinheiro). A taxa de 5% é cobrada separadamente via boleto ou PIX.
 
-## "O pagamento é feito pela plataforma?"
+**"Preciso de contrato?"**
+> A plataforma registra todas as propostas aceitas, servindo como comprovante digital. Para eventos maiores, recomendamos contrato adicional.
 
-Atualmente, o pagamento do cachê é feito diretamente ao artista (PIX ou dinheiro). A taxa da plataforma é cobrada separadamente.
-
-## "Preciso de contrato?"
-
-A plataforma registra todas as propostas aceitas, servindo como comprovante digital. Para eventos maiores, recomendamos contrato adicional.
-
----
-
-# Próximos Passos
-
-<div class="step">
-
-<span class="step-number">1</span> **Acesse** eventosfsá.com.br
-
-</div>
-
-<div class="step">
-
-<span class="step-number">2</span> **Cadastre** seu estabelecimento
-
-</div>
-
-<div class="step">
-
-<span class="step-number">3</span> **Explore** o catálogo de artistas
-
-</div>
-
-<div class="step">
-
-<span class="step-number">4</span> **Envie** sua primeira proposta
-
-</div>
-
-<div class="step">
-
-<span class="step-number">5</span> **Faça** um evento incrível!
-
-</div>
+**"Posso cancelar um evento confirmado?"**
+> Sim, mas avise com antecedência. Cancelamentos frequentes afetam sua reputação na plataforma.
 
 ---
 
-<div style="text-align: center; margin-top: 50px; padding: 30px; background: #DC2626; color: white; border-radius: 12px;">
+# Comece Agora Mesmo!
+
+<div class="step">
+<span class="step-number">1</span>
+<div><strong>Acesse</strong> — eventosfsa.com.br</div>
+</div>
+
+<div class="step">
+<span class="step-number">2</span>
+<div><strong>Cadastre</strong> — Seu estabelecimento em 5 minutos</div>
+</div>
+
+<div class="step">
+<span class="step-number">3</span>
+<div><strong>Explore</strong> — O catálogo de artistas incríveis</div>
+</div>
+
+<div class="step">
+<span class="step-number">4</span>
+<div><strong>Envie</strong> — Sua primeira proposta</div>
+</div>
+
+<div class="step">
+<span class="step-number">5</span>
+<div><strong>Faça</strong> — Um evento inesquecível!</div>
+</div>
+
+<div class="cta-footer">
 
 ## 📞 Precisa de Ajuda?
 
@@ -316,5 +379,9 @@ A plataforma registra todas as propostas aceitas, servindo como comprovante digi
 **E-mail:** suporte@eventosfsa.com.br
 
 **Horário:** Segunda a Sábado, 9h às 18h
+
+---
+
+*EventosFSA — Conectando música e negócios em Feira de Santana*
 
 </div>

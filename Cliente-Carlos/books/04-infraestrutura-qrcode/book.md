@@ -1,192 +1,232 @@
-<style>
-@page { size: A4; margin: 2cm; }
-body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; color: #1a1a2e; }
-h1 { color: #DC2626; border-bottom: 3px solid #DC2626; padding-bottom: 10px; }
-h2 { color: #16213e; margin-top: 30px; }
-h3 { color: #0f3460; }
-.highlight { background: #FEF3C7; padding: 15px; border-radius: 8px; border-left: 4px solid #F59E0B; margin: 20px 0; }
-.success { background: #D1FAE5; padding: 15px; border-radius: 8px; border-left: 4px solid #10B981; margin: 20px 0; }
-.info { background: #DBEAFE; padding: 15px; border-radius: 8px; border-left: 4px solid #3B82F6; margin: 20px 0; }
-.tech { background: #1a1a2e; color: white; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: monospace; }
-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-th, td { border: 1px solid #E5E7EB; padding: 12px; text-align: left; }
-th { background: #DC2626; color: white; }
-tr:nth-child(even) { background: #F9FAFB; }
-.cover { text-align: center; padding: 100px 0; page-break-after: always; }
-.cover h1 { font-size: 3em; border: none; }
-.diagram { background: #F3F4F6; padding: 30px; border-radius: 12px; margin: 20px 0; text-align: center; }
-.flow-box { display: inline-block; background: white; padding: 15px 20px; border-radius: 8px; margin: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-.arrow { font-size: 24px; color: #DC2626; }
-</style>
-
 <div class="cover">
-
-# 📱 EventosFSA
-
-## Infraestrutura QR Code
-
-### Documentação técnica do sistema de acesso via QR Code nos estabelecimentos
+  <div class="logo-icon">📱</div>
+  <h1>EventosFSA</h1>
+  <h2>Infraestrutura QR Code</h2>
+  <h3>Documentação técnica do sistema de acesso via QR Code nos estabelecimentos</h3>
+  <div class="version">
+    <strong>Versão 2.0</strong> | Novembro 2025<br>
+    Para entendimento do modelo de operação
+  </div>
+</div>
 
 ---
 
-**Versão 1.0 | Novembro 2025**
+# Visão Geral
 
-*Para entendimento do modelo de operação*
-
-</div>
-
-# Visão Geral da Infraestrutura
-
-O sistema de **QR Code** é o diferencial tecnológico do EventosFSA. Ele permite que clientes nos estabelecimentos acessem a plataforma de forma natural e integrada.
+O sistema de **QR Code** é o diferencial tecnológico do EventosFSA. Ele cria uma ponte entre o mundo físico (o bar, o show) e o mundo digital (a plataforma, as gorjetas).
 
 <div class="info">
 
-📱 **Conceito:** Cliente escaneia → Acessa portal → Vê artista → Envia gorjeta → Avalia
+📱 **Conceito Principal:** Cliente escaneia → Acessa portal → Vê artista → Envia gorjeta → Avalia o show
+
+Tudo isso acontece em **menos de 30 segundos**, direto do celular do cliente.
 
 </div>
+
+## Por Que QR Code?
+
+| Vantagem | Impacto |
+|----------|---------|
+| **Sem instalação de app** | Cliente não precisa baixar nada |
+| **Acesso instantâneo** | Câmera do celular é suficiente |
+| **Contexto automático** | Sistema sabe qual bar e qual artista |
+| **Baixo custo** | Material impresso é barato |
+| **Universal** | Funciona em qualquer smartphone |
 
 ---
 
 # Arquitetura do Sistema
 
-## Fluxo Completo
+## Fluxo Completo de Funcionamento
 
 <div class="diagram">
-
 <div class="flow-box">👤 Cliente<br>no bar</div>
 <span class="arrow">→</span>
 <div class="flow-box">📱 Escaneia<br>QR Code</div>
 <span class="arrow">→</span>
-<div class="flow-box">🌐 Wi-Fi<br>do local</div>
+<div class="flow-box">🌐 Acessa<br>portal web</div>
 <span class="arrow">→</span>
-<div class="flow-box">🎤 Portal<br>do artista</div>
+<div class="flow-box">🎤 Vê artista<br>ao vivo</div>
 <span class="arrow">→</span>
-<div class="flow-box">💝 Envia<br>gorjeta</div>
-
+<div class="flow-box">💝 Envia<br>gorjeta PIX</div>
 </div>
 
-## Componentes
+## Componentes do Sistema
 
-| Componente | Descrição |
-|------------|-----------|
-| **QR Code físico** | Adesivo/display nas mesas e balcão |
-| **Wi-Fi local** | Rede do estabelecimento |
-| **Portal mobile** | Página otimizada para celular |
-| **Sistema PIX** | Integração para gorjetas |
-| **Backend** | Servidor que processa tudo |
+| Componente | Descrição | Responsabilidade |
+|------------|-----------|------------------|
+| **QR Code físico** | Impresso em displays, adesivos, cartazes | Entrada do sistema |
+| **URL única** | Link específico por evento | Identificação |
+| **Portal mobile** | Página web otimizada para celular | Interface do usuário |
+| **Backend API** | Servidor que processa requisições | Lógica de negócio |
+| **Gateway PIX** | Integração com Mercado Pago | Processamento de pagamentos |
+| **Banco de dados** | PostgreSQL | Armazenamento |
 
 ---
 
-# O QR Code
+# Estrutura da URL
 
-## O que contém?
+## Formato do Link
 
-Cada QR Code é **único por evento** e contém:
+Cada QR Code contém uma URL única que identifica o evento:
 
 <div class="tech">
 
-URL: https://eventosfsa.com.br/portal/{estabelecimento_id}/{evento_id}
+https://eventosfsa.com.br/portal/{estabelecimento_slug}/{evento_id}
 
-Exemplo: https://eventosfsa.com.br/portal/bar-do-ze/2025-11-28
+Exemplos:
+https://eventosfsa.com.br/portal/bar-do-ze/evt-2025-11-30-001
+https://eventosfsa.com.br/portal/cidade-da-cultura/evt-2025-12-01-002
 
 </div>
 
 ## Tipos de QR Code
 
-### 1. QR Code do Evento (Temporário)
+### 1. QR Code de Evento (Temporário)
 
-- Gerado para cada show
-- Expira após o evento
-- Mostra o artista que está tocando AGORA
-- Ideal para mesas
+| Característica | Descrição |
+|----------------|-----------|
+| **Validade** | Apenas durante o evento |
+| **Conteúdo** | Mostra o artista que está tocando AGORA |
+| **Uso ideal** | Mesas, balcão, displays rotativos |
+| **Geração** | Automática ao confirmar evento |
 
 ### 2. QR Code do Estabelecimento (Permanente)
 
-- Fixo para o local
-- Sempre mostra a agenda de eventos
-- Quando tem show, direciona para o artista
-- Ideal para porta/vitrine
+| Característica | Descrição |
+|----------------|-----------|
+| **Validade** | Sempre ativo |
+| **Conteúdo** | Agenda de eventos + artista ao vivo (se houver) |
+| **Uso ideal** | Porta de entrada, vitrine, cardápio |
+| **Geração** | Uma vez, no cadastro |
 
-## Materiais de Impressão
+<div class="highlight">
 
-Para cada estabelecimento parceiro, fornecemos:
+💡 **Estratégia recomendada:** Use QR Code permanente na entrada e QR Code de evento nas mesas durante os shows.
 
-| Material | Quantidade | Onde usar |
-|----------|------------|-----------|
-| Display de mesa (10x10cm) | 10 unidades | Cada mesa |
-| Adesivo porta (A4) | 2 unidades | Entrada |
-| Cartaz interno (A3) | 3 unidades | Paredes |
-| Flyer (10x15cm) | 50 unidades | Distribuir |
+</div>
+
+---
+
+# Materiais de Impressão
+
+## Kit Padrão para Estabelecimentos
+
+Cada estabelecimento parceiro recebe:
+
+| Material | Quantidade | Dimensão | Onde usar |
+|----------|------------|----------|-----------|
+| Display de mesa | 10 unidades | 10x10 cm | Cada mesa |
+| Adesivo porta | 2 unidades | A4 | Entrada principal |
+| Cartaz interno | 3 unidades | A3 | Paredes internas |
+| Flyers | 50 unidades | 10x15 cm | Distribuir para clientes |
+| Porta-guardanapo | 5 unidades | 7x7 cm | Suportes de guardanapo |
+
+## Design dos Materiais
+
+Todos os materiais seguem identidade visual:
+
+- **Cores:** Vermelho (#DC2626), Branco, Cinza escuro
+- **Logo:** EventosFSA sempre presente
+- **CTA:** "Escaneie e envie uma gorjeta!" ou "Veja quem está tocando"
+- **Instrução:** Ícone de câmera + seta para o QR Code
 
 ---
 
 # O Portal Mobile
 
-## Tela Principal
+## Tela Principal (Quando há show ao vivo)
 
-Quando o cliente escaneia, ele vê:
-
-### Cabeçalho
+### Header
 - Logo do estabelecimento
 - Nome e endereço
-- Badge "AO VIVO" piscando
+- Badge animado **"🔴 AO VIVO"**
 
 ### Seção do Artista
-- Foto grande do artista
-- Nome e estilo musical
-- Avaliação (estrelas)
-- **Botão gigante "ENVIAR GORJETA"**
+- **Foto grande** do artista (80% da largura)
+- **Nome** em destaque
+- **Estilo musical** (ex: MPB, Sertanejo)
+- **Avaliação** com estrelas
+- **Botão gigante** "ENVIAR GORJETA" (call-to-action principal)
 
-### Valores Rápidos
-- R$ 10, R$ 20, R$ 50, R$ 100
+### Valores de Gorjeta
+- Botões rápidos: R$ 10 | R$ 20 | R$ 50 | R$ 100
 - Campo para valor personalizado
+- Integração direta com PIX
 
-### Informações Adicionais
-- Setlist (músicas que estão tocando)
-- Próximos eventos do local
-- Sobre o estabelecimento
+### Seção Secundária
+- Lista de músicas tocadas (setlist)
+- Próximos eventos do estabelecimento
+- Sobre o artista (mini bio)
+- Link para perfil completo
 
-### Rodapé
+### Footer
 - "Powered by EventosFSA"
 - Link para o site principal
+- Política de privacidade
 
 ---
 
 # Sistema de Gorjetas via PIX
 
-## Como funciona tecnicamente?
+## Fluxo Técnico
 
 <div class="diagram">
-
-<div class="flow-box">1. Cliente<br>escolhe valor</div>
+<div class="flow-box">1️⃣ Cliente<br>escolhe valor</div>
 <span class="arrow">→</span>
-<div class="flow-box">2. Sistema gera<br>QR Code PIX</div>
+<div class="flow-box">2️⃣ API gera<br>QR Code PIX</div>
 <span class="arrow">→</span>
-<div class="flow-box">3. Cliente<br>paga no app banco</div>
+<div class="flow-box">3️⃣ Cliente<br>paga no app banco</div>
 <span class="arrow">→</span>
-<div class="flow-box">4. Confirmação<br>instantânea</div>
+<div class="flow-box">4️⃣ Webhook<br>confirma</div>
 <span class="arrow">→</span>
-<div class="flow-box">5. Artista<br>recebe 100%</div>
-
+<div class="flow-box">5️⃣ Artista<br>recebe 100%</div>
 </div>
 
-## Integração PIX
+## Especificações Técnicas
 
 | Aspecto | Implementação |
 |---------|---------------|
-| **Geração do QR** | API Mercado Pago / Stripe |
-| **Chave PIX** | Cadastrada pelo artista |
-| **Confirmação** | Webhook em tempo real |
-| **Recibo** | Enviado por e-mail |
+| **Geração do QR PIX** | API Mercado Pago (PIX Copia e Cola) |
+| **Chave PIX do artista** | Cadastrada no perfil (CPF, e-mail, telefone ou aleatória) |
+| **Confirmação de pagamento** | Webhook em tempo real (<5 segundos) |
+| **Recibo** | Enviado por e-mail para cliente e artista |
+| **Fallback** | Se PIX falhar, oferece chave para copiar manualmente |
+
+## Fluxo de Dados
+
+<div class="tech">
+
+1. Cliente clica em "Enviar Gorjeta R$ 20"
+2. Frontend envia POST /api/tips/create
+   {
+     artistId: "art_123",
+     eventId: "evt_456",
+     amount: 2000 // centavos
+   }
+3. Backend gera cobrança via Mercado Pago API
+4. Retorna QR Code PIX (imagem + código copia-cola)
+5. Cliente paga usando app do banco
+6. Mercado Pago envia webhook POST /api/webhooks/mercadopago
+7. Backend confirma pagamento e atualiza banco
+8. Artista recebe notificação push
+9. Valor aparece no dashboard do artista
+
+</div>
 
 ## Segurança
 
 <div class="success">
 
-✅ O dinheiro vai **direto** para a chave PIX do artista
-✅ A plataforma **não retém** valores de gorjeta
-✅ Transação segura via **instituição financeira**
-✅ Registro completo para **transparência**
+✅ **Dinheiro direto para o artista** — Não retemos valores
+
+✅ **PIX instantâneo** — Crédito em segundos
+
+✅ **Criptografia ponta a ponta** — HTTPS + tokens seguros
+
+✅ **Sem armazenamento de dados bancários** — Gateway cuida de tudo
+
+✅ **Conformidade LGPD** — Dados tratados conforme legislação
 
 </div>
 
@@ -194,27 +234,56 @@ Quando o cliente escaneia, ele vê:
 
 # Implementação nos Estabelecimentos
 
-## Passo a Passo
+## Processo de Onboarding
 
-### 1. Configuração Inicial (Feita uma vez)
+### Etapa 1: Configuração Inicial (Feita uma vez)
 
-1. Estabelecimento se cadastra na plataforma
-2. Equipe EventosFSA aprova o cadastro
-3. QR Codes são gerados e enviados
-4. Materiais são impressos e entregues
+<div class="step">
+<span class="step-number">1</span>
+<div>Estabelecimento se cadastra na plataforma</div>
+</div>
 
-### 2. Para Cada Evento
+<div class="step">
+<span class="step-number">2</span>
+<div>Equipe EventosFSA aprova o cadastro (até 24h)</div>
+</div>
 
-1. Estabelecimento confirma o evento com artista
-2. Sistema gera QR Code específico
-3. Portal é atualizado automaticamente
-4. No dia, cliente escaneia e interage
+<div class="step">
+<span class="step-number">3</span>
+<div>QR Code permanente é gerado automaticamente</div>
+</div>
 
-### 3. Manutenção
+<div class="step">
+<span class="step-number">4</span>
+<div>Materiais de impressão são enviados digitalmente (PDF)</div>
+</div>
 
-- QR Codes permanentes não precisam trocar
-- Materiais danificados podem ser reimpressos
-- Atualizações de software são automáticas
+<div class="step">
+<span class="step-number">5</span>
+<div>Estabelecimento imprime e distribui nas mesas</div>
+</div>
+
+### Etapa 2: Para Cada Evento
+
+<div class="step">
+<span class="step-number">1</span>
+<div>Estabelecimento confirma evento com artista pela plataforma</div>
+</div>
+
+<div class="step">
+<span class="step-number">2</span>
+<div>QR Code específico do evento é gerado automaticamente</div>
+</div>
+
+<div class="step">
+<span class="step-number">3</span>
+<div>Portal é atualizado para mostrar o artista confirmado</div>
+</div>
+
+<div class="step">
+<span class="step-number">4</span>
+<div>No dia do show, clientes escaneiam e interagem</div>
+</div>
 
 ---
 
@@ -222,107 +291,52 @@ Quando o cliente escaneia, ele vê:
 
 ## Para o Estabelecimento
 
-| Requisito | Especificação |
-|-----------|---------------|
-| **Internet** | Banda larga estável |
-| **Wi-Fi** | Rede para clientes |
-| **QR Codes** | Fornecidos pela plataforma |
+| Requisito | Obrigatório? | Observação |
+|-----------|--------------|------------|
+| Internet banda larga | ✅ Sim | Necessário para processar transações |
+| Wi-Fi para clientes | ❌ Opcional | Cliente pode usar 4G/5G próprio |
+| QR Codes impressos | ✅ Sim | Fornecidos pela plataforma |
+| Smartphone do gerente | ✅ Sim | Para acessar dashboard |
 
-<div class="highlight">
+## Para o Cliente Final
 
-💡 **Nota:** O cliente pode usar dados móveis (4G/5G) se preferir. O Wi-Fi não é obrigatório, apenas recomendado.
+| Requisito | Observação |
+|-----------|------------|
+| Smartphone | Qualquer modelo com câmera |
+| App de banco | Para pagar via PIX |
+| Internet | 4G/5G ou Wi-Fi do estabelecimento |
 
-</div>
+<div class="info">
 
-## Para o Cliente
-
-| Requisito | Especificação |
-|-----------|---------------|
-| **Celular** | Qualquer smartphone |
-| **Câmera** | Para escanear QR Code |
-| **App banco** | Para pagar via PIX |
-
----
-
-# Fluxo de Dados
-
-<div class="tech">
-
-EVENTO CRIADO
-     ↓
-Sistema gera URL única
-     ↓
-QR Code é criado (PNG/SVG)
-     ↓
-Disponível no painel do estabelecimento
-     ↓
-Estabelecimento imprime/exibe
-     ↓
-Cliente escaneia
-     ↓
-Servidor identifica evento ativo
-     ↓
-Portal carrega com dados do artista
-     ↓
-Cliente pode interagir (gorjeta/avaliação)
-     ↓
-Ações são registradas no banco de dados
-     ↓
-Artista recebe notificação em tempo real
+💡 **Importante:** O sistema funciona 100% via navegador. O cliente NÃO precisa instalar nenhum aplicativo do EventosFSA.
 
 </div>
-
----
-
-# Cenários de Uso
-
-## Cenário 1: Show Normal
-
-1. Cliente chega no bar às 20h
-2. Pede bebida, senta na mesa
-3. Vê o display com QR Code
-4. Escaneia por curiosidade
-5. Vê o artista Weslei Ribeiro tocando
-6. Gosta do show, envia R$ 20 de gorjeta
-7. No fim, avalia com 5 estrelas
-
-## Cenário 2: Descoberta
-
-1. Cliente escaneia o QR Code
-2. Vê a agenda de próximos eventos
-3. Descobre que terá forró no sábado
-4. Salva o evento nos favoritos
-5. Volta no sábado com os amigos
-
-## Cenário 3: Fidelização
-
-1. Cliente frequente sempre escaneia
-2. Conhece todos os artistas do local
-3. Segue seus favoritos na plataforma
-4. Recebe notificação quando vão tocar
-5. Nunca perde um show
 
 ---
 
 # Métricas e Analytics
 
-## O que podemos medir?
+## O Que Medimos
 
-| Métrica | Utilidade |
-|---------|-----------|
-| **Escaneamentos** | Engajamento do público |
-| **Tempo na página** | Interesse no artista |
-| **Gorjetas enviadas** | Monetização |
-| **Avaliações** | Qualidade dos shows |
-| **Retorno de usuários** | Fidelização |
+| Métrica | Utilidade | Disponível para |
+|---------|-----------|-----------------|
+| **Escaneamentos** | Engajamento do público | Estabelecimento + Admin |
+| **Tempo na página** | Interesse no artista | Admin |
+| **Taxa de conversão** | % que envia gorjeta | Artista + Estabelecimento |
+| **Valor médio gorjeta** | Ticket médio | Artista |
+| **Avaliações** | Qualidade dos shows | Todos |
+| **Retorno de usuários** | Fidelização | Estabelecimento |
 
-## Dashboard para Estabelecimentos
+## Dashboard do Estabelecimento
 
-O dono do bar pode ver:
-- Quantas pessoas escanearam
-- Total de gorjetas do mês
-- Artistas mais bem avaliados
-- Horários de pico de acesso
+O dono do bar pode ver em tempo real:
+
+- 📊 Quantas pessoas escanearam hoje/semana/mês
+- 💰 Total de gorjetas enviadas para os artistas
+- ⭐ Avaliação média dos shows no local
+- 🎤 Artistas mais populares
+- ⏰ Horários de pico de acesso
+- 📈 Comparativo mês a mês
 
 ---
 
@@ -330,38 +344,61 @@ O dono do bar pode ver:
 
 <div class="success">
 
-✅ **HTTPS** em todas as conexões
-✅ **Dados sensíveis** criptografados
-✅ **PIX** processado por instituição autorizada
-✅ **Sem armazenamento** de dados bancários
-✅ **LGPD** em conformidade
+### Segurança em Múltiplas Camadas
+
+✅ **HTTPS obrigatório** — Todas as conexões são criptografadas
+
+✅ **Tokens JWT** — Autenticação stateless e segura
+
+✅ **Rate limiting** — Proteção contra ataques de força bruta
+
+✅ **Validação de entrada** — Sanitização de todos os dados
+
+✅ **PIX via instituição autorizada** — Mercado Pago (licenciado pelo Bacen)
+
+✅ **Sem armazenamento de cartão** — Dados bancários não ficam conosco
+
+✅ **Logs de auditoria** — Todas as transações são registradas
+
+✅ **Conformidade LGPD** — Política de privacidade e consentimento
 
 </div>
 
 ---
 
-# Próximos Desenvolvimentos
+# Roadmap Tecnológico
 
-## Roadmap Tecnológico
+## Próximas Implementações
 
-| Fase | Funcionalidade |
-|------|----------------|
-| **v1.1** | Notificações push |
-| **v1.2** | Integração com Spotify |
-| **v1.3** | Pedido de músicas |
-| **v2.0** | App nativo (iOS/Android) |
-| **v2.1** | Realidade aumentada no QR |
+| Versão | Feature | Previsão |
+|--------|---------|----------|
+| **v1.1** | Notificações push para artistas | Q1 2026 |
+| **v1.2** | Integração com Spotify (setlist) | Q1 2026 |
+| **v1.3** | Pedido de músicas pelo público | Q2 2026 |
+| **v2.0** | App nativo iOS/Android | Q2 2026 |
+| **v2.1** | Live streaming integrado | Q3 2026 |
+| **v2.2** | Realidade aumentada no QR | Q4 2026 |
 
 ---
 
-<div style="text-align: center; margin-top: 50px; padding: 30px; background: #1a1a2e; color: white; border-radius: 12px;">
+# Suporte Técnico
 
-## 🔧 Suporte Técnico
+<div class="cta-footer">
 
-Para dúvidas sobre implementação:
+## 🔧 Problemas com QR Code?
 
-**E-mail:** tech@eventosfsa.com.br
+**Estabelecimento:** Acesse o painel e baixe novos QR Codes
 
-**Documentação:** docs.eventosfsa.com.br
+**Material danificado:** Solicite reimpressão gratuita
+
+**QR não funciona:** Verifique conexão de internet
+
+**Dúvidas técnicas:** tech@eventosfsa.com.br
+
+---
+
+**Documentação completa:** docs.eventosfsa.com.br
+
+**Status do sistema:** status.eventosfsa.com.br
 
 </div>

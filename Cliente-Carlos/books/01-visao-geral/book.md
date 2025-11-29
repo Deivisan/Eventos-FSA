@@ -1,158 +1,259 @@
-<style>
-@page { size: A4; margin: 2cm; }
-body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; color: #1a1a2e; }
-h1 { color: #DC2626; border-bottom: 3px solid #DC2626; padding-bottom: 10px; }
-h2 { color: #16213e; margin-top: 30px; }
-h3 { color: #0f3460; }
-.highlight { background: #FEF3C7; padding: 15px; border-radius: 8px; border-left: 4px solid #F59E0B; }
-.success { background: #D1FAE5; padding: 15px; border-radius: 8px; border-left: 4px solid #10B981; }
-.info { background: #DBEAFE; padding: 15px; border-radius: 8px; border-left: 4px solid #3B82F6; }
-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-th, td { border: 1px solid #E5E7EB; padding: 12px; text-align: left; }
-th { background: #DC2626; color: white; }
-tr:nth-child(even) { background: #F9FAFB; }
-.cover { text-align: center; padding: 100px 0; page-break-after: always; }
-.cover h1 { font-size: 3em; border: none; }
-.page-break { page-break-before: always; }
-img { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-</style>
-
 <div class="cover">
-
-# 🎵 EventosFSA
-
-## Visão Geral da Plataforma
-
-### A maior plataforma de eventos e música ao vivo de Feira de Santana
+  <div class="logo-icon">🎵</div>
+  <h1>EventosFSA</h1>
+  <h2>Visão Geral da Plataforma</h2>
+  <h3>A maior plataforma de eventos e música ao vivo de Feira de Santana, Bahia</h3>
+  <div class="version">
+    <strong>Versão 2.0</strong> | Novembro 2025<br>
+    Documento preparado para apresentação ao cliente
+  </div>
+</div>
 
 ---
 
-**Versão 1.0 | Novembro 2025**
+# Sobre o EventosFSA
 
-*Documento preparado para apresentação ao cliente*
-
-</div>
-
-# O que é o EventosFSA?
-
-O **EventosFSA** é uma plataforma digital completa que conecta três mundos que sempre precisaram se encontrar em Feira de Santana:
+O **EventosFSA** é uma plataforma digital inovadora que revoluciona a forma como a música ao vivo acontece em Feira de Santana. Conectamos três pilares essenciais do ecossistema cultural:
 
 <div class="highlight">
 
-🎤 **Artistas locais** que buscam oportunidades de trabalho e reconhecimento
+🎤 **Artistas locais** — Talentos que buscam oportunidades, reconhecimento e uma forma moderna de receber gorjetas
 
-🍺 **Bares, restaurantes e casas de show** que precisam de música ao vivo de qualidade
+🍺 **Estabelecimentos** — Bares, restaurantes e casas de show que precisam de música ao vivo de qualidade
 
-👥 **O público** que quer saber onde tem evento hoje na cidade
+👥 **O público** — Pessoas que querem saber onde tem evento, descobrir novos artistas e apoiar a cultura local
 
 </div>
 
-## Por que Feira de Santana precisa disso?
+## A Oportunidade
 
-Nossa cidade é a **segunda maior da Bahia** e tem uma cena cultural vibrante, mas fragmentada:
+Feira de Santana é a **segunda maior cidade da Bahia**, com mais de 600 mil habitantes e uma tradição forte de boemia e música ao vivo. Porém, o mercado opera de forma fragmentada:
 
-- Artistas talentosos que não conseguem divulgar seu trabalho
-- Bares que não sabem onde encontrar bons músicos
-- Pessoas que descobrem eventos só quando já passaram
-
-**O EventosFSA resolve tudo isso em uma única plataforma.**
-
----
-
-# Como Funciona na Prática?
-
-## Para o Público (Usuário Comum)
-
-1. **Acessa o site** eventosfsá.com.br (ou escaneia QR Code no bar)
-2. **Vê os eventos** do dia, da semana ou do mês
-3. **Filtra por bairro** ou estilo musical
-4. **Descobre artistas** e pode enviar gorjeta via PIX
-5. **Avalia** o show e o estabelecimento
+| Problema Atual | Impacto |
+|----------------|---------|
+| Artistas sem visibilidade | Dependem apenas de indicações |
+| Bares sem acesso a talentos | Contratam sempre os mesmos |
+| Público desinformado | Descobre eventos tarde demais |
+| Gorjetas em dinheiro | Cada vez menos gente carrega cédulas |
 
 <div class="success">
 
-✅ **100% gratuito** para o usuário final
+**A solução:** Uma plataforma única que organiza, conecta e monetiza o ecossistema de música ao vivo.
 
 </div>
 
-## Para o Artista
+---
 
-1. **Cadastra seu perfil** com fotos, vídeos e repertório
-2. **Recebe propostas** de bares e restaurantes
-3. **Aceita ou negocia** as condições
-4. **Faz o show** e recebe o cachê
-5. **Recebe gorjetas** direto no PIX (100% vai pro artista!)
-6. **Sobe no ranking** conforme as avaliações
+# Como Funciona na Prática
 
-## Para o Bar/Restaurante
+## Para o Público (100% Gratuito)
 
-1. **Cadastra o estabelecimento** com fotos e horários
-2. **Busca artistas** por estilo, cachê e avaliação
-3. **Envia proposta** com data, horário e valor
-4. **Confirma a contratação** quando o artista aceita
-5. **Recebe QR Code** para colocar nas mesas
-6. **Clientes escaneiam** e interagem com a plataforma
+O usuário comum pode usar a plataforma sem nenhum custo:
+
+<div class="step">
+<span class="step-number">1</span>
+<div><strong>Descobre eventos</strong> — Veja o que está rolando hoje, amanhã ou no fim de semana</div>
+</div>
+
+<div class="step">
+<span class="step-number">2</span>
+<div><strong>Filtra por preferência</strong> — Por bairro, estilo musical ou estabelecimento favorito</div>
+</div>
+
+<div class="step">
+<span class="step-number">3</span>
+<div><strong>Conhece artistas</strong> — Perfis completos com vídeos, repertório e avaliações</div>
+</div>
+
+<div class="step">
+<span class="step-number">4</span>
+<div><strong>Envia gorjetas via PIX</strong> — Apoie seu artista favorito direto pelo celular</div>
+</div>
+
+<div class="step">
+<span class="step-number">5</span>
+<div><strong>Avalia e recomenda</strong> — Ajude a comunidade a descobrir os melhores shows</div>
+</div>
+
+## Para Artistas
+
+Os músicos têm acesso a um painel profissional:
+
+- **Perfil público** com foto, vídeo de apresentação e repertório
+- **Calendário** de disponibilidade e eventos confirmados
+- **Propostas** recebidas de estabelecimentos
+- **Gorjetas** via PIX com 100% do valor
+- **Ranking** baseado em avaliações e engajamento
+- **Estatísticas** de visualizações e contratações
+
+## Para Estabelecimentos
+
+Donos de bares e restaurantes podem:
+
+- **Buscar artistas** por estilo, cachê e avaliação
+- **Enviar propostas** formais pela plataforma
+- **Divulgar eventos** automaticamente para milhares de pessoas
+- **Usar QR Codes** nas mesas para engajamento dos clientes
+- **Acompanhar métricas** de engajamento e satisfação
 
 ---
 
 # O Diferencial: Sistema de Gorjetas
 
-<div class="info">
+<div class="tip-box">
 
-💝 **Inovação:** Clientes podem enviar gorjetas via PIX direto pelo celular, sem precisar de dinheiro físico!
+### 💝 Gorjetas Digitais — O Futuro do Apoio ao Artista
+
+Clientes podem enviar gorjetas via PIX instantâneo, direto pelo celular. **100% do valor vai para o artista** — a plataforma não cobra taxa sobre gorjetas.
 
 </div>
 
-### Como funciona:
+### Como funciona o fluxo:
 
-1. Cliente escaneia o QR Code na mesa
-2. Vê o artista que está tocando
-3. Clica em "Enviar Gorjeta"
-4. Escolhe o valor (R$ 10, R$ 20, R$ 50, R$ 100 ou personalizado)
-5. Paga via PIX instantaneamente
-6. **100% do valor vai para o artista!**
+<div class="diagram">
+<div class="flow-box">📱 Escaneia<br>QR Code</div>
+<span class="arrow">→</span>
+<div class="flow-box">🎤 Vê o<br>Artista</div>
+<span class="arrow">→</span>
+<div class="flow-box">💝 Escolhe<br>Valor</div>
+<span class="arrow">→</span>
+<div class="flow-box">💰 Paga<br>via PIX</div>
+<span class="arrow">→</span>
+<div class="flow-box">✅ Artista<br>Recebe</div>
+</div>
 
-### Por que isso é revolucionário?
+### Valores sugeridos:
 
-- **Ninguém mais anda com dinheiro** - agora o artista não perde gorjetas
-- **Transparência total** - o artista vê exatamente quanto recebeu
-- **Valorização do talento** - público pode reconhecer diretamente o artista
-- **Engajamento** - cria conexão entre público e artista
+| Opção | Valor | Uso típico |
+|-------|-------|------------|
+| Café ☕ | R$ 10 | "Valeu pelo som!" |
+| Cerveja 🍺 | R$ 20 | "Tocou minha música!" |
+| Rodada 🍻 | R$ 50 | "Show sensacional!" |
+| VIP 🌟 | R$ 100 | "Artista incrível!" |
+| Personalizado | Livre | Você escolhe |
+
+<div class="info">
+
+💡 **Por que isso importa?** Menos de 20% das pessoas carregam dinheiro hoje. Com gorjeta digital, o artista não perde mais essa receita!
+
+</div>
 
 ---
 
-# Números que Impressionam
+# Números e Potencial
 
-| Métrica | Potencial em FSA |
-|---------|------------------|
-| Bares e restaurantes | +500 estabelecimentos |
-| Artistas ativos | +300 músicos |
-| Eventos por mês | +400 shows |
-| Público alcançado | +100.000 pessoas |
+## O Mercado de Feira de Santana
+
+| Indicador | Número |
+|-----------|--------|
+| 🏙️ População | 620.000+ habitantes |
+| 🍺 Bares e restaurantes | 500+ estabelecimentos |
+| 🎤 Artistas locais | 300+ músicos ativos |
+| 📅 Eventos por mês | 400+ shows |
+| 💰 Mercado de cachês | R$ 2 milhões/ano |
 
 ## Projeção de Crescimento
 
-**Ano 1:** 50 estabelecimentos, 80 artistas, 400 eventos
-**Ano 2:** 150 estabelecimentos, 200 artistas, 1.200 eventos
-**Ano 3:** 300+ estabelecimentos, 400+ artistas, 2.500+ eventos
+<div class="projection">
+
+### Ano 1 — Validação e Crescimento
+
+| Meta | Quantidade |
+|------|------------|
+| Estabelecimentos parceiros | 50 |
+| Artistas cadastrados | 150 |
+| Eventos realizados | 600+ |
+| Receita estimada | R$ 83.000 |
+
+</div>
+
+<div class="projection">
+
+### Ano 2 — Consolidação
+
+| Meta | Quantidade |
+|------|------------|
+| Estabelecimentos parceiros | 150 |
+| Artistas cadastrados | 300 |
+| Eventos realizados | 1.800+ |
+| Receita estimada | R$ 250.000 |
+
+</div>
+
+<div class="projection">
+
+### Ano 3 — Expansão Regional
+
+| Meta | Quantidade |
+|------|------------|
+| Cidades atendidas | FSA + 3 cidades |
+| Estabelecimentos parceiros | 400+ |
+| Artistas cadastrados | 600+ |
+| Receita estimada | R$ 600.000 |
+
+</div>
+
+---
+
+# Tecnologia de Ponta
+
+## Stack Tecnológico
+
+O EventosFSA foi desenvolvido com as tecnologias mais modernas do mercado:
+
+| Componente | Tecnologia |
+|------------|------------|
+| Frontend Web | Next.js 16 + React 19 |
+| Design System | Tailwind CSS + Framer Motion |
+| Backend | Node.js + API RESTful |
+| Banco de Dados | PostgreSQL + Prisma ORM |
+| Autenticação | JWT + OAuth 2.0 |
+| Pagamentos | PIX via Mercado Pago |
+| Hospedagem | Vercel Edge Network |
+| CDN | Cloudflare Global |
+
+<div class="success">
+
+✅ **PWA Ready** — Funciona como app no celular  
+✅ **Responsivo** — Perfeito em qualquer tela  
+✅ **Rápido** — Carregamento em menos de 2 segundos  
+✅ **Seguro** — HTTPS + criptografia ponta a ponta  
+
+</div>
 
 ---
 
 # Visão de Futuro
 
-## O que o EventosFSA pode se tornar:
+## Roadmap 2025-2027
 
-1. **Referência regional** em eventos culturais
-2. **Expansão para outras cidades** (Salvador, Vitória da Conquista, Jequié)
-3. **Integração com turismo** - turistas descobrem a cultura local
-4. **Parcerias** com prefeitura para eventos oficiais
-5. **Aplicativo mobile** com notificações em tempo real
-
-<div class="success">
-
-🚀 **Visão:** Ser a plataforma número 1 de eventos do interior da Bahia até 2027
-
+<div class="step">
+<span class="step-number">Q1</span>
+<div><strong>Lançamento Beta</strong> — 10 estabelecimentos piloto, refinamento do produto</div>
 </div>
+
+<div class="step">
+<span class="step-number">Q2</span>
+<div><strong>Lançamento Público</strong> — Marketing local, 50 estabelecimentos, app PWA</div>
+</div>
+
+<div class="step">
+<span class="step-number">Q3</span>
+<div><strong>Consolidação</strong> — Planos premium, parcerias estratégicas, 100 estabelecimentos</div>
+</div>
+
+<div class="step">
+<span class="step-number">Q4</span>
+<div><strong>Expansão</strong> — App nativo iOS/Android, venda de ingressos, API para parceiros</div>
+</div>
+
+## Visão de Longo Prazo
+
+- 🌎 **Expansão para Salvador** e outras cidades baianas
+- 📺 **Integração com streaming** de shows ao vivo
+- 🎫 **Venda de ingressos** para eventos maiores
+- 🤝 **Parcerias institucionais** com prefeitura e SEBRAE
+- 🏆 **Prêmio anual** EventosFSA de Música
 
 ---
 
@@ -163,23 +264,25 @@ Nossa cidade é a **segunda maior da Bahia** e tem uma cena cultural vibrante, m
 | **Produto** | Plataforma SaaS de eventos e música ao vivo |
 | **Localização** | Feira de Santana, BA (expansível) |
 | **Público-alvo** | Artistas, estabelecimentos e público geral |
-| **Diferencial** | Sistema de gorjetas via PIX + QR Code nos estabelecimentos |
+| **Diferencial** | Sistema de gorjetas via PIX + QR Code |
 | **Modelo de receita** | Comissão 5% + Planos Premium |
-| **Status** | MVP funcional, pronto para lançamento |
+| **Investimento inicial** | R$ 5.850 |
+| **Payback estimado** | 4-6 meses |
+| **Status atual** | MVP funcional e online |
 
----
+<div class="cta-footer">
 
-<div style="text-align: center; margin-top: 50px; padding: 30px; background: #F3F4F6; border-radius: 12px;">
-
-## 📞 Próximos Passos
+## 🚀 Próximos Passos
 
 Para dar continuidade ao projeto, precisamos definir:
 
-1. **Hospedagem e domínio** (eventosfsá.com.br)
-2. **Integração de pagamentos** (PIX/Mercado Pago)
-3. **Estratégia de lançamento** (primeiros parceiros)
-4. **Investimento inicial** para marketing
+1. **Hospedagem definitiva** e domínio (eventosfsa.com.br)
+2. **Integração de pagamentos** em produção (PIX/Mercado Pago)
+3. **Estratégia de lançamento** com primeiros 10 parceiros
+4. **Cronograma de marketing** e divulgação local
 
-**Estamos prontos para começar! 🚀**
+**O EventosFSA está pronto para transformar a cena musical de Feira de Santana!**
+
+📧 contato@eventosfsa.com.br | 📱 (75) 99999-9999
 
 </div>

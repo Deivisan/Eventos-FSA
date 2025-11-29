@@ -1,95 +1,88 @@
-<style>
-@page { size: A4; margin: 2cm; }
-body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; color: #1a1a2e; }
-h1 { color: #DC2626; border-bottom: 3px solid #DC2626; padding-bottom: 10px; }
-h2 { color: #16213e; margin-top: 30px; }
-h3 { color: #0f3460; }
-.highlight { background: #FEF3C7; padding: 15px; border-radius: 8px; border-left: 4px solid #F59E0B; margin: 20px 0; }
-.success { background: #D1FAE5; padding: 15px; border-radius: 8px; border-left: 4px solid #10B981; margin: 20px 0; }
-.info { background: #DBEAFE; padding: 15px; border-radius: 8px; border-left: 4px solid #3B82F6; margin: 20px 0; }
-.money { background: linear-gradient(135deg, #10B981, #059669); color: white; padding: 25px; border-radius: 12px; margin: 20px 0; }
-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-th, td { border: 1px solid #E5E7EB; padding: 12px; text-align: left; }
-th { background: #DC2626; color: white; }
-tr:nth-child(even) { background: #F9FAFB; }
-.cover { text-align: center; padding: 100px 0; page-break-after: always; }
-.cover h1 { font-size: 3em; border: none; }
-.big-number { font-size: 3em; font-weight: bold; color: #DC2626; }
-.projection { background: #F3F4F6; padding: 25px; border-radius: 12px; margin: 20px 0; }
-</style>
-
 <div class="cover">
-
-# 💰 EventosFSA
-
-## Modelo de Negócio e Projeções Financeiras
-
-### Análise completa de receitas, custos e potencial de crescimento
+  <div class="logo-icon">💰</div>
+  <h1>EventosFSA</h1>
+  <h2>Modelo de Negócio e Projeções</h2>
+  <h3>Análise completa de receitas, custos e potencial de crescimento</h3>
+  <div class="version">
+    <strong>Versão 2.0</strong> | Novembro 2025<br>
+    Documento confidencial para investidores e parceiros
+  </div>
+</div>
 
 ---
 
-**Versão 1.0 | Novembro 2025**
-
-*Documento confidencial para investidores e parceiros*
-
-</div>
-
 # Resumo Executivo
 
-O **EventosFSA** é uma plataforma SaaS (Software as a Service) que conecta artistas, estabelecimentos e público no ecossistema de eventos e música ao vivo de Feira de Santana, Bahia.
+O **EventosFSA** é uma plataforma SaaS (Software as a Service) que conecta artistas, estabelecimentos e público no ecossistema de música ao vivo de Feira de Santana, Bahia.
 
-<div class="money">
+<div class="tip-box">
 
 ### 💎 Oportunidade de Mercado
 
-Feira de Santana é a **2ª maior cidade da Bahia** com:
-- **600.000+ habitantes**
-- **500+ bares e restaurantes**
-- **300+ artistas locais**
-- **Cultura de boteco e música ao vivo forte**
+**Feira de Santana** é a 2ª maior cidade da Bahia:
+
+- 🏙️ **620.000+ habitantes**
+- 🍺 **500+ bares e restaurantes** com música ao vivo
+- 🎤 **300+ artistas locais** ativos
+- 💰 **R$ 2 milhões/ano** em cachês musicais
+- 🎯 **Mercado fragmentado** sem solução digital
 
 </div>
+
+## O Problema que Resolvemos
+
+| Ator | Dor | Nossa Solução |
+|------|-----|---------------|
+| **Artista** | Dificuldade em conseguir shows | Propostas chegam pelo app |
+| **Estabelecimento** | Não conhece artistas disponíveis | Catálogo com vídeos e avaliações |
+| **Público** | Não sabe onde tem show hoje | Agenda completa e filtrada |
+| **Gorjetas** | Ninguém anda com dinheiro | PIX instantâneo pelo celular |
 
 ---
 
 # Modelo de Receita
 
-## Fontes de Receita
+## Fontes de Receita do EventosFSA
 
-### 1. Comissão sobre Cachês (Principal)
+### 1. Comissão sobre Cachês (Receita Principal)
+
+Cobramos **5% sobre cada cachê** pago via plataforma:
 
 <div class="projection">
 
-**Taxa:** 5% sobre cada cachê pago via plataforma
+| Cachê do Artista | Taxa EventosFSA | % da Receita Total |
+|------------------|-----------------|-------------------|
+| R$ 300 (pequeno) | R$ 15 | ~70% dos eventos |
+| R$ 500 (médio) | R$ 25 | ~20% dos eventos |
+| R$ 1.000 (grande) | R$ 50 | ~10% dos eventos |
 
-| Cenário | Cachê médio | Taxa EventosFSA |
-|---------|-------------|-----------------|
-| Show pequeno | R$ 300 | R$ 15 |
-| Show médio | R$ 500 | R$ 25 |
-| Show grande | R$ 1.000 | R$ 50 |
+**Taxa média por evento:** R$ 22,50
 
 </div>
 
-### 2. Planos Premium
+### 2. Assinaturas Premium (Receita Recorrente)
 
-| Plano | Preço | Público |
-|-------|-------|---------|
-| **Premium Artista** | R$ 29,90/mês | Músicos que querem destaque |
-| **Premium Estabelecimento** | R$ 49,90/mês | Bares que querem prioridade |
+| Plano | Preço | Público-Alvo | Benefícios |
+|-------|-------|--------------|------------|
+| **Premium Artista** | R$ 29,90/mês | Músicos profissionais | Destaque, estatísticas, selo |
+| **Premium Estabelecimento** | R$ 49,90/mês | Bares engajados | Prioridade, relatórios, suporte VIP |
 
-### 3. Receitas Futuras (Fase 2)
+### 3. Receitas Futuras (Fase 2+)
 
-| Fonte | Potencial |
-|-------|-----------|
-| Anúncios segmentados | R$ 500-2.000/mês |
-| Venda de ingressos | 10% por ingresso |
-| Parcerias B2B | R$ 1.000-5.000/parceria |
+| Fonte | Modelo | Potencial Mensal |
+|-------|--------|------------------|
+| Anúncios segmentados | CPM/CPC | R$ 500 - R$ 2.000 |
+| Venda de ingressos | 10% por ingresso | R$ 1.000 - R$ 5.000 |
+| Parcerias B2B | Fee fixo | R$ 1.000 - R$ 5.000 |
+| API para terceiros | SaaS B2B | R$ 500 - R$ 2.000 |
 
 ---
 
-# Projeção Financeira - Ano 1
+# Projeções Financeiras — Ano 1
 
-## Premissas
+## Premissas Conservadoras
+
+<div class="projection">
 
 | Métrica | Mês 1-3 | Mês 4-6 | Mês 7-12 |
 |---------|---------|---------|----------|
@@ -97,88 +90,106 @@ Feira de Santana é a **2ª maior cidade da Bahia** com:
 | Artistas cadastrados | 30 | 80 | 150 |
 | Eventos/mês | 40 | 150 | 400 |
 | Cachê médio | R$ 350 | R$ 400 | R$ 450 |
+| Premium Artistas | 5 | 20 | 40 |
+| Premium Estabelecimentos | 0 | 10 | 25 |
 
-## Receita Projetada
+</div>
 
-### Meses 1-3 (Lançamento)
+## Receita Projetada por Período
+
+### 📅 Meses 1-3: Lançamento
 
 <div class="projection">
 
 **Comissões:** 40 eventos × R$ 350 × 5% = **R$ 700/mês**
-**Premium:** 5 artistas × R$ 29,90 = **R$ 150/mês**
 
-**Total: R$ 850/mês**
+**Premium Artistas:** 5 × R$ 29,90 = **R$ 150/mês**
+
+**Premium Estabelecimentos:** 0
+
+---
+
+### 💵 Total: R$ 850/mês
 
 </div>
 
-### Meses 4-6 (Crescimento)
+### 📅 Meses 4-6: Crescimento
 
 <div class="projection">
 
 **Comissões:** 150 eventos × R$ 400 × 5% = **R$ 3.000/mês**
+
 **Premium Artistas:** 20 × R$ 29,90 = **R$ 598/mês**
+
 **Premium Estabelecimentos:** 10 × R$ 49,90 = **R$ 499/mês**
 
-**Total: R$ 4.097/mês**
+---
+
+### 💵 Total: R$ 4.097/mês
 
 </div>
 
-### Meses 7-12 (Consolidação)
+### 📅 Meses 7-12: Consolidação
 
 <div class="projection">
 
 **Comissões:** 400 eventos × R$ 450 × 5% = **R$ 9.000/mês**
+
 **Premium Artistas:** 40 × R$ 29,90 = **R$ 1.196/mês**
+
 **Premium Estabelecimentos:** 25 × R$ 49,90 = **R$ 1.248/mês**
-
-**Total: R$ 11.444/mês**
-
-</div>
-
-## Resumo Ano 1
-
-| Período | Receita Mensal | Receita Acumulada |
-|---------|----------------|-------------------|
-| Mês 1-3 | R$ 850 | R$ 2.550 |
-| Mês 4-6 | R$ 4.097 | R$ 12.291 |
-| Mês 7-12 | R$ 11.444 | R$ 68.664 |
-| **Total Ano 1** | - | **R$ 83.505** |
 
 ---
 
-# Custos Operacionais
+### 💵 Total: R$ 11.444/mês
+
+</div>
+
+## Resumo Anual
+
+| Período | Receita Mensal | Meses | Receita Acumulada |
+|---------|----------------|-------|-------------------|
+| Mês 1-3 | R$ 850 | 3 | R$ 2.550 |
+| Mês 4-6 | R$ 4.097 | 3 | R$ 12.291 |
+| Mês 7-12 | R$ 11.444 | 6 | R$ 68.664 |
+| **ANO 1** | - | 12 | **R$ 83.505** |
+
+---
+
+# Estrutura de Custos
 
 ## Custos Fixos Mensais
 
-| Item | Valor |
-|------|-------|
-| Hospedagem cloud (AWS/Vercel) | R$ 200 |
-| Domínio + SSL | R$ 15 |
-| E-mail profissional | R$ 50 |
-| Ferramentas (analytics, etc) | R$ 100 |
-| **Total Fixo** | **R$ 365/mês** |
+| Item | Valor Mensal | Anual |
+|------|--------------|-------|
+| Hospedagem cloud (Vercel Pro) | R$ 200 | R$ 2.400 |
+| Domínio + SSL | R$ 15 | R$ 180 |
+| E-mail profissional (Google) | R$ 50 | R$ 600 |
+| Ferramentas (Analytics, Sentry) | R$ 100 | R$ 1.200 |
+| **Total Fixo** | **R$ 365** | **R$ 4.380** |
 
 ## Custos Variáveis
 
-| Item | Cálculo |
-|------|---------|
-| Taxa gateway pagamento | 2% das transações |
-| Marketing digital | 10% da receita |
-| Suporte ao cliente | 5% da receita |
+| Item | Base de Cálculo | Estimativa |
+|------|-----------------|------------|
+| Taxa gateway (Mercado Pago) | 2% das transações | ~R$ 100/mês no ano 1 |
+| Marketing digital | 10% da receita | ~R$ 500/mês médio |
+| Materiais impressos (QR Codes) | R$ 20 por estabelecimento | ~R$ 100/mês |
+| Suporte ao cliente | 5% da receita | ~R$ 250/mês médio |
 
-## Projeção de Lucro - Ano 1
+## Projeção de Lucro — Ano 1
 
-<div class="money">
+<div class="tip-box">
 
-### Cenário Conservador
+### 📊 Cenário Conservador
 
-| Métrica | Valor |
-|---------|-------|
-| Receita Total | R$ 83.505 |
-| Custos Fixos | R$ 4.380 |
-| Custos Variáveis (17%) | R$ 14.196 |
-| **Lucro Líquido** | **R$ 64.929** |
-| **Margem** | **77,7%** |
+| Linha | Valor |
+|-------|-------|
+| **Receita Bruta** | R$ 83.505 |
+| Custos Fixos | - R$ 4.380 |
+| Custos Variáveis (15%) | - R$ 12.526 |
+| **Lucro Operacional** | **R$ 66.599** |
+| **Margem** | **79,8%** |
 
 </div>
 
@@ -186,60 +197,85 @@ Feira de Santana é a **2ª maior cidade da Bahia** com:
 
 # Análise de Mercado
 
-## TAM - Total Addressable Market
+## TAM — Total Addressable Market
 
-Feira de Santana + Região Metropolitana:
+Mercado total de música ao vivo em FSA + Região:
 
-- 500+ estabelecimentos com música ao vivo
-- 300+ artistas profissionais
-- 4.000+ eventos por ano
-- R$ 2 milhões/ano em cachês
+| Métrica | Valor |
+|---------|-------|
+| Estabelecimentos com música | 500+ |
+| Artistas profissionais | 300+ |
+| Eventos por ano | 6.000+ |
+| Volume de cachês | R$ 2.000.000/ano |
+| **Comissão potencial (5%)** | **R$ 100.000/ano** |
+
+## SAM — Serviceable Available Market
+
+Mercado acessível (estabelecimentos tech-ready):
+
+| Métrica | Valor | % do TAM |
+|---------|-------|----------|
+| Estabelecimentos | 200 | 40% |
+| Artistas | 150 | 50% |
+| Eventos/ano | 2.400 | 40% |
+
+## SOM — Serviceable Obtainable Market (Ano 1)
+
+Meta realista para o primeiro ano:
+
+| Métrica | Meta Ano 1 | % do SAM |
+|---------|------------|----------|
+| Estabelecimentos | 50 | 25% |
+| Artistas | 80 | 53% |
+| Eventos | 600 | 25% |
 
 <div class="big-number">
 
-R$ 100.000/ano
+R$ 83.505
 
 </div>
 
-*Potencial de comissões (5% do mercado de cachês)*
-
-## SAM - Serviceable Available Market
-
-Estabelecimentos tecnologicamente aptos:
-- 200 estabelecimentos (40% do total)
-- 150 artistas ativos (50% do total)
-- 2.000 eventos/ano
-
-## SOM - Serviceable Obtainable Market (Ano 1)
-
-Meta realista:
-- 50 estabelecimentos (25% do SAM)
-- 80 artistas (53% do SAM)
-- 600 eventos
+*Receita projetada para o Ano 1*
 
 ---
 
 # Análise Competitiva
 
-## Concorrentes Diretos
+## Cenário Atual
 
-| Plataforma | Abrangência | Modelo | Fragilidade |
-|------------|-------------|--------|-------------|
-| WhatsApp | Nacional | Informal | Sem organização |
-| Facebook Events | Global | Gratuito | Sem monetização |
-| Sympla | Nacional | Ingressos | Não foca em bares |
+| Solução | Tipo | Forças | Fraquezas |
+|---------|------|--------|-----------|
+| **WhatsApp** | Informal | Todos usam | Sem organização, sem histórico |
+| **Facebook Events** | Rede social | Grande alcance | Sem monetização, sem gorjetas |
+| **Sympla** | Ingressos | Consolidado | Foco em shows grandes |
+| **Agências** | Tradicional | Relacionamento | Cara, fechada, pouco transparente |
 
-## Nosso Diferencial
+## Nosso Diferencial Competitivo
 
 <div class="success">
 
-✅ **Foco local** - Feito para Feira de Santana
-✅ **Sistema de gorjetas** - Inovação exclusiva
-✅ **QR Code integrado** - Experiência no local
-✅ **Ranking de artistas** - Gamificação
-✅ **Baixa barreira** - Gratuito para começar
+✅ **Foco hiperlocal** — Feito especificamente para FSA
+
+✅ **Gorjetas digitais** — Inovação única no mercado local
+
+✅ **QR Code integrado** — Experiência no local do show
+
+✅ **Ranking gamificado** — Engajamento contínuo
+
+✅ **Baixa barreira** — Gratuito para começar, paga só quando usa
+
+✅ **Mobile-first** — Perfeito para o público jovem
 
 </div>
+
+## Barreiras de Entrada
+
+| Barreira | Descrição |
+|----------|-----------|
+| **Network effects** | Quanto mais artistas, mais estabelecimentos querem entrar |
+| **Dados históricos** | Avaliações e ranking acumulados são difíceis de replicar |
+| **Relacionamento local** | Conhecimento profundo do mercado de FSA |
+| **First-mover** | Quem chegar primeiro domina |
 
 ---
 
@@ -249,56 +285,77 @@ Meta realista:
 
 **Meta:** 10 estabelecimentos + 30 artistas
 
-- Onboarding pessoal com primeiros parceiros
-- Eventos piloto para ajustar o produto
-- Coleta de feedback intensiva
-- Zero custo de aquisição (rede de contatos)
+<div class="step">
+<span class="step-number">1</span>
+<div><strong>Onboarding personalizado</strong> — Visita presencial aos primeiros parceiros</div>
+</div>
+
+<div class="step">
+<span class="step-number">2</span>
+<div><strong>Eventos piloto</strong> — Acompanhar de perto para ajustar produto</div>
+</div>
+
+<div class="step">
+<span class="step-number">3</span>
+<div><strong>Feedback intensivo</strong> — Entrevistas semanais com usuários</div>
+</div>
+
+<div class="step">
+<span class="step-number">4</span>
+<div><strong>Zero CAC</strong> — Usar rede de contatos pessoais</div>
+</div>
 
 ## Fase 2: Crescimento (Meses 4-6)
 
 **Meta:** 30 estabelecimentos + 80 artistas
 
-- Marketing digital (Instagram, Facebook)
-- Parcerias com produtores de eventos
-- Programa de indicação
-- Cobertura de mídia local
+- 📱 Marketing digital (Instagram, Facebook Ads)
+- 🤝 Parcerias com produtores de eventos
+- 🎁 Programa de indicação (R$ 20 por indicação)
+- 📰 Cobertura de mídia local (rádios, blogs)
 
 ## Fase 3: Escala (Meses 7-12)
 
 **Meta:** 50 estabelecimentos + 150 artistas
 
-- Equipe de vendas (1-2 pessoas)
-- Expansão para cidades vizinhas
-- Funcionalidades premium
-- App mobile
+- 👥 Equipe de vendas (1-2 pessoas em campo)
+- 🌎 Preparação para expansão regional
+- 💎 Lançamento de planos premium
+- 📱 App mobile nativo
 
 ---
 
 # Investimento Necessário
 
-## Para Lançamento (MVP)
+## Capital para Lançamento (MVP → Produção)
 
 <div class="projection">
 
 | Item | Valor |
 |------|-------|
 | Desenvolvimento (já feito) | R$ 0 |
-| Hospedagem (6 meses) | R$ 1.200 |
-| Domínio + Certificados | R$ 150 |
-| Material gráfico (QR Codes) | R$ 500 |
-| Marketing inicial | R$ 2.000 |
-| Reserva operacional | R$ 2.000 |
-| **Total** | **R$ 5.850** |
+| Hospedagem (12 meses) | R$ 2.400 |
+| Domínio + Certificados | R$ 200 |
+| Material gráfico inicial | R$ 500 |
+| Marketing de lançamento | R$ 2.000 |
+| Reserva operacional | R$ 750 |
+| **TOTAL NECESSÁRIO** | **R$ 5.850** |
 
 </div>
 
 ## Retorno do Investimento (ROI)
 
-| Cenário | Payback |
-|---------|---------|
-| Conservador | 6 meses |
-| Moderado | 4 meses |
-| Otimista | 2 meses |
+| Cenário | Tempo para Payback |
+|---------|-------------------|
+| Pessimista | 8 meses |
+| Conservador | 5 meses |
+| Otimista | 3 meses |
+
+<div class="success">
+
+💡 **Com R$ 5.850 de investimento e receita projetada de R$ 83.505 no ano 1, o ROI é de aproximadamente 1.327%**
+
+</div>
 
 ---
 
@@ -306,10 +363,11 @@ Meta realista:
 
 | Risco | Probabilidade | Impacto | Mitigação |
 |-------|---------------|---------|-----------|
-| Baixa adesão inicial | Média | Alto | Onboarding pessoal, incentivos |
-| Concorrente entrar | Baixa | Médio | Fidelização, foco local |
-| Problemas técnicos | Baixa | Alto | Monitoramento, backup |
-| Sazonalidade | Alta | Médio | Diversificar para eventos |
+| Baixa adesão inicial | Média | Alto | Onboarding presencial, incentivos |
+| Concorrente forte | Baixa | Médio | Fidelização, foco local, first-mover |
+| Problemas técnicos | Baixa | Alto | Monitoramento 24/7, backup |
+| Sazonalidade | Alta | Médio | Diversificar para eventos corporativos |
+| Dependência de PIX | Baixa | Médio | Múltiplos gateways de pagamento |
 
 ---
 
@@ -322,54 +380,91 @@ Meta realista:
 | Estabelecimentos ativos | 30 | 50 |
 | Artistas cadastrados | 80 | 150 |
 | Usuários (público) | 1.000 | 5.000 |
+| Downloads PWA | 200 | 1.000 |
 
 ## Métricas de Engajamento
 
 | KPI | Meta |
 |-----|------|
 | Eventos/mês | 400 |
-| Taxa de confirmação | 80% |
-| Avaliações por evento | 5+ |
-| Gorjetas por show | R$ 50+ |
+| Taxa de confirmação | >80% |
+| Avaliações por evento | >5 |
+| Gorjeta média por show | >R$ 50 |
+| NPS | >50 |
 
 ## Métricas Financeiras
 
 | KPI | Meta Ano 1 |
 |-----|------------|
-| Receita Recorrente Mensal (MRR) | R$ 11.000 |
-| Lifetime Value (LTV) | R$ 500/estabelecimento |
-| Custo de Aquisição (CAC) | R$ 50/estabelecimento |
+| MRR (Receita Recorrente) | R$ 11.000 |
+| LTV (Lifetime Value) | R$ 500/estabelecimento |
+| CAC (Custo de Aquisição) | <R$ 50/estabelecimento |
 | Churn mensal | <5% |
+| Margem operacional | >75% |
 
 ---
 
 # Conclusão
 
-<div class="money">
+<div class="tip-box">
 
-## 🚀 Por que investir no EventosFSA?
+## 🚀 Por Que Investir no EventosFSA?
 
-1. **Mercado pronto** - Feira de Santana tem demanda real
-2. **Produto validado** - MVP funcional e testado
-3. **Baixo investimento** - R$ 6 mil para começar
-4. **Alta margem** - 77% de lucro líquido projetado
-5. **Escalável** - Modelo replicável para outras cidades
-6. **Impacto social** - Fortalece a cultura local
+| Argumento | Evidência |
+|-----------|-----------|
+| **Mercado pronto** | FSA tem demanda real e cultura de música ao vivo |
+| **Produto validado** | MVP funcional, testado e online |
+| **Baixo investimento** | Apenas R$ 5.850 para começar |
+| **Alta margem** | ~80% de lucro operacional |
+| **Escalável** | Modelo replicável para outras cidades |
+| **Impacto social** | Fortalece cultura e economia criativa local |
+| **Time comprometido** | Conhecimento profundo do mercado |
 
 </div>
 
+## Próximos Passos
+
+<div class="step">
+<span class="step-number">1</span>
+<div><strong>Definir investimento inicial</strong> — R$ 5.850 para 12 meses de operação</div>
+</div>
+
+<div class="step">
+<span class="step-number">2</span>
+<div><strong>Contratar domínio e hospedagem</strong> — eventosfsa.com.br em produção</div>
+</div>
+
+<div class="step">
+<span class="step-number">3</span>
+<div><strong>Integrar pagamentos</strong> — Mercado Pago em ambiente de produção</div>
+</div>
+
+<div class="step">
+<span class="step-number">4</span>
+<div><strong>Onboarding dos primeiros 10 parceiros</strong> — Estabelecimentos piloto</div>
+</div>
+
+<div class="step">
+<span class="step-number">5</span>
+<div><strong>Lançamento público</strong> — Com campanha de marketing local</div>
+</div>
+
+<div class="cta-footer">
+
+## 📈 Vamos Construir Juntos?
+
+O EventosFSA está pronto para transformar a cena musical de Feira de Santana.
+
+**Para discussão detalhada de investimento e parceria:**
+
+📧 contato@eventosfsa.com.br
+
+📱 (75) 99999-9999
+
 ---
 
-<div style="text-align: center; margin-top: 50px; padding: 30px; background: #1a1a2e; color: white; border-radius: 12px;">
+*EventosFSA — Conectando música, negócios e pessoas*
 
-## 📈 Vamos Conversar?
-
-Este documento apresenta uma visão geral do modelo de negócio.
-
-Para discussão detalhada de investimento e parceria:
-
-**Contato:** contato@eventosfsa.com.br
-
-**Feira de Santana, Bahia - Brasil**
+**Feira de Santana, Bahia — Brasil**
 
 </div>

@@ -1,152 +1,173 @@
-<style>
-@page { size: A4; margin: 2cm; }
-body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; color: #1a1a2e; }
-h1 { color: #DC2626; border-bottom: 3px solid #DC2626; padding-bottom: 10px; }
-h2 { color: #16213e; margin-top: 30px; }
-h3 { color: #0f3460; }
-.highlight { background: #FEF3C7; padding: 15px; border-radius: 8px; border-left: 4px solid #F59E0B; margin: 20px 0; }
-.success { background: #D1FAE5; padding: 15px; border-radius: 8px; border-left: 4px solid #10B981; margin: 20px 0; }
-.info { background: #DBEAFE; padding: 15px; border-radius: 8px; border-left: 4px solid #3B82F6; margin: 20px 0; }
-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-th, td { border: 1px solid #E5E7EB; padding: 12px; text-align: left; }
-th { background: #DC2626; color: white; }
-tr:nth-child(even) { background: #F9FAFB; }
-.cover { text-align: center; padding: 100px 0; page-break-after: always; }
-.cover h1 { font-size: 3em; border: none; }
-.step { background: #F3F4F6; padding: 20px; border-radius: 12px; margin: 15px 0; }
-.step-number { display: inline-block; background: #DC2626; color: white; width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 30px; margin-right: 10px; }
-.tip-box { background: linear-gradient(135deg, #DC2626, #B91C1C); color: white; padding: 25px; border-radius: 12px; margin: 20px 0; }
-</style>
-
 <div class="cover">
-
-# 🎤 EventosFSA
-
-## Guia Completo para Artistas
-
-### Como usar a plataforma para conseguir mais shows e ganhar dinheiro com seu talento
+  <div class="logo-icon">🎤</div>
+  <h1>EventosFSA</h1>
+  <h2>Guia para Artistas</h2>
+  <h3>Como usar a plataforma para conseguir mais shows, receber gorjetas e alavancar sua carreira</h3>
+  <div class="version">
+    <strong>Versão 2.0</strong> | Novembro 2025<br>
+    Manual prático para músicos de Feira de Santana
+  </div>
+</div>
 
 ---
-
-**Versão 1.0 | Novembro 2025**
-
-*Manual prático para músicos de Feira de Santana*
-
-</div>
 
 # Bem-vindo, Artista!
 
-Se você é **músico, cantor, banda ou DJ** de Feira de Santana, este guia é para você.
+Se você é **músico, cantor, banda, duo ou DJ** de Feira de Santana ou região, este guia é para você.
 
 <div class="success">
 
-🎯 **Objetivo:** Mostrar como usar o EventosFSA para conseguir mais shows, receber gorjetas e construir sua carreira artística.
+🎯 **Objetivo:** Mostrar como usar o EventosFSA para conseguir mais shows, receber gorjetas digitais e construir uma carreira artística sólida na região.
 
 </div>
 
----
+## Sua Nova Realidade
 
-# Por que usar o EventosFSA?
-
-## Antes do EventosFSA:
-
-❌ Dependia de contatos pessoais para conseguir shows
-❌ Preços inconsistentes (cada lugar pagava diferente)
-❌ Ninguém sabia do seu trabalho além dos conhecidos
-❌ Gorjetas só em dinheiro (e quem anda com dinheiro hoje?)
-❌ Sem forma de mostrar seu talento profissionalmente
-
-## Com o EventosFSA:
-
-✅ **Propostas chegam até você** de toda a cidade
-✅ **Você define seu cachê** mínimo
-✅ **Perfil profissional** com vídeos e fotos
-✅ **Gorjetas via PIX** direto no seu celular
-✅ **Ranking por avaliações** - destaque para os melhores
-✅ **Agenda organizada** em um só lugar
+| Antes do EventosFSA | Com o EventosFSA |
+|---------------------|------------------|
+| ❌ Correr atrás de shows | ✅ Propostas chegam até você |
+| ❌ Preços inconsistentes | ✅ Você define seu cachê mínimo |
+| ❌ Ninguém conhece seu trabalho | ✅ Perfil profissional com vídeos |
+| ❌ Gorjetas só em dinheiro | ✅ Gorjetas via PIX instantâneo |
+| ❌ Sem registro de carreira | ✅ Ranking e estatísticas |
 
 ---
 
-# Como Funciona para Você
-
-## 1. Crie seu Perfil Profissional
+# Criando seu Perfil Profissional
 
 Seu perfil é seu **cartão de visitas digital**. Quanto mais completo, mais propostas você recebe!
 
-### O que incluir:
-
-| Item | Por que é importante |
-|------|---------------------|
-| **Foto profissional** | Primeira impressão conta! |
-| **Vídeo de 1-2 minutos** | Mostra seu talento em ação |
-| **Repertório** | Bares querem saber o que você toca |
-| **Estilos musicais** | Aparece nas buscas certas |
-| **Faixa de cachê** | Filtra propostas compatíveis |
-| **Disponibilidade** | Dias que você pode tocar |
-| **Redes sociais** | Aumenta sua credibilidade |
-
-## 2. Receba Propostas
-
-Quando um bar ou restaurante quer você, ele envia uma proposta com:
-- 📅 Data e horário
-- 📍 Local do evento
-- 💰 Valor do cachê
-- 📝 Detalhes especiais
-
-## 3. Decida o que fazer
-
-Para cada proposta, você pode:
-- ✅ **Aceitar** - agenda confirmada!
-- 💬 **Negociar** - pedir ajuste no valor ou horário
-- ❌ **Recusar** - sem problemas, não afeta seu ranking
-
-## 4. Faça o Show
-
-No dia do evento, seu rosto aparece no QR Code do estabelecimento. Clientes podem:
-- Ver seu perfil
-- Enviar gorjetas via PIX
-- Avaliar sua apresentação
-
-## 5. Receba e Cresça
-
-Depois do show:
-- 💰 Receba o cachê (combinado diretamente com o estabelecimento)
-- 💝 Veja as gorjetas que recebeu
-- ⭐ Confira suas avaliações
-- 📈 Acompanhe sua posição no ranking
-
----
-
-# O Sistema de Gorjetas
-
-<div class="tip-box">
-
-## 💝 100% da gorjeta vai para VOCÊ!
-
-A plataforma **não cobra nenhuma taxa** sobre gorjetas. Todo o valor vai direto para o seu PIX.
-
-</div>
-
-### Como funciona:
-
-1. Cliente escaneia o QR Code na mesa do bar
-2. Vê seu nome e foto na tela
-3. Clica em "Enviar Gorjeta"
-4. Escolhe o valor: R$ 10, R$ 20, R$ 50, R$ 100 ou personalizado
-5. Faz o PIX instantâneo
-6. Você recebe na hora!
-
-### Quanto dá para ganhar?
-
-| Cenário | Gorjetas estimadas |
-|---------|-------------------|
-| Show pequeno (20 pessoas) | R$ 50 - R$ 100 |
-| Show médio (50 pessoas) | R$ 100 - R$ 300 |
-| Show grande (100+ pessoas) | R$ 300 - R$ 800 |
+## O que Incluir no Perfil
 
 <div class="highlight">
 
-💡 **Dica:** Artistas que interagem com o público e pedem gorjetas de forma simpática recebem até **3x mais**!
+### 📸 Foto Profissional
+- Alta resolução (mínimo 800x800px)
+- Boa iluminação
+- Foco no rosto ou no artista/banda
+- Evite fotos com outras pessoas
+
+### 🎥 Vídeo de Apresentação (1-2 minutos)
+- Mostre você tocando/cantando
+- Pode ser de show ou gravação em casa
+- Qualidade de áudio é mais importante que vídeo
+- Inclua seus melhores momentos
+
+### 🎵 Repertório Completo
+- Liste pelo menos 30 músicas
+- Agrupe por estilo (MPB, Sertanejo, etc.)
+- Inclua o artista original
+- Atualize quando aprender novas
+
+</div>
+
+## Informações Importantes
+
+| Campo | Dica |
+|-------|------|
+| **Nome artístico** | Use o nome pelo qual você é conhecido |
+| **Estilos musicais** | Seja específico (MPB Clássico, Sertanejo Raiz, etc.) |
+| **Formação** | Solo, Duo, Trio, Banda completa |
+| **Instrumentos** | O que você toca? Voz e violão? Teclado? |
+| **Cachê mínimo** | Valor base para shows (você pode negociar para mais) |
+| **Disponibilidade** | Quais dias da semana você pode tocar? |
+| **Região de atuação** | Só FSA? FSA + região? Viaja? |
+
+---
+
+# Como Receber e Responder Propostas
+
+## Quando Chega uma Proposta
+
+Você será notificado por:
+- 📱 Push notification (se tiver o app)
+- 📧 E-mail
+- 💬 WhatsApp (opcional)
+
+### O que vem na Proposta
+
+| Informação | Exemplo |
+|------------|---------|
+| **Estabelecimento** | Bar do Zé (⭐ 4.8) |
+| **Endereço** | Rua Conselheiro Franco, Centro |
+| **Data** | Sábado, 30/11/2025 |
+| **Horário** | 20:00 às 23:00 (3 horas) |
+| **Cachê oferecido** | R$ 400,00 |
+| **Observações** | "Preferência para MPB e MPB" |
+
+## Suas Opções de Resposta
+
+<div class="step">
+<span class="step-number">✅</span>
+<div><strong>Aceitar</strong> — O evento é confirmado automaticamente! Você e o estabelecimento recebem notificação.</div>
+</div>
+
+<div class="step">
+<span class="step-number">💬</span>
+<div><strong>Negociar</strong> — Proponha um cachê diferente ou ajuste no horário. O estabelecimento pode aceitar ou contrapropor.</div>
+</div>
+
+<div class="step">
+<span class="step-number">❌</span>
+<div><strong>Recusar</strong> — Sem problemas! Isso NÃO afeta seu ranking. Você pode informar o motivo opcionalmente.</div>
+</div>
+
+<div class="info">
+
+💡 **Dica:** Responda propostas em até 24 horas. Artistas ágeis recebem mais convites!
+
+</div>
+
+---
+
+# O Sistema de Gorjetas Digitais
+
+<div class="tip-box">
+
+## 💝 100% da Gorjeta Vai Para VOCÊ!
+
+A plataforma **não cobra nenhuma taxa** sobre gorjetas. Todo o valor vai direto para seu PIX cadastrado.
+
+</div>
+
+## Como Funciona
+
+<div class="diagram">
+<div class="flow-box">📱 Cliente<br>escaneia QR</div>
+<span class="arrow">→</span>
+<div class="flow-box">🎤 Vê seu<br>perfil</div>
+<span class="arrow">→</span>
+<div class="flow-box">💝 Escolhe<br>valor</div>
+<span class="arrow">→</span>
+<div class="flow-box">💰 Paga<br>via PIX</div>
+<span class="arrow">→</span>
+<div class="flow-box">✅ Você<br>recebe!</div>
+</div>
+
+## Valores Sugeridos na Plataforma
+
+| Opção | Valor | Mensagem típica |
+|-------|-------|-----------------|
+| ☕ Café | R$ 10 | "Valeu pelo som!" |
+| 🍺 Cerveja | R$ 20 | "Tocou minha música!" |
+| 🍻 Rodada | R$ 50 | "Show sensacional!" |
+| 🌟 VIP | R$ 100 | "Você é incrível!" |
+| 💎 Personalizado | Livre | Valor escolhido pelo cliente |
+
+## Quanto Dá Para Ganhar?
+
+| Cenário | Público | Gorjetas Estimadas |
+|---------|---------|-------------------|
+| Show pequeno | ~20 pessoas | R$ 50 - R$ 100 |
+| Show médio | ~50 pessoas | R$ 100 - R$ 300 |
+| Show grande | ~100+ pessoas | R$ 300 - R$ 800 |
+| Evento especial | ~200+ pessoas | R$ 500 - R$ 1.500 |
+
+<div class="success">
+
+**Dica de ouro:** Artistas que interagem com o público e pedem gorjetas de forma simpática e bem-humorada recebem até **3x mais**!
+
+Exemplo: "Gostou do som? Manda um PIX aí pelo QR Code! A primeira cerveja é por sua conta!" 🍺
 
 </div>
 
@@ -154,158 +175,200 @@ A plataforma **não cobra nenhuma taxa** sobre gorjetas. Todo o valor vai direto
 
 # O Sistema de Ranking
 
-## Como funciona?
+## Como Funciona o Ranking?
 
-O EventosFSA tem um **ranking de artistas** baseado em:
+O EventosFSA tem um **ranking por estilo musical** que destaca os melhores artistas. A pontuação é calculada assim:
 
-| Critério | Peso |
-|----------|------|
-| ⭐ Avaliação média | 50% |
-| 📊 Quantidade de shows | 25% |
-| 💝 Gorjetas recebidas | 15% |
-| 📅 Frequência de apresentações | 10% |
+| Critério | Peso | Como melhorar |
+|----------|------|---------------|
+| ⭐ Avaliação média | 50% | Faça shows incríveis! |
+| 📊 Quantidade de shows | 25% | Aceite mais propostas |
+| 💝 Gorjetas recebidas | 15% | Interaja com o público |
+| 📅 Frequência | 10% | Toque regularmente |
 
-## Por que o ranking importa?
+## Benefícios de Estar Bem Rankeado
 
-- 🏆 **Top 3** aparecem em destaque na página inicial
-- 🔍 Artistas bem rankeados aparecem primeiro nas buscas
-- 💰 Estabelecimentos preferem contratar artistas bem avaliados
-- ⭐ Selo "Artista Destaque" no seu perfil
+<div class="highlight">
 
-## Como subir no ranking?
+### 🏆 Top 3 do Ranking
 
-1. **Faça shows consistentes** - quantidade importa
-2. **Seja profissional** - pontualidade e qualidade
-3. **Peça avaliações** - lembre os clientes de avaliar
-4. **Interaja com o público** - gera mais gorjetas
-5. **Mantenha perfil atualizado** - vídeos recentes
+- Destaque na página inicial da plataforma
+- Badge "Artista Destaque" no perfil
+- Aparecem primeiro nas buscas
+- Mais convites de estabelecimentos premium
+
+### 🥇 Top 10
+
+- Boa visibilidade nas buscas
+- Selo "Artista Verificado"
+- Prioridade em notificações para estabelecimentos
+
+</div>
+
+## Estratégias para Subir no Ranking
+
+<div class="step">
+<span class="step-number">1</span>
+<div><strong>Faça shows consistentes</strong> — Quantidade importa! Aceite propostas compatíveis.</div>
+</div>
+
+<div class="step">
+<span class="step-number">2</span>
+<div><strong>Seja extremamente profissional</strong> — Pontualidade, qualidade do som, postura.</div>
+</div>
+
+<div class="step">
+<span class="step-number">3</span>
+<div><strong>Peça avaliações</strong> — Ao final do show, lembre o público de avaliar.</div>
+</div>
+
+<div class="step">
+<span class="step-number">4</span>
+<div><strong>Interaja com o público</strong> — Isso gera mais gorjetas e melhores avaliações.</div>
+</div>
+
+<div class="step">
+<span class="step-number">5</span>
+<div><strong>Mantenha o perfil atualizado</strong> — Vídeos recentes, repertório atual.</div>
+</div>
 
 ---
 
-# Custos e Benefícios
+# Custos e Planos
 
-## Quanto custa?
+## Quanto Custa Usar o EventosFSA?
 
 <div class="success">
 
-✅ **Cadastro:** GRATUITO
-✅ **Receber propostas:** GRATUITO
-✅ **Gorjetas:** 100% SUAS (sem taxa!)
+### ✅ GRATUITO!
+
+- Cadastro gratuito
+- Receber propostas gratuito
+- Gorjetas 100% suas (sem taxa!)
+- Aparecer no catálogo gratuito
 
 </div>
 
-### Plano Premium (Opcional)
+## Plano Premium para Artistas (Opcional)
 
-Por **R$ 29,90/mês** você tem:
+Por **R$ 29,90/mês** você turbina sua presença:
 
 | Benefício | Descrição |
 |-----------|-----------|
-| 🏆 **Destaque** | Aparece antes nos resultados |
-| ⭐ **Selo Verificado** | Passa mais confiança |
-| 📊 **Estatísticas** | Veja quem viu seu perfil |
-| 📢 **Notificações** | Propostas primeiro para você |
-| 🎥 **Vídeos ilimitados** | Adicione quantos quiser |
+| 🏆 **Destaque nas buscas** | Aparece antes dos artistas gratuitos |
+| ⭐ **Selo Verificado** | Transmite mais confiança e profissionalismo |
+| 📊 **Estatísticas avançadas** | Veja quem visualizou seu perfil |
+| 📢 **Notificações prioritárias** | Receba propostas primeiro |
+| 🎥 **Vídeos ilimitados** | Adicione quantos quiser ao perfil |
+| 📅 **Agenda avançada** | Bloqueie datas, defina preferências |
+
+<div class="info">
+
+💡 **Vale a pena?** Artistas Premium recebem em média **40% mais propostas** que os gratuitos. O investimento se paga em 1-2 shows extras por mês.
+
+</div>
 
 ---
 
-# Dicas para Sucesso
+# Dicas de Sucesso
 
-## 📸 Sobre suas Fotos
+## Para seu Perfil Bombar
 
-- Use fotos de qualidade (pode ser de celular bom)
-- Mostre você em ação, tocando
-- Evite fotos com outras pessoas (foco em você)
-- Atualize conforme muda o visual
+### 📸 Fotos que Vendem
 
-## 🎥 Sobre seu Vídeo
+- Use fotos em ação (tocando, cantando)
+- Boa iluminação é essencial
+- Evite selfies com filtros
+- Atualize quando mudar o visual
 
-- 1 a 2 minutos é o ideal
-- Grave em boa qualidade de áudio
-- Mostre seu melhor repertório
-- Pode ser gravado em show ou em casa
+### 🎥 Vídeo que Converte
 
-## 📝 Sobre seu Repertório
+- Máximo 2 minutos (ninguém assiste mais que isso)
+- Áudio limpo é mais importante que imagem 4K
+- Mostre variedade do repertório
+- Pode ser mix de vários shows
 
-- Liste as músicas mais pedidas
-- Inclua o artista original
-- Agrupe por estilo (MPB, Sertanejo, etc.)
-- Atualize quando aprender novas
+### 🎵 Repertório que Atrai
 
-## 💰 Sobre seu Cachê
+- Liste todas as músicas que você domina
+- Organize por estilo musical
+- Inclua clássicos e sucessos atuais
+- Atualize mensalmente
 
-- Pesquise quanto outros cobram
+### 💰 Cachê Inteligente
+
+- Pesquise quanto outros cobram na região
 - Comece competitivo, suba conforme o ranking
-- Considere distância e duração
-- Seja flexível para primeiros shows
+- Considere distância, duração e estrutura necessária
+- Seja flexível para primeiros shows em novos locais
 
 ---
 
-# Perguntas Frequentes
+# Dúvidas Frequentes
 
-## "Posso recusar propostas?"
+## Perguntas e Respostas
 
-Sim! Você não é obrigado a aceitar nada. Recusar não afeta seu ranking.
+**"Posso recusar propostas?"**
+> Sim! Você não é obrigado a aceitar nada. Recusar NÃO afeta seu ranking de forma alguma.
 
-## "E se eu precisar cancelar?"
+**"E se eu precisar cancelar um show?"**
+> Avise com máxima antecedência pelo sistema. Cancelamentos sem justificativa afetam sua reputação e ranking.
 
-Avise com antecedência pelo sistema. Cancelamentos sem justificativa afetam sua reputação.
+**"Posso trabalhar fora da plataforma?"**
+> Claro! O EventosFSA é um canal adicional. Continue livre para aceitar shows por fora, pelo WhatsApp, como sempre fez.
 
-## "Posso trabalhar fora da plataforma também?"
+**"Como recebo o cachê?"**
+> Diretamente do estabelecimento (PIX ou dinheiro, combinado entre vocês). A plataforma não intermedia cachê.
 
-Claro! O EventosFSA é um canal adicional. Você continua livre para aceitar shows por fora.
+**"E as gorjetas?"**
+> Vão direto para o PIX cadastrado no seu perfil. Instantâneo, sem taxas!
 
-## "Como recebo o cachê?"
-
-Diretamente do estabelecimento (PIX ou dinheiro). A plataforma não intermedia o cachê.
-
-## "E as gorjetas?"
-
-Vão direto para o PIX que você cadastrou. Sem taxas!
-
----
-
-# Comece Agora!
-
-<div class="step">
-
-<span class="step-number">1</span> **Acesse** eventosfsá.com.br
-
-</div>
-
-<div class="step">
-
-<span class="step-number">2</span> **Cadastre-se** como Artista
-
-</div>
-
-<div class="step">
-
-<span class="step-number">3</span> **Complete** seu perfil (foto, vídeo, repertório)
-
-</div>
-
-<div class="step">
-
-<span class="step-number">4</span> **Defina** seu cachê e disponibilidade
-
-</div>
-
-<div class="step">
-
-<span class="step-number">5</span> **Aguarde** as propostas chegarem!
-
-</div>
+**"Posso mudar meu cachê a qualquer momento?"**
+> Sim! Você pode atualizar seu cachê mínimo quando quiser. Isso não afeta propostas já enviadas.
 
 ---
 
-<div style="text-align: center; margin-top: 50px; padding: 30px; background: linear-gradient(135deg, #DC2626, #B91C1C); color: white; border-radius: 12px;">
+# Comece Sua Jornada!
 
-## 🎤 Seu talento merece ser reconhecido!
+<div class="step">
+<span class="step-number">1</span>
+<div><strong>Acesse</strong> — eventosfsa.com.br</div>
+</div>
+
+<div class="step">
+<span class="step-number">2</span>
+<div><strong>Cadastre-se</strong> — Como artista, em 5 minutos</div>
+</div>
+
+<div class="step">
+<span class="step-number">3</span>
+<div><strong>Complete o perfil</strong> — Foto, vídeo e repertório</div>
+</div>
+
+<div class="step">
+<span class="step-number">4</span>
+<div><strong>Defina</strong> — Cachê e disponibilidade</div>
+</div>
+
+<div class="step">
+<span class="step-number">5</span>
+<div><strong>Aguarde</strong> — As propostas chegarem!</div>
+</div>
+
+<div class="cta-footer">
+
+## 🎤 Seu Talento Merece Ser Reconhecido!
 
 O EventosFSA conecta você aos melhores palcos de Feira de Santana.
 
 **Cadastre-se gratuitamente e comece a receber propostas!**
 
-📞 Suporte: (75) 99999-9999
+📞 WhatsApp: (75) 99999-9999
+
+📧 suporte@eventosfsa.com.br
+
+---
+
+*EventosFSA — Onde o talento encontra oportunidade*
 
 </div>
