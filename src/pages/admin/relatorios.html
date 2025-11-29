@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatórios - Painel Admin | EventosFSA</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="../../styles/variables.css">
+  <link rel="stylesheet" href="../../styles/main.css">
+  <link rel="stylesheet" href="../../styles/components.css">
+  <link rel="stylesheet" href="../../styles/responsive.css">
+  
+  <style>
+    .report-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--gray-200);
+      height: 100%;
+    }
+    
+    .report-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .report-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    
+    .chart-placeholder {
+      background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+      border-radius: 12px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .chart-placeholder i {
+      font-size: 2rem;
+      opacity: 0.5;
+    }
+    
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      height: 180px;
+      gap: 16px;
+      padding: 20px 0;
+    }
+    
+    .bar-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .bar {
+      width: 100%;
+      max-width: 40px;
+      background: var(--primary-gradient);
+      border-radius: 8px 8px 0 0;
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .bar:hover {
+      opacity: 0.8;
+    }
+    
+    .bar-value {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    
+    .bar-label {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    .donut-chart {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto;
+    }
+    
+    .donut-chart svg {
+      transform: rotate(-90deg);
+    }
+    
+    .donut-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    
+    .donut-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .donut-label {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+    
+    .legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+    
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    
+    .kpi-item {
+      padding: 16px;
+      background: var(--gray-50);
+      border-radius: 12px;
+      text-align: center;
+    }
+    
+    .kpi-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .kpi-value.positive {
+      color: var(--success);
+    }
+    
+    .kpi-value.negative {
+      color: var(--danger);
+    }
+    
+    .kpi-label {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    .kpi-change {
+      font-size: 11px;
+      margin-top: 4px;
+    }
+    
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .report-table th,
+    .report-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    
+    .report-table th {
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    
+    .report-filters {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    
+    .date-range {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    
+    .metric-highlight {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 24px;
+      border-radius: 16px;
+      text-align: center;
+    }
+    
+    .metric-highlight-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+    }
+    
+    .metric-highlight-label {
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+    
+    .metric-highlight-change {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255,255,255,0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../../../public/index.html" class="header-logo">
+          <div class="header-logo-icon">
+            <i class="fas fa-music"></i>
+          </div>
+          <span class="header-logo-text">Eventos<span>FSA</span></span>
+        </a>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">ADMINISTRAÇÃO</div>
+          <a href="dashboard.html" class="sidebar-nav-link">
+            <i class="fas fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="usuarios.html" class="sidebar-nav-link">
+            <i class="fas fa-users"></i>
+            <span>Usuários</span>
+          </a>
+          <a href="aprovacoes.html" class="sidebar-nav-link">
+            <i class="fas fa-user-check"></i>
+            <span>Aprovações</span>
+          </a>
+          <a href="eventos.html" class="sidebar-nav-link">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Eventos</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">FINANCEIRO</div>
+          <a href="transacoes.html" class="sidebar-nav-link">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Transações</span>
+          </a>
+          <a href="comissoes.html" class="sidebar-nav-link">
+            <i class="fas fa-percentage"></i>
+            <span>Comissões</span>
+          </a>
+          <a href="relatorios.html" class="sidebar-nav-link active">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Relatórios</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">SISTEMA</div>
+          <a href="configuracoes.html" class="sidebar-nav-link">
+            <i class="fas fa-cog"></i>
+            <span>Configurações</span>
+          </a>
+          <a href="logs.html" class="sidebar-nav-link">
+            <i class="fas fa-history"></i>
+            <span>Logs</span>
+          </a>
+        </div>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <a href="../login.html" class="sidebar-nav-link text-danger">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Sair</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <div class="dashboard-main">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="d-flex align-center gap-4">
+          <button class="btn btn-ghost d-lg-none" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 class="dashboard-title">Relatórios e Análises</h1>
+            <p class="dashboard-subtitle">Visualize métricas e performance da plataforma</p>
+          </div>
+        </div>
+        
+        <div class="d-flex align-center gap-3">
+          <button class="btn btn-outline">
+            <i class="fas fa-download"></i>
+            Exportar PDF
+          </button>
+          <button class="btn btn-primary">
+            <i class="fas fa-file-excel"></i>
+            Exportar Excel
+          </button>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="dashboard-content">
+        <!-- Filtros -->
+        <div class="report-filters">
+          <div class="date-range">
+            <input type="date" class="form-input" value="2025-01-01" style="width: 150px;">
+            <span>até</span>
+            <input type="date" class="form-input" value="2025-01-31" style="width: 150px;">
+          </div>
+          
+          <select class="form-select" style="width: 180px;">
+            <option>Todos os bairros</option>
+            <option>Centro</option>
+            <option>Kalilândia</option>
+            <option>Santa Mônica</option>
+          </select>
+          
+          <select class="form-select" style="width: 180px;">
+            <option>Todos os gêneros</option>
+            <option>MPB</option>
+            <option>Sertanejo</option>
+            <option>Forró</option>
+            <option>Rock</option>
+          </select>
+          
+          <button class="btn btn-primary">
+            <i class="fas fa-filter"></i> Aplicar Filtros
+          </button>
+        </div>
+        
+        <!-- KPIs Principais -->
+        <div class="d-grid gap-4 mb-6" style="grid-template-columns: repeat(4, 1fr);">
+          <div class="metric-highlight">
+            <div class="metric-highlight-value">R$ 47.850</div>
+            <div class="metric-highlight-label">Receita Total (Comissões)</div>
+            <span class="metric-highlight-change">
+              <i class="fas fa-arrow-up"></i> +23% vs mês anterior
+            </span>
+          </div>
+          
+          <div class="report-card">
+            <div class="kpi-grid">
+              <div class="kpi-item">
+                <div class="kpi-value positive">1.247</div>
+                <div class="kpi-label">Eventos Realizados</div>
+                <div class="kpi-change text-success"><i class="fas fa-arrow-up"></i> +18%</div>
+              </div>
+              <div class="kpi-item">
+                <div class="kpi-value">R$ 38,40</div>
+                <div class="kpi-label">Ticket Médio</div>
+                <div class="kpi-change text-success"><i class="fas fa-arrow-up"></i> +5%</div>
+              </div>
+              <div class="kpi-item">
+                <div class="kpi-value positive">15.890</div>
+                <div class="kpi-label">Gorjetas</div>
+                <div class="kpi-change text-success"><i class="fas fa-arrow-up"></i> +45%</div>
+              </div>
+              <div class="kpi-item">
+                <div class="kpi-value">94%</div>
+                <div class="kpi-label">Taxa de Conclusão</div>
+                <div class="kpi-change text-success"><i class="fas fa-arrow-up"></i> +2%</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="report-card">
+            <div class="kpi-grid">
+              <div class="kpi-item">
+                <div class="kpi-value">347</div>
+                <div class="kpi-label">Artistas Ativos</div>
+                <div class="kpi-change text-success"><i class="fas fa-arrow-up"></i> +12</div>
+              </div>
+              <div class="kpi-item">
+                <div class="kpi-value">89</div>
+                <div class="kpi-label">Estabelecimentos</div>
+                <div class="kpi-change text-success"><i class="fas fa-arrow-up"></i> +5</div>
+              </div>
+              <div class="kpi-item">
+                <div class="kpi-value">2.156</div>
+                <div class="kpi-label">Usuários</div>
+                <div class="kpi-change text-success"><i class="fas fa-arrow-up"></i> +234</div>
+              </div>
+              <div class="kpi-item">
+                <div class="kpi-value">4.8</div>
+                <div class="kpi-label">Nota Média</div>
+                <div class="kpi-change text-muted">—</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="report-card">
+            <div class="kpi-grid">
+              <div class="kpi-item">
+                <div class="kpi-value">6,2</div>
+                <div class="kpi-label">Eventos/Dia</div>
+                <div class="kpi-change text-success"><i class="fas fa-arrow-up"></i> +0.8</div>
+              </div>
+              <div class="kpi-item">
+                <div class="kpi-value">R$ 385</div>
+                <div class="kpi-label">Cachê Médio</div>
+                <div class="kpi-change text-success"><i class="fas fa-arrow-up"></i> +R$ 25</div>
+              </div>
+              <div class="kpi-item">
+                <div class="kpi-value">87%</div>
+                <div class="kpi-label">Taxa Aceitação</div>
+                <div class="kpi-change text-success"><i class="fas fa-arrow-up"></i> +3%</div>
+              </div>
+              <div class="kpi-item">
+                <div class="kpi-value negative">6%</div>
+                <div class="kpi-label">Cancelamentos</div>
+                <div class="kpi-change text-success"><i class="fas fa-arrow-down"></i> -2%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gráficos -->
+        <div class="d-grid gap-4 mb-6" style="grid-template-columns: 2fr 1fr;">
+          <!-- Eventos por Mês -->
+          <div class="report-card">
+            <div class="report-card-header">
+              <h3 class="report-card-title">📊 Eventos por Mês</h3>
+              <select class="form-select" style="width: 120px;">
+                <option>2025</option>
+                <option>2024</option>
+              </select>
+            </div>
+            <div class="bar-chart">
+              <div class="bar-item">
+                <div class="bar" style="height: 85%;"><span class="bar-value">156</span></div>
+                <span class="bar-label">Jan</span>
+              </div>
+              <div class="bar-item">
+                <div class="bar" style="height: 72%;"><span class="bar-value">134</span></div>
+                <span class="bar-label">Fev</span>
+              </div>
+              <div class="bar-item">
+                <div class="bar" style="height: 90%;"><span class="bar-value">167</span></div>
+                <span class="bar-label">Mar</span>
+              </div>
+              <div class="bar-item">
+                <div class="bar" style="height: 78%;"><span class="bar-value">145</span></div>
+                <span class="bar-label">Abr</span>
+              </div>
+              <div class="bar-item">
+                <div class="bar" style="height: 85%;"><span class="bar-value">158</span></div>
+                <span class="bar-label">Mai</span>
+              </div>
+              <div class="bar-item">
+                <div class="bar" style="height: 100%;"><span class="bar-value">189</span></div>
+                <span class="bar-label">Jun</span>
+              </div>
+              <div class="bar-item">
+                <div class="bar" style="height: 95%;"><span class="bar-value">178</span></div>
+                <span class="bar-label">Jul</span>
+              </div>
+              <div class="bar-item">
+                <div class="bar" style="height: 88%;"><span class="bar-value">164</span></div>
+                <span class="bar-label">Ago</span>
+              </div>
+              <div class="bar-item">
+                <div class="bar" style="height: 82%;"><span class="bar-value">152</span></div>
+                <span class="bar-label">Set</span>
+              </div>
+              <div class="bar-item">
+                <div class="bar" style="height: 90%;"><span class="bar-value">168</span></div>
+                <span class="bar-label">Out</span>
+              </div>
+              <div class="bar-item">
+                <div class="bar" style="height: 98%;"><span class="bar-value">183</span></div>
+                <span class="bar-label">Nov</span>
+              </div>
+              <div class="bar-item">
+                <div class="bar" style="height: 100%;"><span class="bar-value">189</span></div>
+                <span class="bar-label">Dez</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Eventos por Gênero -->
+          <div class="report-card">
+            <div class="report-card-header">
+              <h3 class="report-card-title">🎵 Por Gênero Musical</h3>
+            </div>
+            <div class="donut-chart">
+              <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#e5e7eb" stroke-width="12"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#FF6B35" stroke-width="12" 
+                        stroke-dasharray="75.4 175.6" stroke-linecap="round"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#4ECDC4" stroke-width="12" 
+                        stroke-dasharray="50.3 200.7" stroke-dashoffset="-75.4" stroke-linecap="round"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#FFE66D" stroke-width="12" 
+                        stroke-dasharray="37.7 213.3" stroke-dashoffset="-125.7" stroke-linecap="round"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#95E1D3" stroke-width="12" 
+                        stroke-dasharray="25.1 225.9" stroke-dashoffset="-163.4" stroke-linecap="round"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#F38181" stroke-width="12" 
+                        stroke-dasharray="62.8 188.2" stroke-dashoffset="-188.5" stroke-linecap="round"/>
+              </svg>
+              <div class="donut-center">
+                <div class="donut-value">1.883</div>
+                <div class="donut-label">Total</div>
+              </div>
+            </div>
+            <div class="legend">
+              <div class="legend-item">
+                <span class="legend-color" style="background: #FF6B35;"></span>
+                <span>MPB (30%)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-color" style="background: #4ECDC4;"></span>
+                <span>Sertanejo (20%)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-color" style="background: #FFE66D;"></span>
+                <span>Forró (15%)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-color" style="background: #95E1D3;"></span>
+                <span>Rock (10%)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-color" style="background: #F38181;"></span>
+                <span>Outros (25%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Rankings -->
+        <div class="d-grid gap-4 mb-4" style="grid-template-columns: 1fr 1fr;">
+          <!-- Top Artistas -->
+          <div class="report-card">
+            <div class="report-card-header">
+              <h3 class="report-card-title">🏆 Top 10 Artistas</h3>
+              <select class="form-select" style="width: 140px;">
+                <option>Por shows</option>
+                <option>Por receita</option>
+                <option>Por avaliação</option>
+              </select>
+            </div>
+            <table class="report-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Artista</th>
+                  <th>Shows</th>
+                  <th>Receita</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span style="color: var(--gold);">🥇</span></td>
+                  <td><strong>Gustavo Lima</strong></td>
+                  <td>267</td>
+                  <td>R$ 98.450</td>
+                </tr>
+                <tr>
+                  <td><span style="color: silver;">🥈</span></td>
+                  <td><strong>Weslei Ribeiro</strong></td>
+                  <td>234</td>
+                  <td>R$ 81.900</td>
+                </tr>
+                <tr>
+                  <td><span style="color: #CD7F32;">🥉</span></td>
+                  <td><strong>Manu</strong></td>
+                  <td>178</td>
+                  <td>R$ 67.640</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Júnior Almeida</td>
+                  <td>156</td>
+                  <td>R$ 78.000</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Banda Somzeira</td>
+                  <td>145</td>
+                  <td>R$ 174.000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Top Estabelecimentos -->
+          <div class="report-card">
+            <div class="report-card-header">
+              <h3 class="report-card-title">🏪 Top 10 Estabelecimentos</h3>
+              <select class="form-select" style="width: 140px;">
+                <option>Por eventos</option>
+                <option>Por gasto</option>
+                <option>Por avaliação</option>
+              </select>
+            </div>
+            <table class="report-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Local</th>
+                  <th>Eventos</th>
+                  <th>Investido</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span style="color: var(--gold);">🥇</span></td>
+                  <td><strong>Bar do Zé Bigode</strong></td>
+                  <td>89</td>
+                  <td>R$ 34.560</td>
+                </tr>
+                <tr>
+                  <td><span style="color: silver;">🥈</span></td>
+                  <td><strong>Buteco do Forró</strong></td>
+                  <td>76</td>
+                  <td>R$ 45.600</td>
+                </tr>
+                <tr>
+                  <td><span style="color: #CD7F32;">🥉</span></td>
+                  <td><strong>Recanto da Boa Música</strong></td>
+                  <td>67</td>
+                  <td>R$ 26.800</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Pub The Black Cat</td>
+                  <td>58</td>
+                  <td>R$ 29.000</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Cervejaria Artesanal</td>
+                  <td>52</td>
+                  <td>R$ 20.800</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Top Bairros -->
+        <div class="report-card">
+          <div class="report-card-header">
+            <h3 class="report-card-title">📍 Eventos por Bairro</h3>
+          </div>
+          <div class="d-grid gap-3" style="grid-template-columns: repeat(5, 1fr);">
+            <div class="text-center p-3" style="background: var(--primary-light); border-radius: 12px;">
+              <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">234</div>
+              <div style="font-size: 13px; color: var(--text-muted);">Kalilândia</div>
+            </div>
+            <div class="text-center p-3" style="background: var(--gray-100); border-radius: 12px;">
+              <div style="font-size: 1.5rem; font-weight: 700;">198</div>
+              <div style="font-size: 13px; color: var(--text-muted);">Centro</div>
+            </div>
+            <div class="text-center p-3" style="background: var(--gray-100); border-radius: 12px;">
+              <div style="font-size: 1.5rem; font-weight: 700;">156</div>
+              <div style="font-size: 13px; color: var(--text-muted);">Santa Mônica</div>
+            </div>
+            <div class="text-center p-3" style="background: var(--gray-100); border-radius: 12px;">
+              <div style="font-size: 1.5rem; font-weight: 700;">134</div>
+              <div style="font-size: 13px; color: var(--text-muted);">SIM</div>
+            </div>
+            <div class="text-center p-3" style="background: var(--gray-100); border-radius: 12px;">
+              <div style="font-size: 1.5rem; font-weight: 700;">112</div>
+              <div style="font-size: 13px; color: var(--text-muted);">Cidade Nova</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../utils/data.js"></script>
+  <script src="../../utils/app.js"></script>
+</body>
+</html>

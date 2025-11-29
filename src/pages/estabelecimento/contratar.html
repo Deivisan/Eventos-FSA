@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contratar Artista - EventosFSA</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="../../styles/variables.css">
+  <link rel="stylesheet" href="../../styles/main.css">
+  <link rel="stylesheet" href="../../styles/components.css">
+  <link rel="stylesheet" href="../../styles/responsive.css">
+  
+  <style>
+    .artist-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s;
+    }
+    
+    .artist-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .artist-card-header {
+      position: relative;
+      height: 160px;
+      background: var(--primary-gradient);
+      overflow: hidden;
+    }
+    
+    .artist-card-header img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .artist-card-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--gold);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    
+    .artist-card-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 4px solid white;
+      margin: -40px auto 0;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      background: white;
+    }
+    
+    .artist-card-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .artist-card-body {
+      padding: 16px 20px 20px;
+      text-align: center;
+    }
+    
+    .artist-card-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .artist-card-genre {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    
+    .artist-card-rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    
+    .artist-card-price {
+      background: var(--gray-100);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    
+    .artist-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    
+    @media (max-width: 1200px) {
+      .artist-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .artist-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .artist-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .filters-bar {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .ranking-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--gold-light);
+      color: #B8860B;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== HEADER ========== -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="../../../public/index.html" class="header-logo">
+        <div class="header-logo-icon">
+          <i class="fas fa-music"></i>
+        </div>
+        <span class="header-logo-text">Eventos<span>FSA</span></span>
+      </a>
+      
+      <div class="header-actions">
+        <div class="header-search">
+          <i class="fas fa-search header-search-icon"></i>
+          <input type="text" class="header-search-input" placeholder="Buscar artistas..." id="searchArtist">
+        </div>
+        
+        <div class="dropdown">
+          <div class="header-user">
+            <div class="header-user-info">
+              <div class="header-user-name">A Vendinha</div>
+              <div class="header-user-role">Estabelecimento</div>
+            </div>
+            <div class="avatar avatar-md">
+              <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=150" alt="Avatar">
+            </div>
+          </div>
+          <div class="dropdown-menu">
+            <a href="dashboard.html" class="dropdown-item">
+              <i class="fas fa-tachometer-alt dropdown-item-icon"></i>
+              Dashboard
+            </a>
+            <a href="#" class="dropdown-item" onclick="Auth.logout(); return false;">
+              <i class="fas fa-sign-out-alt dropdown-item-icon"></i>
+              Sair
+            </a>
+          </div>
+        </div>
+        
+        <button class="mobile-menu-btn" onclick="Sidebar.toggle()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar">
+    <nav class="sidebar-section">
+      <p class="sidebar-section-title">Menu Principal</p>
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="dashboard.html" class="sidebar-menu-link">
+            <i class="fas fa-tachometer-alt sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="eventos.html" class="sidebar-menu-link">
+            <i class="fas fa-calendar-alt sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Meus Eventos</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="contratar.html" class="sidebar-menu-link active">
+            <i class="fas fa-user-plus sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Contratar Artista</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="propostas.html" class="sidebar-menu-link">
+            <i class="fas fa-file-contract sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Minhas Propostas</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+    <nav class="sidebar-section">
+      <p class="sidebar-section-title">Gerenciamento</p>
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="perfil.html" class="sidebar-menu-link">
+            <i class="fas fa-store sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Perfil do Local</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="financeiro.html" class="sidebar-menu-link">
+            <i class="fas fa-wallet sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Financeiro</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="sidebar-overlay" onclick="Sidebar.close()"></div>
+
+  <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+  <main class="main-content">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="breadcrumb">
+        <span class="breadcrumb-item">
+          <a href="../../../public/index.html"><i class="fas fa-home"></i></a>
+        </span>
+        <i class="fas fa-chevron-right breadcrumb-separator"></i>
+        <span class="breadcrumb-item">Estabelecimento</span>
+        <i class="fas fa-chevron-right breadcrumb-separator"></i>
+        <span class="breadcrumb-item">Contratar Artista</span>
+      </div>
+      <div class="page-header-row">
+        <div>
+          <h1 class="page-title">🎤 Contratar Artista</h1>
+          <p class="page-subtitle">Encontre o artista perfeito para seu evento</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="card mb-6">
+      <div class="card-body">
+        <div class="filters-bar">
+          <div class="filter-group">
+            <label class="form-label mb-0">Gênero:</label>
+            <select class="form-select" style="width: 180px;" id="filterGenre">
+              <option value="">Todos</option>
+              <option value="mpb">MPB</option>
+              <option value="sertanejo">Sertanejo</option>
+              <option value="forro">Forró</option>
+              <option value="rock">Rock</option>
+              <option value="pop">Pop</option>
+              <option value="pagode">Pagode / Samba</option>
+              <option value="reggae">Reggae</option>
+              <option value="axe">Axé</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="form-label mb-0">Preço até:</label>
+            <select class="form-select" style="width: 150px;" id="filterPrice">
+              <option value="">Qualquer</option>
+              <option value="300">R$ 300</option>
+              <option value="500">R$ 500</option>
+              <option value="800">R$ 800</option>
+              <option value="1000">R$ 1.000+</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="form-label mb-0">Ordenar por:</label>
+            <select class="form-select" style="width: 180px;" id="filterSort">
+              <option value="ranking">Ranking</option>
+              <option value="rating">Avaliação</option>
+              <option value="price-low">Menor Preço</option>
+              <option value="price-high">Maior Preço</option>
+              <option value="shows">Mais Shows</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="form-label mb-0">Data:</label>
+            <input type="date" class="form-input" style="width: 180px;" id="filterDate">
+          </div>
+          
+          <button class="btn btn-outline" onclick="applyFilters()">
+            <i class="fas fa-filter"></i>
+            Filtrar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Artistas -->
+    <div class="mb-6">
+      <h2 style="font-size: 1.3rem; margin-bottom: 20px;">🏆 Top Artistas de Feira de Santana</h2>
+      <div class="artist-grid" id="artistsGrid">
+        <!-- Artista 1 - #1 Ranking -->
+        <div class="artist-card">
+          <div class="artist-card-header">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400" alt="Cover">
+            <span class="artist-card-badge"><i class="fas fa-trophy"></i> #1 MPB</span>
+          </div>
+          <div class="artist-card-avatar">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Weslei Ribeiro">
+          </div>
+          <div class="artist-card-body">
+            <div class="artist-card-name">Weslei Ribeiro</div>
+            <div class="artist-card-genre">MPB • Voz e Violão</div>
+            <div class="artist-card-rating">
+              <i class="fas fa-star" style="color: var(--gold);"></i>
+              <strong>4.9</strong>
+              <span class="text-muted">(156 avaliações)</span>
+            </div>
+            <div class="ranking-badge mb-3">
+              <i class="fas fa-crown"></i> 234 shows
+            </div>
+            <div class="artist-card-price">A partir de R$ 350</div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="openProposalModal(1, 'Weslei Ribeiro')">
+              <i class="fas fa-paper-plane"></i>
+              Enviar Proposta
+            </button>
+          </div>
+        </div>
+
+        <!-- Artista 2 -->
+        <div class="artist-card">
+          <div class="artist-card-header">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400" alt="Cover">
+            <span class="artist-card-badge"><i class="fas fa-trophy"></i> #2 MPB</span>
+          </div>
+          <div class="artist-card-avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Manu">
+          </div>
+          <div class="artist-card-body">
+            <div class="artist-card-name">Manu</div>
+            <div class="artist-card-genre">MPB • Pop</div>
+            <div class="artist-card-rating">
+              <i class="fas fa-star" style="color: var(--gold);"></i>
+              <strong>4.8</strong>
+              <span class="text-muted">(89 avaliações)</span>
+            </div>
+            <div class="ranking-badge mb-3">
+              <i class="fas fa-crown"></i> 178 shows
+            </div>
+            <div class="artist-card-price">A partir de R$ 380</div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="openProposalModal(2, 'Manu')">
+              <i class="fas fa-paper-plane"></i>
+              Enviar Proposta
+            </button>
+          </div>
+        </div>
+
+        <!-- Artista 3 -->
+        <div class="artist-card">
+          <div class="artist-card-header">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400" alt="Cover">
+            <span class="artist-card-badge"><i class="fas fa-trophy"></i> #1 Sertanejo</span>
+          </div>
+          <div class="artist-card-avatar">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100" alt="Júnior Almeida">
+          </div>
+          <div class="artist-card-body">
+            <div class="artist-card-name">Júnior Almeida</div>
+            <div class="artist-card-genre">Sertanejo • Universitário</div>
+            <div class="artist-card-rating">
+              <i class="fas fa-star" style="color: var(--gold);"></i>
+              <strong>4.7</strong>
+              <span class="text-muted">(234 avaliações)</span>
+            </div>
+            <div class="ranking-badge mb-3">
+              <i class="fas fa-crown"></i> 312 shows
+            </div>
+            <div class="artist-card-price">A partir de R$ 500</div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="openProposalModal(3, 'Júnior Almeida')">
+              <i class="fas fa-paper-plane"></i>
+              Enviar Proposta
+            </button>
+          </div>
+        </div>
+
+        <!-- Artista 4 -->
+        <div class="artist-card">
+          <div class="artist-card-header">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400" alt="Cover">
+          </div>
+          <div class="artist-card-avatar">
+            <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=100" alt="Banda Somzeira">
+          </div>
+          <div class="artist-card-body">
+            <div class="artist-card-name">Banda Somzeira</div>
+            <div class="artist-card-genre">Forró • Piseiro</div>
+            <div class="artist-card-rating">
+              <i class="fas fa-star" style="color: var(--gold);"></i>
+              <strong>4.8</strong>
+              <span class="text-muted">(167 avaliações)</span>
+            </div>
+            <div class="ranking-badge mb-3">
+              <i class="fas fa-users"></i> Banda (5 integrantes)
+            </div>
+            <div class="artist-card-price">A partir de R$ 1.200</div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="openProposalModal(4, 'Banda Somzeira')">
+              <i class="fas fa-paper-plane"></i>
+              Enviar Proposta
+            </button>
+          </div>
+        </div>
+
+        <!-- Artista 5 -->
+        <div class="artist-card">
+          <div class="artist-card-header">
+            <img src="https://images.unsplash.com/photo-1446057032654-9d8885db76c6?w=400" alt="Cover">
+            <span class="artist-card-badge"><i class="fas fa-trophy"></i> #1 Rock</span>
+          </div>
+          <div class="artist-card-avatar">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100" alt="Pedro Rocha">
+          </div>
+          <div class="artist-card-body">
+            <div class="artist-card-name">Pedro Rocha</div>
+            <div class="artist-card-genre">Rock • Blues</div>
+            <div class="artist-card-rating">
+              <i class="fas fa-star" style="color: var(--gold);"></i>
+              <strong>4.7</strong>
+              <span class="text-muted">(67 avaliações)</span>
+            </div>
+            <div class="ranking-badge mb-3">
+              <i class="fas fa-crown"></i> 89 shows
+            </div>
+            <div class="artist-card-price">A partir de R$ 400</div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="openProposalModal(5, 'Pedro Rocha')">
+              <i class="fas fa-paper-plane"></i>
+              Enviar Proposta
+            </button>
+          </div>
+        </div>
+
+        <!-- Artista 6 -->
+        <div class="artist-card">
+          <div class="artist-card-header">
+            <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400" alt="Cover">
+          </div>
+          <div class="artist-card-avatar">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100" alt="Larissa Santos">
+          </div>
+          <div class="artist-card-body">
+            <div class="artist-card-name">Larissa Santos</div>
+            <div class="artist-card-genre">Pop • R&B</div>
+            <div class="artist-card-rating">
+              <i class="fas fa-star" style="color: var(--gold);"></i>
+              <strong>4.6</strong>
+              <span class="text-muted">(45 avaliações)</span>
+            </div>
+            <div class="ranking-badge mb-3">
+              <i class="fas fa-crown"></i> 56 shows
+            </div>
+            <div class="artist-card-price">A partir de R$ 320</div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="openProposalModal(6, 'Larissa Santos')">
+              <i class="fas fa-paper-plane"></i>
+              Enviar Proposta
+            </button>
+          </div>
+        </div>
+
+        <!-- Artista 7 -->
+        <div class="artist-card">
+          <div class="artist-card-header">
+            <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=400" alt="Cover">
+            <span class="artist-card-badge"><i class="fas fa-trophy"></i> #1 Pagode</span>
+          </div>
+          <div class="artist-card-avatar">
+            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100" alt="Gustavo Lima">
+          </div>
+          <div class="artist-card-body">
+            <div class="artist-card-name">Gustavo Lima</div>
+            <div class="artist-card-genre">Pagode • Samba</div>
+            <div class="artist-card-rating">
+              <i class="fas fa-star" style="color: var(--gold);"></i>
+              <strong>4.9</strong>
+              <span class="text-muted">(198 avaliações)</span>
+            </div>
+            <div class="ranking-badge mb-3">
+              <i class="fas fa-crown"></i> 267 shows
+            </div>
+            <div class="artist-card-price">A partir de R$ 450</div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="openProposalModal(7, 'Gustavo Lima')">
+              <i class="fas fa-paper-plane"></i>
+              Enviar Proposta
+            </button>
+          </div>
+        </div>
+
+        <!-- Artista 8 -->
+        <div class="artist-card">
+          <div class="artist-card-header">
+            <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=400" alt="Cover">
+          </div>
+          <div class="artist-card-avatar">
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100" alt="Rafael Costa">
+          </div>
+          <div class="artist-card-body">
+            <div class="artist-card-name">Rafael Costa</div>
+            <div class="artist-card-genre">Reggae • MPB</div>
+            <div class="artist-card-rating">
+              <i class="fas fa-star" style="color: var(--gold);"></i>
+              <strong>4.5</strong>
+              <span class="text-muted">(34 avaliações)</span>
+            </div>
+            <div class="ranking-badge mb-3">
+              <i class="fas fa-crown"></i> 42 shows
+            </div>
+            <div class="artist-card-price">A partir de R$ 280</div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="openProposalModal(8, 'Rafael Costa')">
+              <i class="fas fa-paper-plane"></i>
+              Enviar Proposta
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-center mt-6">
+      <div class="d-flex gap-2">
+        <button class="btn btn-ghost btn-sm" disabled><i class="fas fa-chevron-left"></i></button>
+        <button class="btn btn-primary btn-sm">1</button>
+        <button class="btn btn-ghost btn-sm">2</button>
+        <button class="btn btn-ghost btn-sm">3</button>
+        <button class="btn btn-ghost btn-sm">...</button>
+        <button class="btn btn-ghost btn-sm">10</button>
+        <button class="btn btn-ghost btn-sm"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal Enviar Proposta -->
+  <div id="proposalModal" class="modal">
+    <div class="modal-overlay" onclick="Modal.close('proposalModal')"></div>
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">📨 Enviar Proposta</h3>
+        <button class="modal-close" onclick="Modal.close('proposalModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center mb-4">
+          <div class="avatar avatar-xl mx-auto mb-2" id="proposalArtistAvatar">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Artista">
+          </div>
+          <h4 id="proposalArtistName">Weslei Ribeiro</h4>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Data do Evento</label>
+          <input type="date" class="form-input" id="proposalDate" min="">
+        </div>
+        
+        <div class="d-flex gap-3">
+          <div class="form-group flex-grow-1">
+            <label class="form-label">Horário Início</label>
+            <input type="time" class="form-input" id="proposalTimeStart" value="20:00">
+          </div>
+          <div class="form-group flex-grow-1">
+            <label class="form-label">Horário Fim</label>
+            <input type="time" class="form-input" id="proposalTimeEnd" value="23:00">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Valor do Cachê (R$)</label>
+          <input type="number" class="form-input" id="proposalValue" placeholder="Ex: 350" min="100">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Descrição do Evento</label>
+          <textarea class="form-input" id="proposalDescription" rows="3" placeholder="Descreva o tipo de evento, público esperado, etc."></textarea>
+        </div>
+        
+        <div class="alert alert-info">
+          <i class="fas fa-info-circle"></i>
+          <span>Taxa da plataforma: 5% sobre o cachê</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="Modal.close('proposalModal')">Cancelar</button>
+        <button class="btn btn-primary" onclick="sendProposal()">
+          <i class="fas fa-paper-plane"></i>
+          Enviar Proposta
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../../utils/data.js"></script>
+  <script src="../../utils/app.js"></script>
+  <script>
+    let selectedArtistId = null;
+    
+    function openProposalModal(artistId, artistName) {
+      selectedArtistId = artistId;
+      document.getElementById('proposalArtistName').textContent = artistName;
+      
+      // Set min date to today
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('proposalDate').min = today;
+      
+      Modal.open('proposalModal');
+    }
+    
+    function sendProposal() {
+      const date = document.getElementById('proposalDate').value;
+      const timeStart = document.getElementById('proposalTimeStart').value;
+      const timeEnd = document.getElementById('proposalTimeEnd').value;
+      const value = document.getElementById('proposalValue').value;
+      const description = document.getElementById('proposalDescription').value;
+      
+      if (!date || !value) {
+        Toast.error('Preencha todos os campos obrigatórios');
+        return;
+      }
+      
+      // Simular envio
+      Toast.success('Proposta enviada com sucesso! O artista será notificado.');
+      Modal.close('proposalModal');
+      
+      // Limpar form
+      document.getElementById('proposalDate').value = '';
+      document.getElementById('proposalValue').value = '';
+      document.getElementById('proposalDescription').value = '';
+    }
+    
+    function applyFilters() {
+      Toast.info('Filtros aplicados!');
+      // Em uma implementação real, filtraria os artistas
+    }
+    
+    // Busca de artistas
+    document.getElementById('searchArtist').addEventListener('input', function(e) {
+      const search = e.target.value.toLowerCase();
+      // Em uma implementação real, filtraria os artistas por nome
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EventosFSA - A maior plataforma de eventos e shows de Feira de Santana. Encontre artistas, bares e eventos na sua cidade.">
+  <meta name="keywords" content="eventos, feira de santana, shows, música ao vivo, bares, artistas, contratação">
+  <meta name="author" content="EventosFSA">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="EventosFSA - Eventos e Shows de Feira de Santana">
+  <meta property="og:description" content="A maior plataforma de divulgação de eventos e contratação de artistas de Feira de Santana.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  
+  <title>EventosFSA - Eventos e Shows de Feira de Santana</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="src/styles/variables.css">
+  <link rel="stylesheet" href="src/styles/main.css">
+  <link rel="stylesheet" href="src/styles/components.css">
+  <link rel="stylesheet" href="src/styles/responsive.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+</head>
+<body>
+  <!-- ========== HEADER ========== -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="header-logo">
+        <div class="header-logo-icon">
+          <i class="fas fa-music"></i>
+        </div>
+        <span class="header-logo-text">Eventos<span>FSA</span></span>
+      </a>
+      
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link active">Início</a>
+        <a href="src/pages/eventos.html" class="nav-link">Eventos</a>
+        <a href="src/pages/artistas.html" class="nav-link">Artistas</a>
+        <a href="src/pages/estabelecimentos.html" class="nav-link">Estabelecimentos</a>
+        <a href="src/pages/sobre.html" class="nav-link">Sobre</a>
+      </nav>
+      
+      <div class="header-actions">
+        <div class="header-search">
+          <i class="fas fa-search header-search-icon"></i>
+          <input type="text" class="header-search-input" placeholder="Buscar eventos, artistas...">
+        </div>
+        
+        <a href="src/pages/login.html" class="btn btn-outline">
+          <i class="fas fa-sign-in-alt"></i>
+          Entrar
+        </a>
+        
+        <a href="src/pages/cadastro.html" class="btn btn-primary">
+          Cadastrar
+        </a>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <i class="fas fa-star"></i>
+            A maior plataforma de eventos de Feira de Santana
+          </div>
+          
+          <h1 class="hero-title">
+            Descubra os melhores <span>eventos</span> e <span>artistas</span> da cidade
+          </h1>
+          
+          <p class="hero-description">
+            Conectamos artistas talentosos a estabelecimentos incríveis. 
+            Encontre shows, envie gorjetas e viva a cultura feirense.
+          </p>
+          
+          <div class="hero-actions">
+            <a href="src/pages/eventos.html" class="btn btn-primary btn-xl">
+              <i class="fas fa-calendar-alt"></i>
+              Ver Eventos
+            </a>
+            <a href="src/pages/artistas.html" class="btn btn-outline btn-xl" style="border-color: white; color: white;">
+              <i class="fas fa-microphone-alt"></i>
+              Conhecer Artistas
+            </a>
+          </div>
+          
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-value">500+</div>
+              <div class="hero-stat-label">Artistas Cadastrados</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">100+</div>
+              <div class="hero-stat-label">Estabelecimentos</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">1.000+</div>
+              <div class="hero-stat-label">Eventos/Mês</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">109</div>
+              <div class="hero-stat-label">Bairros Cobertos</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hero-image">
+          <div class="hero-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=600&fit=crop" 
+                 alt="Show ao vivo" class="hero-image-main">
+            
+            <div class="hero-floating-card hero-floating-card-1">
+              <div class="hero-floating-card-icon stat-icon-success">
+                <i class="fas fa-music"></i>
+              </div>
+              <div>
+                <div class="hero-floating-card-text">+50 Shows</div>
+                <div class="hero-floating-card-subtext">Esta semana</div>
+              </div>
+            </div>
+            
+            <div class="hero-floating-card hero-floating-card-2">
+              <div class="hero-floating-card-icon stat-icon-primary">
+                <i class="fas fa-hand-holding-heart"></i>
+              </div>
+              <div>
+                <div class="hero-floating-card-text">R$ 12.450</div>
+                <div class="hero-floating-card-subtext">Em gorjetas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SEARCH BAR ========== -->
+  <section style="margin-top: -40px; position: relative; z-index: 10; padding: 0 20px;">
+    <div class="container">
+      <form class="search-bar">
+        <div class="search-bar-group">
+          <i class="fas fa-search search-bar-icon"></i>
+          <input type="text" class="search-bar-input" placeholder="O que você procura?">
+        </div>
+        <div class="search-bar-divider"></div>
+        <div class="search-bar-group">
+          <i class="fas fa-map-marker-alt search-bar-icon"></i>
+          <select class="search-bar-select">
+            <option value="">Todos os bairros</option>
+            <option value="centro">Centro</option>
+            <option value="sim">SIM</option>
+            <option value="tomba">Tomba</option>
+            <option value="mangabeira">Mangabeira</option>
+            <option value="kalilândia">Kalilândia</option>
+            <option value="brasilia">Brasília</option>
+            <option value="papagaio">Papagaio</option>
+            <option value="santa-monica">Santa Mônica</option>
+          </select>
+        </div>
+        <div class="search-bar-divider"></div>
+        <div class="search-bar-group">
+          <i class="fas fa-guitar search-bar-icon"></i>
+          <select class="search-bar-select">
+            <option value="">Todos os gêneros</option>
+            <option value="mpb">MPB</option>
+            <option value="rock">Rock</option>
+            <option value="sertanejo">Sertanejo</option>
+            <option value="forro">Forró</option>
+            <option value="pagode">Pagode</option>
+            <option value="samba">Samba</option>
+            <option value="axe">Axé</option>
+            <option value="jazz">Jazz</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">
+          <i class="fas fa-search"></i>
+          Buscar
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========== PRÓXIMOS EVENTOS ========== -->
+  <section style="padding: 80px 0;">
+    <div class="container">
+      <div class="page-header-row mb-6">
+        <div>
+          <h2>🎉 Próximos Eventos</h2>
+          <p class="text-muted">Não perca os melhores shows da cidade</p>
+        </div>
+        <a href="src/pages/eventos.html" class="btn btn-outline">
+          Ver Todos
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div class="d-grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
+        <!-- Evento 1 -->
+        <article class="event-card" onclick="location.href='src/pages/evento-detalhe.html?id=401'">
+          <div class="event-card-image">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500" alt="Noite de MPB">
+            <div class="event-card-date">
+              <div class="event-card-date-day">06</div>
+              <div class="event-card-date-month">DEZ</div>
+            </div>
+            <span class="event-card-featured">Destaque</span>
+          </div>
+          <div class="event-card-content">
+            <span class="event-card-category">MPB</span>
+            <h3 class="event-card-title">Noite de MPB com Weslei Ribeiro</h3>
+            <div class="event-card-artist">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50" alt="Weslei Ribeiro">
+              <span class="event-card-artist-name">Weslei Ribeiro</span>
+              <span class="badge badge-success" style="margin-left: auto;">
+                <i class="fas fa-check"></i> Verificado
+              </span>
+            </div>
+            <div class="event-card-info">
+              <div class="event-card-info-item">
+                <i class="fas fa-clock"></i>
+                <span>20:00 - 23:00</span>
+              </div>
+              <div class="event-card-info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>A Vendinha - Kalilândia</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card-footer">
+            <div class="event-card-price">
+              <span class="event-card-price-label">Entrada</span>
+              Gratuita
+            </div>
+            <button class="btn btn-primary btn-sm">
+              <i class="fas fa-ticket-alt"></i>
+              Detalhes
+            </button>
+          </div>
+        </article>
+
+        <!-- Evento 2 -->
+        <article class="event-card" onclick="location.href='src/pages/evento-detalhe.html?id=402'">
+          <div class="event-card-image">
+            <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=500" alt="Rock Night">
+            <div class="event-card-date">
+              <div class="event-card-date-day">07</div>
+              <div class="event-card-date-month">DEZ</div>
+            </div>
+            <span class="event-card-featured">Destaque</span>
+          </div>
+          <div class="event-card-content">
+            <span class="event-card-category">Rock</span>
+            <h3 class="event-card-title">Rock Night - Banda Secreta</h3>
+            <div class="event-card-artist">
+              <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=50" alt="Banda Secreta">
+              <span class="event-card-artist-name">Banda Secreta</span>
+              <span class="badge badge-success" style="margin-left: auto;">
+                <i class="fas fa-check"></i> Verificado
+              </span>
+            </div>
+            <div class="event-card-info">
+              <div class="event-card-info-item">
+                <i class="fas fa-clock"></i>
+                <span>21:00 - 02:00</span>
+              </div>
+              <div class="event-card-info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Cervejaria Sertões - Centro</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card-footer">
+            <div class="event-card-price">
+              R$ 20,00
+            </div>
+            <button class="btn btn-primary btn-sm">
+              <i class="fas fa-ticket-alt"></i>
+              Detalhes
+            </button>
+          </div>
+        </article>
+
+        <!-- Evento 3 -->
+        <article class="event-card" onclick="location.href='src/pages/evento-detalhe.html?id=404'">
+          <div class="event-card-image">
+            <img src="https://images.unsplash.com/photo-1504680177321-2e6a879aac86?w=500" alt="Forró">
+            <div class="event-card-date">
+              <div class="event-card-date-day">07</div>
+              <div class="event-card-date-month">DEZ</div>
+            </div>
+            <span class="event-card-featured">Destaque</span>
+          </div>
+          <div class="event-card-content">
+            <span class="event-card-category">Forró</span>
+            <h3 class="event-card-title">Forró Pé de Serra com Quixabeira</h3>
+            <div class="event-card-artist">
+              <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=50" alt="Quixabeira">
+              <span class="event-card-artist-name">Quixabeira da Matinha</span>
+              <span class="badge badge-gold" style="margin-left: auto;">
+                <i class="fas fa-crown"></i> Premium
+              </span>
+            </div>
+            <div class="event-card-info">
+              <div class="event-card-info-item">
+                <i class="fas fa-clock"></i>
+                <span>20:00 - 01:00</span>
+              </div>
+              <div class="event-card-info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Seriguela - Centro</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card-footer">
+            <div class="event-card-price">
+              R$ 30,00
+            </div>
+            <button class="btn btn-primary btn-sm">
+              <i class="fas fa-ticket-alt"></i>
+              Detalhes
+            </button>
+          </div>
+        </article>
+
+        <!-- Evento 4 -->
+        <article class="event-card" onclick="location.href='src/pages/evento-detalhe.html?id=406'">
+          <div class="event-card-image">
+            <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=500" alt="Sertanejo">
+            <div class="event-card-date">
+              <div class="event-card-date-day">08</div>
+              <div class="event-card-date-month">DEZ</div>
+            </div>
+            <span class="event-card-featured">Destaque</span>
+          </div>
+          <div class="event-card-content">
+            <span class="event-card-category">Sertanejo</span>
+            <h3 class="event-card-title">Sertanejo Universitário - Os Sertanejos</h3>
+            <div class="event-card-artist">
+              <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=50" alt="Os Sertanejos">
+              <span class="event-card-artist-name">Os Sertanejos</span>
+              <span class="badge badge-success" style="margin-left: auto;">
+                <i class="fas fa-check"></i> Verificado
+              </span>
+            </div>
+            <div class="event-card-info">
+              <div class="event-card-info-item">
+                <i class="fas fa-clock"></i>
+                <span>22:00 - 03:00</span>
+              </div>
+              <div class="event-card-info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Saideira Beer - SIM</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card-footer">
+            <div class="event-card-price">
+              R$ 35,00
+            </div>
+            <button class="btn btn-primary btn-sm">
+              <i class="fas fa-ticket-alt"></i>
+              Detalhes
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ARTISTAS EM DESTAQUE ========== -->
+  <section style="padding: 80px 0; background-color: var(--gray-100);">
+    <div class="container">
+      <div class="page-header-row mb-6">
+        <div>
+          <h2>🌟 Artistas em Destaque</h2>
+          <p class="text-muted">Os talentos mais bem avaliados de Feira de Santana</p>
+        </div>
+        <a href="src/pages/artistas.html" class="btn btn-outline">
+          Ver Todos
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div class="d-grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+        <!-- Artista 1 -->
+        <article class="artist-card" onclick="location.href='src/pages/artista-perfil.html?id=101'">
+          <span class="artist-card-rank">1</span>
+          <div class="artist-card-verified">
+            <div class="verified-badge" title="Artista Verificado">
+              <i class="fas fa-check"></i>
+            </div>
+          </div>
+          <div class="artist-card-avatar">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Weslei Ribeiro">
+          </div>
+          <h3 class="artist-card-name">Weslei Ribeiro</h3>
+          <p class="artist-card-genre">MPB • Pop • Voz e Violão</p>
+          <div class="artist-card-rating">
+            <div class="rating">
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+            </div>
+            <span class="rating-value">4.8</span>
+            <span class="rating-count">(156)</span>
+          </div>
+          <div class="artist-card-stats">
+            <div class="artist-card-stat">
+              <div class="artist-card-stat-value">234</div>
+              <div class="artist-card-stat-label">Shows</div>
+            </div>
+            <div class="artist-card-stat">
+              <div class="artist-card-stat-value">R$ 4.5k</div>
+              <div class="artist-card-stat-label">Gorjetas</div>
+            </div>
+          </div>
+          <div class="artist-card-price">
+            <span class="artist-card-price-value">R$ 350</span>
+            <span class="artist-card-price-label"> / show</span>
+          </div>
+        </article>
+
+        <!-- Artista 2 -->
+        <article class="artist-card" onclick="location.href='src/pages/artista-perfil.html?id=102'">
+          <span class="artist-card-rank">2</span>
+          <div class="artist-card-verified">
+            <div class="verified-badge" title="Artista Verificado">
+              <i class="fas fa-check"></i>
+            </div>
+          </div>
+          <div class="artist-card-avatar">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150" alt="Flaviano Gallo">
+          </div>
+          <h3 class="artist-card-name">Flaviano Gallo</h3>
+          <p class="artist-card-genre">Rock • Blues • Rock Nacional</p>
+          <div class="artist-card-rating">
+            <div class="rating">
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star-half-alt rating-star filled"></i>
+            </div>
+            <span class="rating-value">4.7</span>
+            <span class="rating-count">(142)</span>
+          </div>
+          <div class="artist-card-stats">
+            <div class="artist-card-stat">
+              <div class="artist-card-stat-value">312</div>
+              <div class="artist-card-stat-label">Shows</div>
+            </div>
+            <div class="artist-card-stat">
+              <div class="artist-card-stat-value">R$ 5.8k</div>
+              <div class="artist-card-stat-label">Gorjetas</div>
+            </div>
+          </div>
+          <div class="artist-card-price">
+            <span class="artist-card-price-value">R$ 400</span>
+            <span class="artist-card-price-label"> / show</span>
+          </div>
+        </article>
+
+        <!-- Artista 3 -->
+        <article class="artist-card" onclick="location.href='src/pages/artista-perfil.html?id=103'">
+          <span class="artist-card-rank">3</span>
+          <div class="artist-card-verified">
+            <div class="verified-badge" title="Artista Verificado">
+              <i class="fas fa-check"></i>
+            </div>
+          </div>
+          <div class="artist-card-avatar">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" alt="Marina Santos">
+          </div>
+          <h3 class="artist-card-name">Marina Santos</h3>
+          <p class="artist-card-genre">Pop • MPB • Indie</p>
+          <div class="artist-card-rating">
+            <div class="rating">
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+            </div>
+            <span class="rating-value">4.9</span>
+            <span class="rating-count">(98)</span>
+          </div>
+          <div class="artist-card-stats">
+            <div class="artist-card-stat">
+              <div class="artist-card-stat-value">89</div>
+              <div class="artist-card-stat-label">Shows</div>
+            </div>
+            <div class="artist-card-stat">
+              <div class="artist-card-stat-value">R$ 2.1k</div>
+              <div class="artist-card-stat-label">Gorjetas</div>
+            </div>
+          </div>
+          <div class="artist-card-price">
+            <span class="artist-card-price-value">R$ 380</span>
+            <span class="artist-card-price-label"> / show</span>
+          </div>
+        </article>
+
+        <!-- Artista 4 -->
+        <article class="artist-card" onclick="location.href='src/pages/artista-perfil.html?id=204'">
+          <span class="artist-card-rank">4</span>
+          <div class="artist-card-verified">
+            <div class="verified-badge" title="Artista Verificado">
+              <i class="fas fa-check"></i>
+            </div>
+          </div>
+          <div class="artist-card-avatar">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=150" alt="Quixabeira">
+          </div>
+          <h3 class="artist-card-name">Quixabeira da Matinha</h3>
+          <p class="artist-card-genre">Forró • Forró Pé de Serra • Xote</p>
+          <div class="artist-card-rating">
+            <div class="rating">
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+              <i class="fas fa-star rating-star filled"></i>
+            </div>
+            <span class="rating-value">4.8</span>
+            <span class="rating-count">(245)</span>
+          </div>
+          <div class="artist-card-stats">
+            <div class="artist-card-stat">
+              <div class="artist-card-stat-value">312</div>
+              <div class="artist-card-stat-label">Shows</div>
+            </div>
+            <div class="artist-card-stat">
+              <div class="artist-card-stat-value">R$ 6.7k</div>
+              <div class="artist-card-stat-label">Gorjetas</div>
+            </div>
+          </div>
+          <div class="artist-card-price">
+            <span class="artist-card-price-value">R$ 2.500</span>
+            <span class="artist-card-price-label"> / show</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA - GORJETAS ========== -->
+  <section style="padding: 80px 0; background: linear-gradient(135deg, var(--primary) 0%, #ff8c5a 100%);">
+    <div class="container">
+      <div class="d-flex align-center justify-between flex-wrap gap-6" style="color: white;">
+        <div style="max-width: 600px;">
+          <h2 style="color: white; margin-bottom: 16px;">
+            💝 Apoie os Artistas Locais
+          </h2>
+          <p style="font-size: 1.125rem; opacity: 0.9; margin-bottom: 24px;">
+            Envie gorjetas diretamente para seus artistas favoritos via PIX. 
+            Uma forma de reconhecer o talento de quem faz a cultura de Feira de Santana.
+          </p>
+          <div class="d-flex gap-4 flex-wrap">
+            <div class="d-flex align-center gap-2">
+              <i class="fas fa-shield-alt" style="font-size: 1.5rem;"></i>
+              <span>100% Seguro</span>
+            </div>
+            <div class="d-flex align-center gap-2">
+              <i class="fas fa-bolt" style="font-size: 1.5rem;"></i>
+              <span>Instantâneo</span>
+            </div>
+            <div class="d-flex align-center gap-2">
+              <i class="fas fa-heart" style="font-size: 1.5rem;"></i>
+              <span>95% para o artista</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a href="src/pages/artistas.html" class="btn btn-xl" style="background: white; color: var(--primary);">
+            <i class="fas fa-hand-holding-heart"></i>
+            Enviar Gorjeta Agora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ESTABELECIMENTOS PARCEIROS ========== -->
+  <section style="padding: 80px 0;">
+    <div class="container">
+      <div class="page-header-row mb-6">
+        <div>
+          <h2>🍺 Estabelecimentos Parceiros</h2>
+          <p class="text-muted">Os melhores lugares para curtir música ao vivo</p>
+        </div>
+        <a href="src/pages/estabelecimentos.html" class="btn btn-outline">
+          Ver Todos
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div class="d-grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+        <!-- Estabelecimento 1 -->
+        <article class="venue-card" onclick="location.href='src/pages/estabelecimento-perfil.html?id=301'">
+          <div class="venue-card-image">
+            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400" alt="Cidade da Cultura">
+            <span class="venue-card-type">Casa de Show</span>
+          </div>
+          <div class="venue-card-content">
+            <h3 class="venue-card-name">Cidade da Cultura</h3>
+            <div class="venue-card-address">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Av. Maria Quitéria, 1500 - Centro</span>
+            </div>
+            <div class="venue-card-info">
+              <div class="venue-card-info-item">
+                <div class="rating">
+                  <i class="fas fa-star rating-star filled"></i>
+                </div>
+                <span>4.7</span>
+              </div>
+              <div class="venue-card-info-item">
+                <i class="fas fa-users"></i>
+                <span>500 pessoas</span>
+              </div>
+              <div class="venue-card-info-item">
+                <i class="fas fa-calendar"></i>
+                <span>234 eventos</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Estabelecimento 2 -->
+        <article class="venue-card" onclick="location.href='src/pages/estabelecimento-perfil.html?id=302'">
+          <div class="venue-card-image">
+            <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=400" alt="A Vendinha">
+            <span class="venue-card-type">Bar</span>
+          </div>
+          <div class="venue-card-content">
+            <h3 class="venue-card-name">A Vendinha</h3>
+            <div class="venue-card-address">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Rua Conselheiro Franco, 200 - Kalilândia</span>
+            </div>
+            <div class="venue-card-info">
+              <div class="venue-card-info-item">
+                <div class="rating">
+                  <i class="fas fa-star rating-star filled"></i>
+                </div>
+                <span>4.8</span>
+              </div>
+              <div class="venue-card-info-item">
+                <i class="fas fa-users"></i>
+                <span>120 pessoas</span>
+              </div>
+              <div class="venue-card-info-item">
+                <i class="fas fa-calendar"></i>
+                <span>189 eventos</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Estabelecimento 3 -->
+        <article class="venue-card" onclick="location.href='src/pages/estabelecimento-perfil.html?id=303'">
+          <div class="venue-card-image">
+            <img src="https://images.unsplash.com/photo-1555658636-6e4a36218be7?w=400" alt="Cervejaria Sertões">
+            <span class="venue-card-type">Brewpub</span>
+          </div>
+          <div class="venue-card-content">
+            <h3 class="venue-card-name">Cervejaria Sertões</h3>
+            <div class="venue-card-address">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Av. Getúlio Vargas, 800 - Centro</span>
+            </div>
+            <div class="venue-card-info">
+              <div class="venue-card-info-item">
+                <div class="rating">
+                  <i class="fas fa-star rating-star filled"></i>
+                </div>
+                <span>4.6</span>
+              </div>
+              <div class="venue-card-info-item">
+                <i class="fas fa-users"></i>
+                <span>150 pessoas</span>
+              </div>
+              <div class="venue-card-info-item">
+                <i class="fas fa-calendar"></i>
+                <span>156 eventos</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Estabelecimento 4 -->
+        <article class="venue-card" onclick="location.href='src/pages/estabelecimento-perfil.html?id=310'">
+          <div class="venue-card-image">
+            <img src="https://images.unsplash.com/photo-1575037614876-c38a4c44f5bd?w=400" alt="Saideira Beer">
+            <span class="venue-card-type">Choperia</span>
+          </div>
+          <div class="venue-card-content">
+            <h3 class="venue-card-name">Saideira Beer</h3>
+            <div class="venue-card-address">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Av. João Durval Carneiro, 2500 - SIM</span>
+            </div>
+            <div class="venue-card-info">
+              <div class="venue-card-info-item">
+                <div class="rating">
+                  <i class="fas fa-star rating-star filled"></i>
+                </div>
+                <span>4.4</span>
+              </div>
+              <div class="venue-card-info-item">
+                <i class="fas fa-users"></i>
+                <span>200 pessoas</span>
+              </div>
+              <div class="venue-card-info-item">
+                <i class="fas fa-calendar"></i>
+                <span>167 eventos</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA PARA CADASTRO ========== -->
+  <section style="padding: 80px 0; background-color: var(--secondary);">
+    <div class="container text-center" style="color: white;">
+      <h2 style="color: white; margin-bottom: 16px;">
+        Faça Parte da Maior Comunidade de Eventos de Feira
+      </h2>
+      <p style="font-size: 1.125rem; opacity: 0.8; max-width: 600px; margin: 0 auto 32px;">
+        Seja você artista, dono de estabelecimento ou amante da música, 
+        cadastre-se e aproveite todos os benefícios da plataforma.
+      </p>
+      <div class="d-flex gap-4 justify-center flex-wrap">
+        <a href="src/pages/cadastro.html?tipo=artista" class="btn btn-primary btn-xl">
+          <i class="fas fa-microphone-alt"></i>
+          Sou Artista
+        </a>
+        <a href="src/pages/cadastro.html?tipo=estabelecimento" class="btn btn-xl" style="background: white; color: var(--secondary);">
+          <i class="fas fa-store"></i>
+          Sou Estabelecimento
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon">
+              <i class="fas fa-music"></i>
+            </div>
+            <span class="footer-logo-text">Eventos<span>FSA</span></span>
+          </div>
+          <p class="footer-description">
+            A maior plataforma de divulgação e contratação de artistas de Feira de Santana. 
+            Conectando talentos locais a estabelecimentos incríveis desde 2024.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-link" title="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="footer-social-link" title="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="footer-social-link" title="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="footer-social-link" title="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4 class="footer-column-title">Navegação</h4>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="index.html">Início</a></li>
+            <li class="footer-link"><a href="src/pages/eventos.html">Eventos</a></li>
+            <li class="footer-link"><a href="src/pages/artistas.html">Artistas</a></li>
+            <li class="footer-link"><a href="src/pages/estabelecimentos.html">Estabelecimentos</a></li>
+            <li class="footer-link"><a href="src/pages/sobre.html">Sobre Nós</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4 class="footer-column-title">Para Artistas</h4>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="src/pages/cadastro.html?tipo=artista">Cadastre-se</a></li>
+            <li class="footer-link"><a href="#">Como Funciona</a></li>
+            <li class="footer-link"><a href="#">Planos Premium</a></li>
+            <li class="footer-link"><a href="#">Gorjetas</a></li>
+            <li class="footer-link"><a href="#">Dicas de Sucesso</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4 class="footer-column-title">Contato</h4>
+          <ul class="footer-links">
+            <li class="footer-link">
+              <i class="fas fa-envelope" style="margin-right: 8px;"></i>
+              contato@eventosfsa.com.br
+            </li>
+            <li class="footer-link">
+              <i class="fas fa-phone" style="margin-right: 8px;"></i>
+              (75) 99999-9999
+            </li>
+            <li class="footer-link">
+              <i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>
+              Feira de Santana, BA
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          © 2024 EventosFSA. Todos os direitos reservados. Feito com ❤️ em Feira de Santana.
+        </p>
+        <div class="footer-legal">
+          <a href="#">Termos de Uso</a>
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Política de Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="src/utils/data.js"></script>
+  <script src="src/utils/app.js"></script>
+</body>
+</html>

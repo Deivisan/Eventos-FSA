@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprovações - Painel Admin | EventosFSA</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="../../styles/variables.css">
+  <link rel="stylesheet" href="../../styles/main.css">
+  <link rel="stylesheet" href="../../styles/components.css">
+  <link rel="stylesheet" href="../../styles/responsive.css">
+  
+  <style>
+    .approval-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--gray-200);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    
+    .approval-card.urgent {
+      border-left: 4px solid var(--danger);
+    }
+    
+    .approval-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    
+    .approval-user {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    
+    .approval-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .approval-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .approval-info h4 {
+      margin: 0 0 4px 0;
+      font-size: 1.1rem;
+    }
+    
+    .approval-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    
+    .approval-body {
+      padding: 20px;
+    }
+    
+    .approval-details {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .approval-detail {
+      padding: 12px;
+      background: var(--gray-50);
+      border-radius: 8px;
+    }
+    
+    .approval-detail-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    
+    .approval-detail-value {
+      font-weight: 600;
+    }
+    
+    .approval-documents {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    .document-preview {
+      padding: 12px 16px;
+      background: var(--gray-100);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .document-preview:hover {
+      background: var(--gray-200);
+    }
+    
+    .approval-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      background: var(--gray-50);
+    }
+    
+    .approval-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 24px;
+      background: var(--gray-100);
+      padding: 4px;
+      border-radius: 12px;
+      width: fit-content;
+    }
+    
+    .approval-tab {
+      padding: 10px 24px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    
+    .approval-tab.active {
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .approval-tab .count {
+      background: var(--danger);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+    
+    .verification-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .verification-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    
+    .verification-item:last-child {
+      border-bottom: none;
+    }
+    
+    .verification-item i {
+      width: 24px;
+      text-align: center;
+    }
+    
+    .verification-item.verified i {
+      color: var(--success);
+    }
+    
+    .verification-item.pending i {
+      color: var(--warning);
+    }
+    
+    .verification-item.failed i {
+      color: var(--danger);
+    }
+    
+    @media (max-width: 992px) {
+      .approval-details {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../../../public/index.html" class="header-logo">
+          <div class="header-logo-icon">
+            <i class="fas fa-music"></i>
+          </div>
+          <span class="header-logo-text">Eventos<span>FSA</span></span>
+        </a>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">ADMINISTRAÇÃO</div>
+          <a href="dashboard.html" class="sidebar-nav-link">
+            <i class="fas fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="usuarios.html" class="sidebar-nav-link">
+            <i class="fas fa-users"></i>
+            <span>Usuários</span>
+          </a>
+          <a href="aprovacoes.html" class="sidebar-nav-link active">
+            <i class="fas fa-user-check"></i>
+            <span>Aprovações</span>
+            <span class="badge badge-danger" style="margin-left: auto;">7</span>
+          </a>
+          <a href="eventos.html" class="sidebar-nav-link">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Eventos</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">FINANCEIRO</div>
+          <a href="transacoes.html" class="sidebar-nav-link">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Transações</span>
+          </a>
+          <a href="comissoes.html" class="sidebar-nav-link">
+            <i class="fas fa-percentage"></i>
+            <span>Comissões</span>
+          </a>
+          <a href="relatorios.html" class="sidebar-nav-link">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Relatórios</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">SISTEMA</div>
+          <a href="configuracoes.html" class="sidebar-nav-link">
+            <i class="fas fa-cog"></i>
+            <span>Configurações</span>
+          </a>
+          <a href="logs.html" class="sidebar-nav-link">
+            <i class="fas fa-history"></i>
+            <span>Logs</span>
+          </a>
+        </div>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <a href="../login.html" class="sidebar-nav-link text-danger">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Sair</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <div class="dashboard-main">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="d-flex align-center gap-4">
+          <button class="btn btn-ghost d-lg-none" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 class="dashboard-title">Aprovações Pendentes</h1>
+            <p class="dashboard-subtitle">Revise e aprove novos cadastros de artistas e estabelecimentos</p>
+          </div>
+        </div>
+        
+        <div class="d-flex align-center gap-3">
+          <span class="badge badge-danger" style="padding: 8px 16px;">
+            7 pendentes
+          </span>
+          <div class="avatar">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100" alt="Admin">
+          </div>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="dashboard-content">
+        <!-- Resumo -->
+        <div class="d-grid gap-4 mb-6" style="grid-template-columns: repeat(4, 1fr);">
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--danger-light); color: var(--danger);">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-info">
+              <h3 class="stat-value">7</h3>
+              <p class="stat-label">Aguardando Análise</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--primary-light); color: var(--primary);">
+              <i class="fas fa-music"></i>
+            </div>
+            <div class="stat-info">
+              <h3 class="stat-value">4</h3>
+              <p class="stat-label">Artistas</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--info-light); color: var(--info);">
+              <i class="fas fa-store"></i>
+            </div>
+            <div class="stat-info">
+              <h3 class="stat-value">3</h3>
+              <p class="stat-label">Estabelecimentos</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--success-light); color: var(--success);">
+              <i class="fas fa-check-double"></i>
+            </div>
+            <div class="stat-info">
+              <h3 class="stat-value">156</h3>
+              <p class="stat-label">Aprovados este mês</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="approval-tabs">
+          <button class="approval-tab active">
+            Todos <span class="count">7</span>
+          </button>
+          <button class="approval-tab">
+            Artistas <span class="count">4</span>
+          </button>
+          <button class="approval-tab">
+            Estabelecimentos <span class="count">3</span>
+          </button>
+        </div>
+
+        <!-- Lista de Aprovações -->
+        <div class="approvals-list">
+          <!-- Aprovação 1 - Artista Urgente -->
+          <div class="approval-card urgent">
+            <div class="approval-header">
+              <div class="approval-user">
+                <div class="approval-avatar">
+                  <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100" alt="Lucas">
+                </div>
+                <div class="approval-info">
+                  <h4>Lucas Oliveira Santos</h4>
+                  <div class="approval-meta">
+                    <span><i class="fas fa-music"></i> Artista</span>
+                    <span><i class="fas fa-calendar"></i> Há 5 dias</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Centro, FSA</span>
+                  </div>
+                </div>
+              </div>
+              <span class="badge badge-danger">Urgente - 5 dias</span>
+            </div>
+            
+            <div class="approval-body">
+              <div class="approval-details">
+                <div class="approval-detail">
+                  <div class="approval-detail-label">Gênero Musical</div>
+                  <div class="approval-detail-value">Sertanejo</div>
+                </div>
+                <div class="approval-detail">
+                  <div class="approval-detail-label">Experiência</div>
+                  <div class="approval-detail-value">8 anos</div>
+                </div>
+                <div class="approval-detail">
+                  <div class="approval-detail-label">Cachê Pretendido</div>
+                  <div class="approval-detail-value">R$ 400 - R$ 800</div>
+                </div>
+                <div class="approval-detail">
+                  <div class="approval-detail-label">Tipo</div>
+                  <div class="approval-detail-value">Dupla</div>
+                </div>
+              </div>
+              
+              <div class="d-flex gap-4">
+                <div style="flex: 1;">
+                  <h5 style="margin-bottom: 12px;">📝 Checklist de Verificação</h5>
+                  <ul class="verification-checklist">
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Dados pessoais completos</span>
+                    </li>
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Foto de perfil adequada</span>
+                    </li>
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Vídeo de apresentação</span>
+                    </li>
+                    <li class="verification-item pending">
+                      <i class="fas fa-exclamation-circle"></i>
+                      <span>CPF pendente de validação</span>
+                    </li>
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Dados bancários informados</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div style="flex: 1;">
+                  <h5 style="margin-bottom: 12px;">📎 Documentos Anexados</h5>
+                  <div class="approval-documents">
+                    <div class="document-preview">
+                      <i class="fas fa-file-image" style="color: var(--primary);"></i>
+                      <span>foto_perfil.jpg</span>
+                    </div>
+                    <div class="document-preview">
+                      <i class="fas fa-file-video" style="color: var(--danger);"></i>
+                      <span>video_show.mp4</span>
+                    </div>
+                    <div class="document-preview">
+                      <i class="fas fa-file-alt" style="color: var(--info);"></i>
+                      <span>curriculo.pdf</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="approval-footer">
+              <div class="d-flex gap-2">
+                <button class="btn btn-ghost btn-sm">
+                  <i class="fas fa-eye"></i> Ver perfil completo
+                </button>
+                <button class="btn btn-ghost btn-sm">
+                  <i class="fas fa-comment"></i> Solicitar mais info
+                </button>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline btn-danger" onclick="rejectApproval(1)">
+                  <i class="fas fa-times"></i> Rejeitar
+                </button>
+                <button class="btn btn-primary" onclick="approveUser(1)">
+                  <i class="fas fa-check"></i> Aprovar Cadastro
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aprovação 2 - Estabelecimento -->
+          <div class="approval-card">
+            <div class="approval-header">
+              <div class="approval-user">
+                <div class="approval-avatar">
+                  <img src="https://images.unsplash.com/photo-1555992336-03a23c76373c?w=100" alt="Bar">
+                </div>
+                <div class="approval-info">
+                  <h4>Bar do Forró Autêntico</h4>
+                  <div class="approval-meta">
+                    <span><i class="fas fa-store"></i> Estabelecimento</span>
+                    <span><i class="fas fa-calendar"></i> Há 2 dias</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Cidade Nova, FSA</span>
+                  </div>
+                </div>
+              </div>
+              <span class="badge badge-warning">2 dias</span>
+            </div>
+            
+            <div class="approval-body">
+              <div class="approval-details">
+                <div class="approval-detail">
+                  <div class="approval-detail-label">Tipo</div>
+                  <div class="approval-detail-value">Bar & Restaurante</div>
+                </div>
+                <div class="approval-detail">
+                  <div class="approval-detail-label">Capacidade</div>
+                  <div class="approval-detail-value">150 pessoas</div>
+                </div>
+                <div class="approval-detail">
+                  <div class="approval-detail-label">CNPJ</div>
+                  <div class="approval-detail-value">12.345.678/0001-90</div>
+                </div>
+                <div class="approval-detail">
+                  <div class="approval-detail-label">Estilos</div>
+                  <div class="approval-detail-value">Forró, Sertanejo</div>
+                </div>
+              </div>
+              
+              <div class="d-flex gap-4">
+                <div style="flex: 1;">
+                  <h5 style="margin-bottom: 12px;">📝 Checklist de Verificação</h5>
+                  <ul class="verification-checklist">
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>CNPJ válido e ativo</span>
+                    </li>
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Endereço confirmado</span>
+                    </li>
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Fotos do local</span>
+                    </li>
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Alvará de funcionamento</span>
+                    </li>
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Dados bancários</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div style="flex: 1;">
+                  <h5 style="margin-bottom: 12px;">📎 Documentos Anexados</h5>
+                  <div class="approval-documents">
+                    <div class="document-preview">
+                      <i class="fas fa-file-image" style="color: var(--primary);"></i>
+                      <span>fachada.jpg</span>
+                    </div>
+                    <div class="document-preview">
+                      <i class="fas fa-file-image" style="color: var(--primary);"></i>
+                      <span>interior.jpg</span>
+                    </div>
+                    <div class="document-preview">
+                      <i class="fas fa-file-pdf" style="color: var(--danger);"></i>
+                      <span>alvara.pdf</span>
+                    </div>
+                    <div class="document-preview">
+                      <i class="fas fa-file-pdf" style="color: var(--danger);"></i>
+                      <span>cnpj.pdf</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="approval-footer">
+              <div class="d-flex gap-2">
+                <button class="btn btn-ghost btn-sm">
+                  <i class="fas fa-eye"></i> Ver perfil completo
+                </button>
+                <button class="btn btn-ghost btn-sm">
+                  <i class="fas fa-map"></i> Ver no mapa
+                </button>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline btn-danger" onclick="rejectApproval(2)">
+                  <i class="fas fa-times"></i> Rejeitar
+                </button>
+                <button class="btn btn-primary" onclick="approveUser(2)">
+                  <i class="fas fa-check"></i> Aprovar Cadastro
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aprovação 3 - Artista -->
+          <div class="approval-card">
+            <div class="approval-header">
+              <div class="approval-user">
+                <div class="approval-avatar">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100" alt="Ana">
+                </div>
+                <div class="approval-info">
+                  <h4>Ana Carolina Melo</h4>
+                  <div class="approval-meta">
+                    <span><i class="fas fa-music"></i> Artista</span>
+                    <span><i class="fas fa-calendar"></i> Há 1 dia</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Tomba, FSA</span>
+                  </div>
+                </div>
+              </div>
+              <span class="badge badge-info">1 dia</span>
+            </div>
+            
+            <div class="approval-body">
+              <div class="approval-details">
+                <div class="approval-detail">
+                  <div class="approval-detail-label">Gênero Musical</div>
+                  <div class="approval-detail-value">MPB / Pop</div>
+                </div>
+                <div class="approval-detail">
+                  <div class="approval-detail-label">Experiência</div>
+                  <div class="approval-detail-value">5 anos</div>
+                </div>
+                <div class="approval-detail">
+                  <div class="approval-detail-label">Cachê Pretendido</div>
+                  <div class="approval-detail-value">R$ 300 - R$ 500</div>
+                </div>
+                <div class="approval-detail">
+                  <div class="approval-detail-label">Tipo</div>
+                  <div class="approval-detail-value">Solo (Voz e Violão)</div>
+                </div>
+              </div>
+              
+              <div class="d-flex gap-4">
+                <div style="flex: 1;">
+                  <h5 style="margin-bottom: 12px;">📝 Checklist de Verificação</h5>
+                  <ul class="verification-checklist">
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Dados pessoais completos</span>
+                    </li>
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Foto de perfil adequada</span>
+                    </li>
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Vídeo de apresentação</span>
+                    </li>
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>CPF validado</span>
+                    </li>
+                    <li class="verification-item verified">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Dados bancários informados</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div style="flex: 1;">
+                  <h5 style="margin-bottom: 12px;">📎 Documentos Anexados</h5>
+                  <div class="approval-documents">
+                    <div class="document-preview">
+                      <i class="fas fa-file-image" style="color: var(--primary);"></i>
+                      <span>foto_perfil.jpg</span>
+                    </div>
+                    <div class="document-preview">
+                      <i class="fas fa-file-video" style="color: var(--danger);"></i>
+                      <span>apresentacao.mp4</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="approval-footer">
+              <div class="d-flex gap-2">
+                <button class="btn btn-ghost btn-sm">
+                  <i class="fas fa-eye"></i> Ver perfil completo
+                </button>
+                <button class="btn btn-ghost btn-sm">
+                  <i class="fas fa-play"></i> Ver vídeo
+                </button>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline btn-danger" onclick="rejectApproval(3)">
+                  <i class="fas fa-times"></i> Rejeitar
+                </button>
+                <button class="btn btn-primary" onclick="approveUser(3)">
+                  <i class="fas fa-check"></i> Aprovar Cadastro
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Paginação -->
+        <div class="d-flex justify-center mt-4">
+          <div class="d-flex gap-2">
+            <button class="btn btn-ghost btn-sm" disabled><i class="fas fa-chevron-left"></i></button>
+            <button class="btn btn-primary btn-sm">1</button>
+            <button class="btn btn-ghost btn-sm">2</button>
+            <button class="btn btn-ghost btn-sm">3</button>
+            <button class="btn btn-ghost btn-sm"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Rejeição -->
+  <div id="rejectModal" class="modal">
+    <div class="modal-overlay" onclick="Modal.close('rejectModal')"></div>
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">❌ Rejeitar Cadastro</h3>
+        <button class="modal-close" onclick="Modal.close('rejectModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Motivo da rejeição</label>
+          <select class="form-select">
+            <option>Documentação incompleta</option>
+            <option>Foto inadequada</option>
+            <option>Informações inconsistentes</option>
+            <option>CNPJ/CPF inválido</option>
+            <option>Não atende aos requisitos</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Detalhes (opcional)</label>
+          <textarea class="form-input" rows="4" placeholder="Explique o motivo da rejeição..."></textarea>
+        </div>
+        
+        <div class="alert alert-warning">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>O usuário será notificado por e-mail sobre a rejeição e poderá corrigir os dados.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="Modal.close('rejectModal')">Cancelar</button>
+        <button class="btn btn-danger" onclick="confirmReject()">
+          <i class="fas fa-times"></i> Confirmar Rejeição
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../utils/data.js"></script>
+  <script src="../../utils/app.js"></script>
+  <script>
+    // Toggle tabs
+    document.querySelectorAll('.approval-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.approval-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    
+    function approveUser(id) {
+      if (confirm('Confirma a aprovação deste cadastro?')) {
+        Toast.success('Cadastro aprovado com sucesso! O usuário será notificado.');
+      }
+    }
+    
+    function rejectApproval(id) {
+      Modal.open('rejectModal');
+    }
+    
+    function confirmReject() {
+      Toast.info('Cadastro rejeitado. O usuário foi notificado.');
+      Modal.close('rejectModal');
+    }
+  </script>
+</body>
+</html>

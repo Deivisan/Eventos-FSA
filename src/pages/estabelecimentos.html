@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bares e Restaurantes - EventosFSA</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/responsive.css">
+  
+  <style>
+    body {
+      padding-top: 80px;
+    }
+    
+    .venues-hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      padding: 60px 0;
+      color: white;
+      margin-bottom: 40px;
+    }
+    
+    .venues-hero h1 {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+    
+    .search-container {
+      display: flex;
+      gap: 12px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .search-container .form-input {
+      flex: 1;
+    }
+    
+    .venue-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s;
+    }
+    
+    .venue-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .venue-card-image {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .venue-card-badges {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      gap: 8px;
+    }
+    
+    .venue-badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .venue-badge.featured {
+      background: var(--gold);
+      color: white;
+    }
+    
+    .venue-badge.verified {
+      background: var(--success);
+      color: white;
+    }
+    
+    .venue-badge.live {
+      background: var(--danger);
+      color: white;
+      animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    .venue-card-body {
+      padding: 20px;
+    }
+    
+    .venue-card-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .venue-card-location {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .venue-card-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    
+    .venue-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    
+    .venue-tag {
+      padding: 4px 10px;
+      background: var(--gray-100);
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .venue-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid var(--gray-200);
+    }
+    
+    .venue-schedule {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    
+    .venues-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    
+    @media (max-width: 992px) {
+      .venues-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .venues-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .search-container {
+        flex-direction: column;
+      }
+    }
+    
+    .filters-bar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      align-items: center;
+    }
+    
+    .filters-bar .form-select {
+      width: auto;
+      min-width: 150px;
+    }
+    
+    .neighborhood-filter {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    
+    .neighborhood-chip {
+      padding: 8px 16px;
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: 50px;
+      cursor: pointer;
+      white-space: nowrap;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    
+    .neighborhood-chip:hover,
+    .neighborhood-chip.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    .map-toggle {
+      display: flex;
+      background: var(--gray-100);
+      border-radius: 8px;
+      padding: 4px;
+    }
+    
+    .map-toggle button {
+      padding: 8px 16px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    
+    .map-toggle button.active {
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .next-event {
+      background: var(--gray-50);
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 12px;
+    }
+    
+    .next-event-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    
+    .next-event-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .next-event-artist {
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    .next-event-time {
+      font-size: 13px;
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== HEADER ========== -->
+  <header class="main-header" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: var(--shadow-sm);">
+    <div class="header-container">
+      <a href="../../public/index.html" class="header-logo">
+        <div class="header-logo-icon">
+          <i class="fas fa-music"></i>
+        </div>
+        <span class="header-logo-text">Eventos<span>FSA</span></span>
+      </a>
+      
+      <nav class="header-nav">
+        <a href="../../public/index.html" class="header-nav-link">Início</a>
+        <a href="eventos.html" class="header-nav-link">Eventos</a>
+        <a href="artistas.html" class="header-nav-link">Artistas</a>
+        <a href="estabelecimentos.html" class="header-nav-link active">Locais</a>
+      </nav>
+      
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-ghost">Entrar</a>
+        <a href="cadastro.html" class="btn btn-primary">Cadastrar</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO COM BUSCA ========== -->
+  <section class="venues-hero">
+    <div class="container text-center">
+      <h1>🍺 Bares e Restaurantes</h1>
+      <p style="opacity: 0.9; font-size: 1.1rem; margin-bottom: 32px;">
+        Encontre os melhores lugares com música ao vivo em Feira de Santana
+      </p>
+      
+      <div class="search-container">
+        <input type="text" class="form-input" placeholder="Buscar por nome ou bairro..." id="searchVenues">
+        <select class="form-select" style="width: 200px;">
+          <option value="">Todos os estilos</option>
+          <option>Boteco</option>
+          <option>Bar & Restaurante</option>
+          <option>Pub</option>
+          <option>Choperia</option>
+          <option>Hamburgueria</option>
+          <option>Pizzaria</option>
+        </select>
+        <button class="btn btn-primary">
+          <i class="fas fa-search"></i>
+          Buscar
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LISTAGEM DE LOCAIS ========== -->
+  <div class="container">
+    <!-- Filtros -->
+    <div class="filters-bar">
+      <div class="neighborhood-filter">
+        <div class="neighborhood-chip active">Todos</div>
+        <div class="neighborhood-chip">Centro</div>
+        <div class="neighborhood-chip">Kalilândia</div>
+        <div class="neighborhood-chip">Santa Mônica</div>
+        <div class="neighborhood-chip">Feira X</div>
+        <div class="neighborhood-chip">Mangabeira</div>
+        <div class="neighborhood-chip">SIM</div>
+        <div class="neighborhood-chip">Cidade Nova</div>
+        <div class="neighborhood-chip">Tomba</div>
+      </div>
+      
+      <div style="margin-left: auto; display: flex; gap: 12px; align-items: center;">
+        <label class="d-flex align-center gap-2">
+          <input type="checkbox" style="width: 16px; height: 16px;">
+          <span style="font-size: 14px;">Ao vivo agora</span>
+        </label>
+        
+        <div class="map-toggle">
+          <button class="active"><i class="fas fa-th-large"></i> Grade</button>
+          <button><i class="fas fa-map"></i> Mapa</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-flex justify-between align-center mb-4">
+      <h2 style="font-size: 1.3rem; margin: 0;">📍 89 locais encontrados</h2>
+      <select class="form-select" style="width: 180px;">
+        <option>Mais populares</option>
+        <option>Melhor avaliados</option>
+        <option>Mais eventos</option>
+        <option>Mais próximos</option>
+      </select>
+    </div>
+    
+    <!-- Grid de Locais -->
+    <div class="venues-grid">
+      <!-- Local 1 - Ao Vivo Agora -->
+      <div class="venue-card">
+        <div class="venue-card-image" style="background-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=500');">
+          <div class="venue-card-badges">
+            <span class="venue-badge live"><i class="fas fa-circle"></i> AO VIVO</span>
+            <span class="venue-badge featured"><i class="fas fa-star"></i></span>
+          </div>
+        </div>
+        <div class="venue-card-body">
+          <h3 class="venue-card-name">Bar do Zé Bigode</h3>
+          <div class="venue-card-location">
+            <i class="fas fa-map-marker-alt"></i>
+            Kalilândia, Feira de Santana
+          </div>
+          <div class="venue-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.8</strong>
+            <span class="text-muted">(234 avaliações)</span>
+          </div>
+          <div class="venue-tags">
+            <span class="venue-tag">Boteco</span>
+            <span class="venue-tag">MPB</span>
+            <span class="venue-tag">Samba</span>
+          </div>
+          <div class="next-event">
+            <div class="next-event-label">🎤 Tocando agora</div>
+            <div class="next-event-info">
+              <span class="next-event-artist">Weslei Ribeiro</span>
+              <span class="next-event-time">• Voz e Violão</span>
+            </div>
+          </div>
+          <div class="venue-info">
+            <span class="venue-schedule"><i class="fas fa-clock"></i> Seg-Sáb 18h-00h</span>
+            <a href="#" class="btn btn-primary btn-sm">Ver eventos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Local 2 -->
+      <div class="venue-card">
+        <div class="venue-card-image" style="background-image: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=500');">
+          <div class="venue-card-badges">
+            <span class="venue-badge verified"><i class="fas fa-check"></i> Verificado</span>
+          </div>
+        </div>
+        <div class="venue-card-body">
+          <h3 class="venue-card-name">Recanto da Boa Música</h3>
+          <div class="venue-card-location">
+            <i class="fas fa-map-marker-alt"></i>
+            Santa Mônica, Feira de Santana
+          </div>
+          <div class="venue-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.7</strong>
+            <span class="text-muted">(189 avaliações)</span>
+          </div>
+          <div class="venue-tags">
+            <span class="venue-tag">Bar & Restaurante</span>
+            <span class="venue-tag">Rock</span>
+            <span class="venue-tag">MPB</span>
+          </div>
+          <div class="next-event">
+            <div class="next-event-label">📅 Próximo evento</div>
+            <div class="next-event-info">
+              <span class="next-event-artist">Pedro Rocha</span>
+              <span class="next-event-time">• Sexta, 21h</span>
+            </div>
+          </div>
+          <div class="venue-info">
+            <span class="venue-schedule"><i class="fas fa-clock"></i> Ter-Dom 17h-01h</span>
+            <a href="#" class="btn btn-primary btn-sm">Ver eventos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Local 3 -->
+      <div class="venue-card">
+        <div class="venue-card-image" style="background-image: url('https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=500');">
+          <div class="venue-card-badges">
+            <span class="venue-badge featured"><i class="fas fa-star"></i></span>
+          </div>
+        </div>
+        <div class="venue-card-body">
+          <h3 class="venue-card-name">Buteco do Forró</h3>
+          <div class="venue-card-location">
+            <i class="fas fa-map-marker-alt"></i>
+            Centro, Feira de Santana
+          </div>
+          <div class="venue-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.9</strong>
+            <span class="text-muted">(312 avaliações)</span>
+          </div>
+          <div class="venue-tags">
+            <span class="venue-tag">Boteco</span>
+            <span class="venue-tag">Forró</span>
+            <span class="venue-tag">Pagode</span>
+          </div>
+          <div class="next-event">
+            <div class="next-event-label">📅 Próximo evento</div>
+            <div class="next-event-info">
+              <span class="next-event-artist">Banda Somzeira</span>
+              <span class="next-event-time">• Sábado, 20h</span>
+            </div>
+          </div>
+          <div class="venue-info">
+            <span class="venue-schedule"><i class="fas fa-clock"></i> Qui-Sáb 19h-02h</span>
+            <a href="#" class="btn btn-primary btn-sm">Ver eventos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Local 4 -->
+      <div class="venue-card">
+        <div class="venue-card-image" style="background-image: url('https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?w=500');">
+          <div class="venue-card-badges">
+            <span class="venue-badge verified"><i class="fas fa-check"></i> Verificado</span>
+          </div>
+        </div>
+        <div class="venue-card-body">
+          <h3 class="venue-card-name">Cervejaria Artesanal FSA</h3>
+          <div class="venue-card-location">
+            <i class="fas fa-map-marker-alt"></i>
+            SIM, Feira de Santana
+          </div>
+          <div class="venue-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.6</strong>
+            <span class="text-muted">(156 avaliações)</span>
+          </div>
+          <div class="venue-tags">
+            <span class="venue-tag">Choperia</span>
+            <span class="venue-tag">Rock</span>
+            <span class="venue-tag">Blues</span>
+          </div>
+          <div class="next-event">
+            <div class="next-event-label">📅 Próximo evento</div>
+            <div class="next-event-info">
+              <span class="next-event-artist">Blues Brothers FSA</span>
+              <span class="next-event-time">• Sexta, 22h</span>
+            </div>
+          </div>
+          <div class="venue-info">
+            <span class="venue-schedule"><i class="fas fa-clock"></i> Qua-Dom 18h-01h</span>
+            <a href="#" class="btn btn-primary btn-sm">Ver eventos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Local 5 -->
+      <div class="venue-card">
+        <div class="venue-card-image" style="background-image: url('https://images.unsplash.com/photo-1555992336-03a23c76373c?w=500');">
+          <div class="venue-card-badges">
+            <span class="venue-badge live"><i class="fas fa-circle"></i> AO VIVO</span>
+          </div>
+        </div>
+        <div class="venue-card-body">
+          <h3 class="venue-card-name">Hamburgueria Rock'n'Roll</h3>
+          <div class="venue-card-location">
+            <i class="fas fa-map-marker-alt"></i>
+            Cidade Nova, Feira de Santana
+          </div>
+          <div class="venue-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.5</strong>
+            <span class="text-muted">(98 avaliações)</span>
+          </div>
+          <div class="venue-tags">
+            <span class="venue-tag">Hamburgueria</span>
+            <span class="venue-tag">Rock</span>
+            <span class="venue-tag">Indie</span>
+          </div>
+          <div class="next-event">
+            <div class="next-event-label">🎤 Tocando agora</div>
+            <div class="next-event-info">
+              <span class="next-event-artist">Larissa Santos</span>
+              <span class="next-event-time">• Pop/Rock</span>
+            </div>
+          </div>
+          <div class="venue-info">
+            <span class="venue-schedule"><i class="fas fa-clock"></i> Ter-Dom 18h-00h</span>
+            <a href="#" class="btn btn-primary btn-sm">Ver eventos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Local 6 -->
+      <div class="venue-card">
+        <div class="venue-card-image" style="background-image: url('https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=500');">
+          <div class="venue-card-badges">
+            <span class="venue-badge verified"><i class="fas fa-check"></i> Verificado</span>
+          </div>
+        </div>
+        <div class="venue-card-body">
+          <h3 class="venue-card-name">Pizzaria Bella Napoli</h3>
+          <div class="venue-card-location">
+            <i class="fas fa-map-marker-alt"></i>
+            Mangabeira, Feira de Santana
+          </div>
+          <div class="venue-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.4</strong>
+            <span class="text-muted">(76 avaliações)</span>
+          </div>
+          <div class="venue-tags">
+            <span class="venue-tag">Pizzaria</span>
+            <span class="venue-tag">MPB</span>
+            <span class="venue-tag">Bossa Nova</span>
+          </div>
+          <div class="next-event">
+            <div class="next-event-label">📅 Próximo evento</div>
+            <div class="next-event-info">
+              <span class="next-event-artist">Manu</span>
+              <span class="next-event-time">• Sábado, 20h</span>
+            </div>
+          </div>
+          <div class="venue-info">
+            <span class="venue-schedule"><i class="fas fa-clock"></i> Ter-Dom 18h-23h</span>
+            <a href="#" class="btn btn-primary btn-sm">Ver eventos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Local 7 -->
+      <div class="venue-card">
+        <div class="venue-card-image" style="background-image: url('https://images.unsplash.com/photo-1546833998-877b37c2e5c6?w=500');">
+        </div>
+        <div class="venue-card-body">
+          <h3 class="venue-card-name">Bar dos Amigos</h3>
+          <div class="venue-card-location">
+            <i class="fas fa-map-marker-alt"></i>
+            Tomba, Feira de Santana
+          </div>
+          <div class="venue-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.3</strong>
+            <span class="text-muted">(45 avaliações)</span>
+          </div>
+          <div class="venue-tags">
+            <span class="venue-tag">Boteco</span>
+            <span class="venue-tag">Sertanejo</span>
+            <span class="venue-tag">Forró</span>
+          </div>
+          <div class="next-event">
+            <div class="next-event-label">📅 Próximo evento</div>
+            <div class="next-event-info">
+              <span class="next-event-artist">Júnior Almeida</span>
+              <span class="next-event-time">• Sexta, 21h</span>
+            </div>
+          </div>
+          <div class="venue-info">
+            <span class="venue-schedule"><i class="fas fa-clock"></i> Sex-Sáb 19h-02h</span>
+            <a href="#" class="btn btn-primary btn-sm">Ver eventos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Local 8 -->
+      <div class="venue-card">
+        <div class="venue-card-image" style="background-image: url('https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=500');">
+          <div class="venue-card-badges">
+            <span class="venue-badge featured"><i class="fas fa-star"></i></span>
+          </div>
+        </div>
+        <div class="venue-card-body">
+          <h3 class="venue-card-name">Pub The Black Cat</h3>
+          <div class="venue-card-location">
+            <i class="fas fa-map-marker-alt"></i>
+            Feira X, Feira de Santana
+          </div>
+          <div class="venue-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.8</strong>
+            <span class="text-muted">(267 avaliações)</span>
+          </div>
+          <div class="venue-tags">
+            <span class="venue-tag">Pub</span>
+            <span class="venue-tag">Rock</span>
+            <span class="venue-tag">Metal</span>
+          </div>
+          <div class="next-event">
+            <div class="next-event-label">📅 Próximo evento</div>
+            <div class="next-event-info">
+              <span class="next-event-artist">Coverboys</span>
+              <span class="next-event-time">• Sábado, 22h</span>
+            </div>
+          </div>
+          <div class="venue-info">
+            <span class="venue-schedule"><i class="fas fa-clock"></i> Sex-Sáb 20h-04h</span>
+            <a href="#" class="btn btn-primary btn-sm">Ver eventos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Local 9 -->
+      <div class="venue-card">
+        <div class="venue-card-image" style="background-image: url('https://images.unsplash.com/photo-1586105449897-20b5efeb3233?w=500');">
+        </div>
+        <div class="venue-card-body">
+          <h3 class="venue-card-name">Espaço Reggae & Roots</h3>
+          <div class="venue-card-location">
+            <i class="fas fa-map-marker-alt"></i>
+            Campo Limpo, Feira de Santana
+          </div>
+          <div class="venue-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.6</strong>
+            <span class="text-muted">(89 avaliações)</span>
+          </div>
+          <div class="venue-tags">
+            <span class="venue-tag">Bar</span>
+            <span class="venue-tag">Reggae</span>
+            <span class="venue-tag">Roots</span>
+          </div>
+          <div class="next-event">
+            <div class="next-event-label">📅 Próximo evento</div>
+            <div class="next-event-info">
+              <span class="next-event-artist">Rafael Costa</span>
+              <span class="next-event-time">• Domingo, 17h</span>
+            </div>
+          </div>
+          <div class="venue-info">
+            <span class="venue-schedule"><i class="fas fa-clock"></i> Sáb-Dom 16h-23h</span>
+            <a href="#" class="btn btn-primary btn-sm">Ver eventos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paginação -->
+    <div class="d-flex justify-center mt-6 mb-6">
+      <div class="d-flex gap-2">
+        <button class="btn btn-ghost btn-sm" disabled><i class="fas fa-chevron-left"></i></button>
+        <button class="btn btn-primary btn-sm">1</button>
+        <button class="btn btn-ghost btn-sm">2</button>
+        <button class="btn btn-ghost btn-sm">3</button>
+        <button class="btn btn-ghost btn-sm">...</button>
+        <button class="btn btn-ghost btn-sm">10</button>
+        <button class="btn btn-ghost btn-sm"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+    
+    <!-- CTA para Estabelecimentos -->
+    <div class="card mb-6" style="background: var(--primary-gradient); color: white; text-align: center; padding: 40px;">
+      <h3 style="color: white; margin-bottom: 12px;">🏢 Tem um bar ou restaurante?</h3>
+      <p style="opacity: 0.9; margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
+        Cadastre seu estabelecimento na EventosFSA e conecte-se com os melhores artistas de Feira de Santana!
+      </p>
+      <a href="cadastro.html" class="btn" style="background: white; color: var(--primary);">
+        Cadastrar meu estabelecimento
+      </a>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer style="background: var(--gray-900); color: white; padding: 40px 0;">
+    <div class="container">
+      <div class="d-flex justify-between flex-wrap gap-4">
+        <div>
+          <div class="d-flex align-center gap-2 mb-3">
+            <div style="width: 40px; height: 40px; background: var(--primary-gradient); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-music"></i>
+            </div>
+            <span style="font-size: 1.25rem; font-weight: 700;">Eventos<span style="color: var(--primary);">FSA</span></span>
+          </div>
+          <p style="opacity: 0.7; max-width: 300px;">
+            A maior plataforma de eventos e música ao vivo de Feira de Santana, Bahia.
+          </p>
+        </div>
+        
+        <div>
+          <h4 style="color: white; margin-bottom: 16px;">Para Artistas</h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;"><a href="cadastro.html" style="color: rgba(255,255,255,0.7);">Cadastre-se</a></li>
+            <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.7);">Como funciona</a></li>
+            <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.7);">Receber Gorjetas</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 style="color: white; margin-bottom: 16px;">Para Estabelecimentos</h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;"><a href="cadastro.html" style="color: rgba(255,255,255,0.7);">Cadastre seu bar</a></li>
+            <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.7);">Contratar artistas</a></li>
+            <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.7);">Planos Premium</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 style="color: white; margin-bottom: 16px;">Siga-nos</h4>
+          <div class="d-flex gap-3">
+            <a href="#" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 32px; padding-top: 24px; text-align: center; opacity: 0.7;">
+        <p style="margin: 0;">© 2024 EventosFSA. Todos os direitos reservados. Feira de Santana - BA</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../utils/data.js"></script>
+  <script src="../utils/app.js"></script>
+  <script>
+    // Filtro de bairros
+    document.querySelectorAll('.neighborhood-chip').forEach(chip => {
+      chip.addEventListener('click', function() {
+        document.querySelectorAll('.neighborhood-chip').forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+        Toast.info('Filtro: ' + this.textContent);
+      });
+    });
+    
+    // Toggle Mapa/Grade
+    document.querySelectorAll('.map-toggle button').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.map-toggle button').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

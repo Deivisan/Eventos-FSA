@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propostas - Painel do Artista | EventosFSA</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="../../styles/variables.css">
+  <link rel="stylesheet" href="../../styles/main.css">
+  <link rel="stylesheet" href="../../styles/components.css">
+  <link rel="stylesheet" href="../../styles/responsive.css">
+  
+  <style>
+    .proposal-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s;
+    }
+    
+    .proposal-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+    
+    .proposal-card.new {
+      border-left: 4px solid var(--primary);
+      background: linear-gradient(90deg, rgba(255, 107, 53, 0.05) 0%, white 100%);
+    }
+    
+    .proposal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    
+    .proposal-venue {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    
+    .proposal-venue-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .proposal-venue-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .proposal-venue-info h4 {
+      margin: 0 0 4px 0;
+      font-size: 1.1rem;
+    }
+    
+    .proposal-venue-location {
+      color: var(--text-muted);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .proposal-status {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    
+    .proposal-status.pending {
+      background: var(--warning-light);
+      color: var(--warning);
+    }
+    
+    .proposal-status.accepted {
+      background: var(--success-light);
+      color: var(--success);
+    }
+    
+    .proposal-status.rejected {
+      background: var(--danger-light);
+      color: var(--danger);
+    }
+    
+    .proposal-status.negotiating {
+      background: var(--info-light);
+      color: var(--info);
+    }
+    
+    .proposal-details {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding: 16px;
+      background: var(--gray-50);
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    
+    .proposal-detail {
+      text-align: center;
+    }
+    
+    .proposal-detail-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    
+    .proposal-detail-value {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    
+    .proposal-detail-value.price {
+      color: var(--success);
+    }
+    
+    .proposal-message {
+      padding: 16px;
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    
+    .proposal-message-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    
+    .proposal-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+    
+    .proposal-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--gray-200);
+      padding-bottom: 8px;
+    }
+    
+    .proposal-tab {
+      padding: 10px 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    
+    .proposal-tab:hover {
+      background: var(--gray-100);
+    }
+    
+    .proposal-tab.active {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .proposal-tab .badge {
+      margin-left: 8px;
+    }
+    
+    @media (max-width: 768px) {
+      .proposal-details {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .proposal-header {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../../../public/index.html" class="header-logo">
+          <div class="header-logo-icon">
+            <i class="fas fa-music"></i>
+          </div>
+          <span class="header-logo-text">Eventos<span>FSA</span></span>
+        </a>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">MENU PRINCIPAL</div>
+          <a href="dashboard.html" class="sidebar-nav-link">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="agenda.html" class="sidebar-nav-link">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Minha Agenda</span>
+          </a>
+          <a href="propostas.html" class="sidebar-nav-link active">
+            <i class="fas fa-file-contract"></i>
+            <span>Propostas</span>
+            <span class="badge badge-primary" style="margin-left: auto;">3</span>
+          </a>
+          <a href="gorjetas.html" class="sidebar-nav-link">
+            <i class="fas fa-hand-holding-heart"></i>
+            <span>Gorjetas</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">PERFIL</div>
+          <a href="perfil.html" class="sidebar-nav-link">
+            <i class="fas fa-user"></i>
+            <span>Meu Perfil</span>
+          </a>
+          <a href="avaliacoes.html" class="sidebar-nav-link">
+            <i class="fas fa-star"></i>
+            <span>Avaliações</span>
+          </a>
+          <a href="configuracoes.html" class="sidebar-nav-link">
+            <i class="fas fa-cog"></i>
+            <span>Configurações</span>
+          </a>
+        </div>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <a href="../login.html" class="sidebar-nav-link text-danger">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Sair</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <div class="dashboard-main">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="d-flex align-center gap-4">
+          <button class="btn btn-ghost d-lg-none" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 class="dashboard-title">Propostas de Shows</h1>
+            <p class="dashboard-subtitle">Gerencie as propostas recebidas dos estabelecimentos</p>
+          </div>
+        </div>
+        
+        <div class="d-flex align-center gap-3">
+          <button class="btn btn-ghost btn-icon">
+            <i class="fas fa-bell"></i>
+            <span class="notification-dot"></span>
+          </button>
+          <div class="avatar">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Weslei">
+          </div>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="dashboard-content">
+        <!-- Resumo -->
+        <div class="d-grid gap-4 mb-6" style="grid-template-columns: repeat(4, 1fr);">
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--warning-light); color: var(--warning);">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-info">
+              <h3 class="stat-value">3</h3>
+              <p class="stat-label">Pendentes</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--info-light); color: var(--info);">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div class="stat-info">
+              <h3 class="stat-value">2</h3>
+              <p class="stat-label">Em Negociação</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--success-light); color: var(--success);">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-info">
+              <h3 class="stat-value">28</h3>
+              <p class="stat-label">Aceitas este mês</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--primary-light); color: var(--primary);">
+              <i class="fas fa-percentage"></i>
+            </div>
+            <div class="stat-info">
+              <h3 class="stat-value">87%</h3>
+              <p class="stat-label">Taxa de Aceitação</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="proposal-tabs">
+          <button class="proposal-tab active">
+            Novas <span class="badge badge-primary">3</span>
+          </button>
+          <button class="proposal-tab">
+            Em Negociação <span class="badge badge-info">2</span>
+          </button>
+          <button class="proposal-tab">
+            Aceitas
+          </button>
+          <button class="proposal-tab">
+            Recusadas
+          </button>
+        </div>
+
+        <!-- Lista de Propostas -->
+        <div class="proposals-list">
+          <!-- Proposta 1 - Nova -->
+          <div class="proposal-card new">
+            <div class="proposal-header">
+              <div class="proposal-venue">
+                <div class="proposal-venue-avatar">
+                  <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=100" alt="Bar do Zé Bigode">
+                </div>
+                <div class="proposal-venue-info">
+                  <h4>Bar do Zé Bigode</h4>
+                  <div class="proposal-venue-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Kalilândia, Feira de Santana
+                  </div>
+                  <div style="font-size: 12px; color: var(--primary); margin-top: 4px;">
+                    <i class="fas fa-star"></i> 4.8 • 234 avaliações
+                  </div>
+                </div>
+              </div>
+              <span class="proposal-status pending">
+                <i class="fas fa-clock"></i> Aguardando resposta
+              </span>
+            </div>
+            
+            <div class="proposal-details">
+              <div class="proposal-detail">
+                <div class="proposal-detail-label">📅 Data</div>
+                <div class="proposal-detail-value">18 Jan 2025</div>
+              </div>
+              <div class="proposal-detail">
+                <div class="proposal-detail-label">🕐 Horário</div>
+                <div class="proposal-detail-value">20:00 - 23:00</div>
+              </div>
+              <div class="proposal-detail">
+                <div class="proposal-detail-label">⏱️ Duração</div>
+                <div class="proposal-detail-value">3 horas</div>
+              </div>
+              <div class="proposal-detail">
+                <div class="proposal-detail-label">💰 Cachê Oferecido</div>
+                <div class="proposal-detail-value price">R$ 450,00</div>
+              </div>
+            </div>
+            
+            <div class="proposal-message">
+              <div class="proposal-message-label">💬 Mensagem do estabelecimento:</div>
+              <p style="margin: 0; color: var(--text-secondary);">
+                "Olá Weslei! Gostaríamos muito de ter você tocando aqui no sábado. Será uma noite especial de aniversário do bar, então teremos casa cheia! Aguardamos sua resposta."
+              </p>
+            </div>
+            
+            <div class="proposal-actions">
+              <button class="btn btn-outline" onclick="rejectProposal(1)">
+                <i class="fas fa-times"></i> Recusar
+              </button>
+              <button class="btn btn-ghost" onclick="negotiateProposal(1)">
+                <i class="fas fa-comments"></i> Negociar
+              </button>
+              <button class="btn btn-primary" onclick="acceptProposal(1)">
+                <i class="fas fa-check"></i> Aceitar Proposta
+              </button>
+            </div>
+          </div>
+
+          <!-- Proposta 2 - Nova -->
+          <div class="proposal-card new">
+            <div class="proposal-header">
+              <div class="proposal-venue">
+                <div class="proposal-venue-avatar">
+                  <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=100" alt="Recanto da Boa Música">
+                </div>
+                <div class="proposal-venue-info">
+                  <h4>Recanto da Boa Música</h4>
+                  <div class="proposal-venue-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Santa Mônica, Feira de Santana
+                  </div>
+                  <div style="font-size: 12px; color: var(--primary); margin-top: 4px;">
+                    <i class="fas fa-star"></i> 4.7 • 189 avaliações
+                  </div>
+                </div>
+              </div>
+              <span class="proposal-status pending">
+                <i class="fas fa-clock"></i> Aguardando resposta
+              </span>
+            </div>
+            
+            <div class="proposal-details">
+              <div class="proposal-detail">
+                <div class="proposal-detail-label">📅 Data</div>
+                <div class="proposal-detail-value">24 Jan 2025</div>
+              </div>
+              <div class="proposal-detail">
+                <div class="proposal-detail-label">🕐 Horário</div>
+                <div class="proposal-detail-value">21:00 - 00:00</div>
+              </div>
+              <div class="proposal-detail">
+                <div class="proposal-detail-label">⏱️ Duração</div>
+                <div class="proposal-detail-value">3 horas</div>
+              </div>
+              <div class="proposal-detail">
+                <div class="proposal-detail-label">💰 Cachê Oferecido</div>
+                <div class="proposal-detail-value price">R$ 380,00</div>
+              </div>
+            </div>
+            
+            <div class="proposal-message">
+              <div class="proposal-message-label">💬 Mensagem do estabelecimento:</div>
+              <p style="margin: 0; color: var(--text-secondary);">
+                "Boa tarde! Estamos montando a programação de janeiro e adoraríamos ter você aqui. Público ama MPB e voz e violão!"
+              </p>
+            </div>
+            
+            <div class="proposal-actions">
+              <button class="btn btn-outline" onclick="rejectProposal(2)">
+                <i class="fas fa-times"></i> Recusar
+              </button>
+              <button class="btn btn-ghost" onclick="negotiateProposal(2)">
+                <i class="fas fa-comments"></i> Negociar
+              </button>
+              <button class="btn btn-primary" onclick="acceptProposal(2)">
+                <i class="fas fa-check"></i> Aceitar Proposta
+              </button>
+            </div>
+          </div>
+
+          <!-- Proposta 3 - Nova -->
+          <div class="proposal-card new">
+            <div class="proposal-header">
+              <div class="proposal-venue">
+                <div class="proposal-venue-avatar">
+                  <img src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=100" alt="Pizzaria Bella Napoli">
+                </div>
+                <div class="proposal-venue-info">
+                  <h4>Pizzaria Bella Napoli</h4>
+                  <div class="proposal-venue-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Mangabeira, Feira de Santana
+                  </div>
+                  <div style="font-size: 12px; color: var(--primary); margin-top: 4px;">
+                    <i class="fas fa-star"></i> 4.4 • 76 avaliações
+                  </div>
+                </div>
+              </div>
+              <span class="proposal-status pending">
+                <i class="fas fa-clock"></i> Aguardando resposta
+              </span>
+            </div>
+            
+            <div class="proposal-details">
+              <div class="proposal-detail">
+                <div class="proposal-detail-label">📅 Data</div>
+                <div class="proposal-detail-value">25 Jan 2025</div>
+              </div>
+              <div class="proposal-detail">
+                <div class="proposal-detail-label">🕐 Horário</div>
+                <div class="proposal-detail-value">19:30 - 22:30</div>
+              </div>
+              <div class="proposal-detail">
+                <div class="proposal-detail-label">⏱️ Duração</div>
+                <div class="proposal-detail-value">3 horas</div>
+              </div>
+              <div class="proposal-detail">
+                <div class="proposal-detail-label">💰 Cachê Oferecido</div>
+                <div class="proposal-detail-value price">R$ 350,00</div>
+              </div>
+            </div>
+            
+            <div class="proposal-message">
+              <div class="proposal-message-label">💬 Mensagem do estabelecimento:</div>
+              <p style="margin: 0; color: var(--text-secondary);">
+                "Olá! Primeira vez entrando em contato. Estamos buscando músicos de qualidade para tocar aqui. Seu perfil chamou nossa atenção!"
+              </p>
+            </div>
+            
+            <div class="proposal-actions">
+              <button class="btn btn-outline" onclick="rejectProposal(3)">
+                <i class="fas fa-times"></i> Recusar
+              </button>
+              <button class="btn btn-ghost" onclick="negotiateProposal(3)">
+                <i class="fas fa-comments"></i> Negociar
+              </button>
+              <button class="btn btn-primary" onclick="acceptProposal(3)">
+                <i class="fas fa-check"></i> Aceitar Proposta
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Negociação -->
+  <div id="negotiateModal" class="modal">
+    <div class="modal-overlay" onclick="Modal.close('negotiateModal')"></div>
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">💬 Negociar Proposta</h3>
+        <button class="modal-close" onclick="Modal.close('negotiateModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Contra-proposta de cachê</label>
+          <div class="d-flex gap-2">
+            <span style="padding: 10px; background: var(--gray-100); border-radius: 8px;">R$</span>
+            <input type="number" class="form-input" value="500" id="counterOffer">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Mensagem (opcional)</label>
+          <textarea class="form-input" rows="4" placeholder="Explique sua contra-proposta...">Olá! Agradeço o interesse. Para essa data e horário, meu cachê é de R$ 500. Podemos fechar?</textarea>
+        </div>
+        
+        <div class="alert alert-info">
+          <i class="fas fa-info-circle"></i>
+          <span>O estabelecimento será notificado e poderá aceitar, recusar ou fazer nova proposta.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="Modal.close('negotiateModal')">Cancelar</button>
+        <button class="btn btn-primary" onclick="sendCounterOffer()">
+          <i class="fas fa-paper-plane"></i> Enviar Contra-proposta
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../utils/data.js"></script>
+  <script src="../../utils/app.js"></script>
+  <script>
+    // Toggle tabs
+    document.querySelectorAll('.proposal-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.proposal-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    
+    function acceptProposal(id) {
+      Toast.success('Proposta aceita! O estabelecimento será notificado.');
+    }
+    
+    function rejectProposal(id) {
+      if (confirm('Tem certeza que deseja recusar esta proposta?')) {
+        Toast.info('Proposta recusada.');
+      }
+    }
+    
+    function negotiateProposal(id) {
+      Modal.open('negotiateModal');
+    }
+    
+    function sendCounterOffer() {
+      const value = document.getElementById('counterOffer').value;
+      Toast.success('Contra-proposta de R$ ' + value + ' enviada!');
+      Modal.close('negotiateModal');
+    }
+  </script>
+</body>
+</html>

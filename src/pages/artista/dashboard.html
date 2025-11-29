@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard do Artista - EventosFSA</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="../../styles/variables.css">
+  <link rel="stylesheet" href="../../styles/main.css">
+  <link rel="stylesheet" href="../../styles/components.css">
+  <link rel="stylesheet" href="../../styles/responsive.css">
+</head>
+<body>
+  <!-- ========== HEADER ========== -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="../../../public/index.html" class="header-logo">
+        <div class="header-logo-icon">
+          <i class="fas fa-music"></i>
+        </div>
+        <span class="header-logo-text">Eventos<span>FSA</span></span>
+      </a>
+      
+      <div class="header-actions">
+        <div class="header-search">
+          <i class="fas fa-search header-search-icon"></i>
+          <input type="text" class="header-search-input" placeholder="Buscar...">
+        </div>
+        
+        <div class="header-notification dropdown">
+          <button class="btn btn-ghost btn-icon">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+          </button>
+          <div class="dropdown-menu" style="width: 320px;">
+            <div style="padding: 12px 16px; border-bottom: 1px solid var(--gray-200);">
+              <strong>Notificações</strong>
+            </div>
+            <div class="dropdown-item" style="flex-direction: column; align-items: flex-start;">
+              <span style="font-weight: 500;">Nova proposta recebida!</span>
+              <small class="text-muted">Cidade da Cultura - há 2 horas</small>
+            </div>
+            <div class="dropdown-item" style="flex-direction: column; align-items: flex-start;">
+              <span style="font-weight: 500;">Gorjeta de R$ 50,00</span>
+              <small class="text-muted">De: João Silva - há 5 horas</small>
+            </div>
+            <div class="dropdown-item" style="flex-direction: column; align-items: flex-start;">
+              <span style="font-weight: 500;">Evento confirmado!</span>
+              <small class="text-muted">A Vendinha - 06/12 às 20h</small>
+            </div>
+          </div>
+        </div>
+        
+        <div class="dropdown">
+          <div class="header-user">
+            <div class="header-user-info">
+              <div class="header-user-name" id="userName">Weslei Ribeiro</div>
+              <div class="header-user-role">Artista</div>
+            </div>
+            <div class="avatar avatar-md">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Avatar" id="userAvatar">
+            </div>
+          </div>
+          <div class="dropdown-menu">
+            <a href="perfil.html" class="dropdown-item">
+              <i class="fas fa-user dropdown-item-icon"></i>
+              Meu Perfil
+            </a>
+            <a href="configuracoes.html" class="dropdown-item">
+              <i class="fas fa-cog dropdown-item-icon"></i>
+              Configurações
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item" onclick="Auth.logout(); return false;">
+              <i class="fas fa-sign-out-alt dropdown-item-icon"></i>
+              Sair
+            </a>
+          </div>
+        </div>
+        
+        <button class="mobile-menu-btn" onclick="Sidebar.toggle()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar">
+    <nav class="sidebar-section">
+      <p class="sidebar-section-title">Menu Principal</p>
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="dashboard.html" class="sidebar-menu-link active">
+            <i class="fas fa-tachometer-alt sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="agenda.html" class="sidebar-menu-link">
+            <i class="fas fa-calendar-alt sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Minha Agenda</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="propostas.html" class="sidebar-menu-link">
+            <i class="fas fa-file-contract sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Propostas</span>
+            <span class="sidebar-menu-badge">3</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="gorjetas.html" class="sidebar-menu-link">
+            <i class="fas fa-hand-holding-heart sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Gorjetas</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="avaliacoes.html" class="sidebar-menu-link">
+            <i class="fas fa-star sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Avaliações</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+    <nav class="sidebar-section">
+      <p class="sidebar-section-title">Configurações</p>
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="perfil.html" class="sidebar-menu-link">
+            <i class="fas fa-user sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Meu Perfil</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="financeiro.html" class="sidebar-menu-link">
+            <i class="fas fa-wallet sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Financeiro</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="configuracoes.html" class="sidebar-menu-link">
+            <i class="fas fa-cog sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Configurações</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="card" style="background: var(--primary-gradient); color: white; border: none;">
+        <div class="card-body text-center">
+          <i class="fas fa-crown" style="font-size: 2rem; margin-bottom: 12px;"></i>
+          <h4 style="color: white; margin-bottom: 8px;">Seja Premium</h4>
+          <p style="font-size: 12px; opacity: 0.9; margin-bottom: 16px;">Destaque-se e receba mais propostas</p>
+          <a href="premium.html" class="btn btn-sm" style="background: white; color: var(--primary);">
+            Upgrade Agora
+          </a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========== OVERLAY MOBILE ========== -->
+  <div class="sidebar-overlay" onclick="Sidebar.close()"></div>
+
+  <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+  <main class="main-content">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="breadcrumb">
+        <span class="breadcrumb-item">
+          <a href="../../../public/index.html"><i class="fas fa-home"></i></a>
+        </span>
+        <i class="fas fa-chevron-right breadcrumb-separator"></i>
+        <span class="breadcrumb-item">Artista</span>
+        <i class="fas fa-chevron-right breadcrumb-separator"></i>
+        <span class="breadcrumb-item">Dashboard</span>
+      </div>
+      <div class="page-header-row">
+        <div>
+          <h1 class="page-title">Olá, <span id="welcomeName">Weslei</span>! 👋</h1>
+          <p class="page-subtitle">Aqui está o resumo da sua conta</p>
+        </div>
+        <div class="d-flex gap-3">
+          <a href="agenda.html" class="btn btn-outline">
+            <i class="fas fa-calendar-plus"></i>
+            Ver Agenda
+          </a>
+          <a href="perfil.html" class="btn btn-primary">
+            <i class="fas fa-edit"></i>
+            Editar Perfil
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-primary">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+        <div class="stat-content">
+          <p class="stat-label">Shows Realizados</p>
+          <h3 class="stat-value">234</h3>
+          <span class="stat-change stat-change-up">
+            <i class="fas fa-arrow-up"></i> +12 este mês
+          </span>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-success">
+          <i class="fas fa-hand-holding-usd"></i>
+        </div>
+        <div class="stat-content">
+          <p class="stat-label">Gorjetas Recebidas</p>
+          <h3 class="stat-value">R$ 4.520</h3>
+          <span class="stat-change stat-change-up">
+            <i class="fas fa-arrow-up"></i> +R$ 350 este mês
+          </span>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-warning">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="stat-content">
+          <p class="stat-label">Avaliação Média</p>
+          <h3 class="stat-value">4.8</h3>
+          <span class="stat-change">
+            <i class="fas fa-star" style="color: var(--gold);"></i> 156 avaliações
+          </span>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-info">
+          <i class="fas fa-file-contract"></i>
+        </div>
+        <div class="stat-content">
+          <p class="stat-label">Propostas Pendentes</p>
+          <h3 class="stat-value">3</h3>
+          <span class="stat-change stat-change-up">
+            <i class="fas fa-exclamation-circle"></i> Aguardando resposta
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="d-grid gap-6" style="grid-template-columns: 2fr 1fr;">
+      <!-- Left Column -->
+      <div>
+        <!-- Próximos Shows -->
+        <div class="card mb-6">
+          <div class="card-header d-flex justify-between align-center">
+            <h3 class="card-title mb-0">📅 Próximos Shows</h3>
+            <a href="agenda.html" class="btn btn-ghost btn-sm">Ver Todos</a>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Local</th>
+                    <th>Horário</th>
+                    <th>Cachê</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-3">
+                        <div style="text-align: center; background: var(--primary-lighter); padding: 8px 12px; border-radius: 8px;">
+                          <div style="font-weight: 700; color: var(--primary);">06</div>
+                          <div style="font-size: 11px; color: var(--primary);">DEZ</div>
+                        </div>
+                        <span>Sexta-feira</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <strong>A Vendinha</strong>
+                        <div class="text-muted" style="font-size: 12px;">Kalilândia</div>
+                      </div>
+                    </td>
+                    <td>20:00 - 23:00</td>
+                    <td><strong class="text-primary">R$ 350</strong></td>
+                    <td><span class="badge badge-success">Confirmado</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-3">
+                        <div style="text-align: center; background: var(--primary-lighter); padding: 8px 12px; border-radius: 8px;">
+                          <div style="font-weight: 700; color: var(--primary);">13</div>
+                          <div style="font-size: 11px; color: var(--primary);">DEZ</div>
+                        </div>
+                        <span>Sexta-feira</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <strong>Dom Vicente</strong>
+                        <div class="text-muted" style="font-size: 12px;">Capuchinhos</div>
+                      </div>
+                    </td>
+                    <td>19:30 - 23:00</td>
+                    <td><strong class="text-primary">R$ 400</strong></td>
+                    <td><span class="badge badge-warning">Pendente</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-3">
+                        <div style="text-align: center; background: var(--primary-lighter); padding: 8px 12px; border-radius: 8px;">
+                          <div style="font-weight: 700; color: var(--primary);">20</div>
+                          <div style="font-size: 11px; color: var(--primary);">DEZ</div>
+                        </div>
+                        <span>Sexta-feira</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <strong>Cidade da Cultura</strong>
+                        <div class="text-muted" style="font-size: 12px;">Centro</div>
+                      </div>
+                    </td>
+                    <td>21:00 - 00:00</td>
+                    <td><strong class="text-primary">R$ 500</strong></td>
+                    <td><span class="badge badge-warning">Pendente</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Propostas Recentes -->
+        <div class="card">
+          <div class="card-header d-flex justify-between align-center">
+            <h3 class="card-title mb-0">📩 Propostas Recentes</h3>
+            <a href="propostas.html" class="btn btn-ghost btn-sm">Ver Todas</a>
+          </div>
+          <div class="card-body">
+            <!-- Proposta 1 -->
+            <div class="d-flex gap-4 p-4 rounded-lg mb-3" style="background: var(--gray-50); border: 1px solid var(--gray-200);">
+              <div class="avatar avatar-lg">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=100" alt="Cidade da Cultura">
+              </div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-between align-center mb-2">
+                  <h4 style="margin: 0;">Cidade da Cultura</h4>
+                  <span class="badge badge-warning">Nova</span>
+                </div>
+                <p class="text-muted mb-2" style="font-size: 14px;">
+                  Show especial de fim de ano. 3 horas de apresentação.
+                </p>
+                <div class="d-flex gap-4 text-muted" style="font-size: 13px;">
+                  <span><i class="fas fa-calendar"></i> 20/12/2024</span>
+                  <span><i class="fas fa-clock"></i> 20:00 - 23:00</span>
+                  <span class="text-primary fw-bold"><i class="fas fa-dollar-sign"></i> R$ 500,00</span>
+                </div>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-success btn-sm" onclick="acceptProposal(501)">
+                  <i class="fas fa-check"></i>
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="rejectProposal(501)">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Proposta 2 -->
+            <div class="d-flex gap-4 p-4 rounded-lg mb-3" style="background: var(--gray-50); border: 1px solid var(--gray-200);">
+              <div class="avatar avatar-lg">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=100" alt="Dom Vicente">
+              </div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-between align-center mb-2">
+                  <h4 style="margin: 0;">Dom Vicente</h4>
+                  <span class="badge badge-warning">Nova</span>
+                </div>
+                <p class="text-muted mb-2" style="font-size: 14px;">
+                  Jantar especial com música ao vivo.
+                </p>
+                <div class="d-flex gap-4 text-muted" style="font-size: 13px;">
+                  <span><i class="fas fa-calendar"></i> 27/12/2024</span>
+                  <span><i class="fas fa-clock"></i> 19:30 - 23:00</span>
+                  <span class="text-primary fw-bold"><i class="fas fa-dollar-sign"></i> R$ 550,00</span>
+                </div>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-success btn-sm" onclick="acceptProposal(504)">
+                  <i class="fas fa-check"></i>
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="rejectProposal(504)">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div>
+        <!-- Widget de Gorjetas -->
+        <div class="tip-widget mb-6">
+          <h3 class="tip-widget-title">💰 Suas Gorjetas</h3>
+          <p class="tip-widget-subtitle">Total recebido este mês</p>
+          <div class="tip-widget-total">R$ 350,00</div>
+          <div style="margin-bottom: 16px;">
+            <div class="d-flex justify-between mb-2" style="font-size: 14px;">
+              <span style="opacity: 0.7;">Meta mensal</span>
+              <span>R$ 350 / R$ 500</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 70%;"></div>
+            </div>
+          </div>
+          <a href="gorjetas.html" class="btn btn-primary" style="width: 100%;">
+            <i class="fas fa-chart-line"></i>
+            Ver Detalhes
+          </a>
+        </div>
+
+        <!-- Últimas Gorjetas -->
+        <div class="card mb-6">
+          <div class="card-header">
+            <h3 class="card-title mb-0">💝 Últimas Gorjetas</h3>
+          </div>
+          <div class="card-body p-0">
+            <div class="p-4" style="border-bottom: 1px solid var(--gray-100);">
+              <div class="d-flex justify-between align-center mb-2">
+                <strong>João Silva</strong>
+                <span class="text-success fw-bold">+ R$ 50,00</span>
+              </div>
+              <p class="text-muted mb-0" style="font-size: 13px;">"Melhor show que já vi em Feira!"</p>
+              <small class="text-muted">há 5 horas</small>
+            </div>
+            <div class="p-4" style="border-bottom: 1px solid var(--gray-100);">
+              <div class="d-flex justify-between align-center mb-2">
+                <strong>Maria Santos</strong>
+                <span class="text-success fw-bold">+ R$ 20,00</span>
+              </div>
+              <p class="text-muted mb-0" style="font-size: 13px;">"Show maravilhoso! Parabéns!"</p>
+              <small class="text-muted">ontem</small>
+            </div>
+            <div class="p-4">
+              <div class="d-flex justify-between align-center mb-2">
+                <strong>Pedro Oliveira</strong>
+                <span class="text-success fw-bold">+ R$ 30,00</span>
+              </div>
+              <p class="text-muted mb-0" style="font-size: 13px;">"Continue assim! 🎵"</p>
+              <small class="text-muted">há 2 dias</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ranking -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title mb-0">🏆 Seu Ranking</h3>
+          </div>
+          <div class="card-body text-center">
+            <div style="width: 100px; height: 100px; background: var(--gold-light); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
+              <span style="font-size: 2.5rem; font-weight: 800; color: #B8860B;">#1</span>
+            </div>
+            <h4>Você está em 1º lugar!</h4>
+            <p class="text-muted" style="font-size: 14px;">
+              Na categoria <strong>MPB/Voz e Violão</strong> de Feira de Santana
+            </p>
+            <div class="d-flex justify-center gap-4 mt-4">
+              <div class="text-center">
+                <div style="font-size: 24px; font-weight: 700; color: var(--primary);">156</div>
+                <div style="font-size: 12px; color: var(--text-muted);">Avaliações</div>
+              </div>
+              <div class="text-center">
+                <div style="font-size: 24px; font-weight: 700; color: var(--success);">4.8</div>
+                <div style="font-size: 12px; color: var(--text-muted);">Média</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../../utils/data.js"></script>
+  <script src="../../utils/app.js"></script>
+  <script>
+    // Verificar autenticação
+    document.addEventListener('DOMContentLoaded', function() {
+      const user = Auth.getCurrentUser();
+      
+      if (!user || user.tipo !== 'artista') {
+        // Para demo, permitir acesso
+        console.log('Modo demonstração ativado');
+      }
+
+      // Atualizar informações do usuário
+      if (user) {
+        document.getElementById('userName').textContent = user.nome || user.nomeArtistico;
+        document.getElementById('welcomeName').textContent = (user.nome || user.nomeArtistico).split(' ')[0];
+        if (user.avatar) {
+          document.getElementById('userAvatar').src = user.avatar;
+        }
+      }
+    });
+
+    function acceptProposal(id) {
+      Toast.success('Proposta aceita com sucesso! O estabelecimento será notificado.');
+    }
+
+    function rejectProposal(id) {
+      Toast.warning('Proposta recusada.');
+    }
+  </script>
+</body>
+</html>

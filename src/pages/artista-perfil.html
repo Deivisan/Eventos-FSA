@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weslei Ribeiro - Artista | EventosFSA</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/responsive.css">
+  
+  <style>
+    body {
+      padding-top: 0;
+    }
+    
+    .profile-cover {
+      height: 300px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      position: relative;
+    }
+    
+    .profile-cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200') center/cover;
+      opacity: 0.3;
+    }
+    
+    .profile-header {
+      position: relative;
+      max-width: 1200px;
+      margin: -100px auto 0;
+      padding: 0 24px;
+    }
+    
+    .profile-header-content {
+      display: flex;
+      gap: 32px;
+      align-items: flex-end;
+      background: white;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .profile-avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 6px solid white;
+      box-shadow: var(--shadow-lg);
+      flex-shrink: 0;
+      margin-top: -80px;
+    }
+    
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .profile-info {
+      flex: 1;
+    }
+    
+    .profile-badges {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    
+    .profile-badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .profile-badge.verified {
+      background: var(--success-light);
+      color: var(--success);
+    }
+    
+    .profile-badge.top-artist {
+      background: var(--gold);
+      color: white;
+    }
+    
+    .profile-name {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 0 0 8px 0;
+    }
+    
+    .profile-genre {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+    
+    .profile-stats {
+      display: flex;
+      gap: 32px;
+    }
+    
+    .profile-stat {
+      text-align: center;
+    }
+    
+    .profile-stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .profile-stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    
+    .profile-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .profile-main {
+      max-width: 1200px;
+      margin: 32px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 32px;
+    }
+    
+    .profile-section {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      border: 1px solid var(--gray-200);
+    }
+    
+    .profile-section-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .video-embed {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+    
+    .video-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    
+    .gallery-item {
+      aspect-ratio: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .repertoire-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .repertoire-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    
+    .repertoire-item:last-child {
+      border-bottom: none;
+    }
+    
+    .repertoire-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      margin-right: 12px;
+    }
+    
+    .repertoire-info {
+      flex: 1;
+    }
+    
+    .repertoire-title {
+      font-weight: 600;
+    }
+    
+    .repertoire-artist {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    
+    .review-card {
+      padding: 16px;
+      background: var(--gray-50);
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+    
+    .review-card:last-child {
+      margin-bottom: 0;
+    }
+    
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .review-author-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    
+    .review-author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .review-author-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    .review-date {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    .review-stars {
+      color: var(--gold);
+    }
+    
+    .review-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    
+    .contact-item:last-child {
+      border-bottom: none;
+    }
+    
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gray-100);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+    }
+    
+    .availability-day {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    
+    .availability-day:last-child {
+      border-bottom: none;
+    }
+    
+    .availability-day.available {
+      color: var(--success);
+    }
+    
+    .availability-day.busy {
+      color: var(--danger);
+    }
+    
+    @media (max-width: 992px) {
+      .profile-main {
+        grid-template-columns: 1fr;
+      }
+      
+      .profile-header-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      
+      .profile-avatar {
+        margin-top: -60px;
+      }
+      
+      .profile-stats {
+        justify-content: center;
+      }
+      
+      .profile-actions {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .profile-avatar {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .profile-name {
+        font-size: 1.5rem;
+      }
+      
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== HEADER FIXO ========== -->
+  <header class="main-header" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: var(--shadow-sm);">
+    <div class="header-container">
+      <a href="../../public/index.html" class="header-logo">
+        <div class="header-logo-icon">
+          <i class="fas fa-music"></i>
+        </div>
+        <span class="header-logo-text">Eventos<span>FSA</span></span>
+      </a>
+      
+      <nav class="header-nav">
+        <a href="../../public/index.html" class="header-nav-link">Início</a>
+        <a href="eventos.html" class="header-nav-link">Eventos</a>
+        <a href="artistas.html" class="header-nav-link active">Artistas</a>
+        <a href="estabelecimentos.html" class="header-nav-link">Locais</a>
+      </nav>
+      
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-ghost">Entrar</a>
+        <a href="cadastro.html" class="btn btn-primary">Cadastrar</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== CAPA ========== -->
+  <div class="profile-cover" style="margin-top: 70px;"></div>
+
+  <!-- ========== HEADER DO PERFIL ========== -->
+  <div class="profile-header">
+    <div class="profile-header-content">
+      <div class="profile-avatar">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300" alt="Weslei Ribeiro">
+      </div>
+      
+      <div class="profile-info">
+        <div class="profile-badges">
+          <span class="profile-badge top-artist">🏆 #1 Ranking</span>
+          <span class="profile-badge verified"><i class="fas fa-check"></i> Verificado</span>
+        </div>
+        
+        <h1 class="profile-name">Weslei Ribeiro</h1>
+        <p class="profile-genre">🎸 MPB • Voz e Violão • Bossa Nova</p>
+        
+        <div class="profile-stats">
+          <div class="profile-stat">
+            <div class="profile-stat-value">234</div>
+            <div class="profile-stat-label">Shows</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-value">4.9</div>
+            <div class="profile-stat-label">Avaliação</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-value">156</div>
+            <div class="profile-stat-label">Avaliações</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-value">8</div>
+            <div class="profile-stat-label">Anos exp.</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="profile-actions">
+        <button class="btn btn-primary btn-lg">
+          <i class="fas fa-calendar-plus"></i>
+          Contratar
+        </button>
+        <button class="btn btn-lg" style="background: var(--gold); color: white;" onclick="openTipModal()">
+          <i class="fas fa-heart"></i>
+          Enviar Gorjeta
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+  <div class="profile-main">
+    <div class="profile-content">
+      <!-- Sobre -->
+      <div class="profile-section">
+        <h2 class="profile-section-title">
+          <i class="fas fa-user"></i> Sobre
+        </h2>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          Olá! Sou Weslei Ribeiro, músico feirense apaixonado por MPB, Bossa Nova e canções que tocam a alma. 
+          Há 8 anos levo minha música pelos bares e restaurantes de Feira de Santana, sempre buscando 
+          criar uma atmosfera acolhedora e intimista para o público.
+        </p>
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 12px;">
+          Meu repertório inclui clássicos de Djavan, Gilberto Gil, Caetano Veloso, Tim Maia, além de 
+          sucessos do pop nacional e internacional em versões acústicas. Toco violão e canto, 
+          adaptando o som ao ambiente e ao gosto do público.
+        </p>
+      </div>
+      
+      <!-- Vídeo -->
+      <div class="profile-section">
+        <h2 class="profile-section-title">
+          <i class="fas fa-play-circle"></i> Apresentação
+        </h2>
+        <div class="video-embed">
+          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a2e, #0f3460); display: flex; align-items: center; justify-content: center; color: white; flex-direction: column; gap: 16px;">
+            <i class="fas fa-play-circle" style="font-size: 64px; opacity: 0.8;"></i>
+            <span>Vídeo de apresentação</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Galeria -->
+      <div class="profile-section">
+        <h2 class="profile-section-title">
+          <i class="fas fa-images"></i> Galeria
+        </h2>
+        <div class="gallery">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300" alt="Show">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300" alt="Apresentação">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300" alt="Palco">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300" alt="Show">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=300" alt="Evento">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=300" alt="Público">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Repertório -->
+      <div class="profile-section">
+        <h2 class="profile-section-title">
+          <i class="fas fa-music"></i> Repertório (exemplos)
+        </h2>
+        <ul class="repertoire-list">
+          <li class="repertoire-item">
+            <div class="repertoire-icon"><i class="fas fa-music"></i></div>
+            <div class="repertoire-info">
+              <div class="repertoire-title">Flor de Lis</div>
+              <div class="repertoire-artist">Djavan</div>
+            </div>
+          </li>
+          <li class="repertoire-item">
+            <div class="repertoire-icon"><i class="fas fa-music"></i></div>
+            <div class="repertoire-info">
+              <div class="repertoire-title">Garota de Ipanema</div>
+              <div class="repertoire-artist">Tom Jobim</div>
+            </div>
+          </li>
+          <li class="repertoire-item">
+            <div class="repertoire-icon"><i class="fas fa-music"></i></div>
+            <div class="repertoire-info">
+              <div class="repertoire-title">Você é Linda</div>
+              <div class="repertoire-artist">Caetano Veloso</div>
+            </div>
+          </li>
+          <li class="repertoire-item">
+            <div class="repertoire-icon"><i class="fas fa-music"></i></div>
+            <div class="repertoire-info">
+              <div class="repertoire-title">Primavera</div>
+              <div class="repertoire-artist">Tim Maia</div>
+            </div>
+          </li>
+          <li class="repertoire-item">
+            <div class="repertoire-icon"><i class="fas fa-music"></i></div>
+            <div class="repertoire-info">
+              <div class="repertoire-title">Andar com Fé</div>
+              <div class="repertoire-artist">Gilberto Gil</div>
+            </div>
+          </li>
+        </ul>
+        <p class="text-muted text-center mt-3" style="font-size: 13px;">
+          + mais de 200 músicas no repertório
+        </p>
+      </div>
+      
+      <!-- Avaliações -->
+      <div class="profile-section">
+        <h2 class="profile-section-title">
+          <i class="fas fa-star"></i> Avaliações
+        </h2>
+        
+        <div class="d-flex gap-4 mb-4 p-3" style="background: var(--primary-light); border-radius: 12px;">
+          <div class="text-center">
+            <div style="font-size: 3rem; font-weight: 800; color: var(--primary);">4.9</div>
+            <div class="text-muted">de 5</div>
+          </div>
+          <div style="flex: 1;">
+            <div class="d-flex align-center gap-2 mb-1">
+              <span style="width: 30px;">5⭐</span>
+              <div style="flex: 1; height: 8px; background: var(--gray-200); border-radius: 4px;">
+                <div style="width: 92%; height: 100%; background: var(--gold); border-radius: 4px;"></div>
+              </div>
+              <span style="width: 40px; font-size: 12px; color: var(--text-muted);">92%</span>
+            </div>
+            <div class="d-flex align-center gap-2 mb-1">
+              <span style="width: 30px;">4⭐</span>
+              <div style="flex: 1; height: 8px; background: var(--gray-200); border-radius: 4px;">
+                <div style="width: 6%; height: 100%; background: var(--gold); border-radius: 4px;"></div>
+              </div>
+              <span style="width: 40px; font-size: 12px; color: var(--text-muted);">6%</span>
+            </div>
+            <div class="d-flex align-center gap-2">
+              <span style="width: 30px;">3⭐</span>
+              <div style="flex: 1; height: 8px; background: var(--gray-200); border-radius: 4px;">
+                <div style="width: 2%; height: 100%; background: var(--gold); border-radius: 4px;"></div>
+              </div>
+              <span style="width: 40px; font-size: 12px; color: var(--text-muted);">2%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">
+              <div class="review-author-avatar">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50" alt="">
+              </div>
+              <div>
+                <div class="review-author-name">Bar do Zé Bigode</div>
+                <div class="review-date">há 3 dias</div>
+              </div>
+            </div>
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          </div>
+          <p class="review-text">
+            Excelente profissional! Weslei sempre arrasa aqui no bar. O público ama, e a interação com as pessoas é nota 10. Super recomendo!
+          </p>
+        </div>
+        
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">
+              <div class="review-author-avatar">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=50" alt="">
+              </div>
+              <div>
+                <div class="review-author-name">Recanto da Boa Música</div>
+                <div class="review-date">há 1 semana</div>
+              </div>
+            </div>
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          </div>
+          <p class="review-text">
+            Contratamos para um evento especial e superou todas as expectativas. Repertório diversificado e som de qualidade. Já agendamos próximas datas!
+          </p>
+        </div>
+        
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">
+              <div class="review-author-avatar">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50" alt="">
+              </div>
+              <div>
+                <div class="review-author-name">Pizzaria Bella Napoli</div>
+                <div class="review-date">há 2 semanas</div>
+              </div>
+            </div>
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          </div>
+          <p class="review-text">
+            O ambiente fica muito mais agradável com a música do Weslei. Nossos clientes sempre elogiam. Pontual e muito profissional.
+          </p>
+        </div>
+        
+        <button class="btn btn-outline w-100 mt-3">
+          Ver todas as 156 avaliações
+        </button>
+      </div>
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="profile-sidebar">
+      <!-- Cachê -->
+      <div class="profile-section">
+        <h2 class="profile-section-title">
+          <i class="fas fa-tag"></i> Cachê
+        </h2>
+        <div class="text-center p-4" style="background: var(--primary-light); border-radius: 12px;">
+          <div style="font-size: 2rem; font-weight: 800; color: var(--primary);">
+            R$ 350 - R$ 500
+          </div>
+          <div class="text-muted" style="font-size: 14px;">por apresentação (3h)</div>
+        </div>
+        <p class="text-muted text-center mt-2" style="font-size: 12px;">
+          * Valores podem variar conforme distância e duração
+        </p>
+      </div>
+      
+      <!-- Disponibilidade -->
+      <div class="profile-section">
+        <h2 class="profile-section-title">
+          <i class="fas fa-calendar-check"></i> Disponibilidade
+        </h2>
+        <div class="availability-day available">
+          <span>Segunda</span>
+          <span><i class="fas fa-check-circle"></i> Disponível</span>
+        </div>
+        <div class="availability-day available">
+          <span>Terça</span>
+          <span><i class="fas fa-check-circle"></i> Disponível</span>
+        </div>
+        <div class="availability-day busy">
+          <span>Quarta</span>
+          <span><i class="fas fa-times-circle"></i> Ocupado</span>
+        </div>
+        <div class="availability-day available">
+          <span>Quinta</span>
+          <span><i class="fas fa-check-circle"></i> Disponível</span>
+        </div>
+        <div class="availability-day busy">
+          <span>Sexta</span>
+          <span><i class="fas fa-times-circle"></i> Ocupado</span>
+        </div>
+        <div class="availability-day busy">
+          <span>Sábado</span>
+          <span><i class="fas fa-times-circle"></i> Ocupado</span>
+        </div>
+        <div class="availability-day available">
+          <span>Domingo</span>
+          <span><i class="fas fa-check-circle"></i> Disponível</span>
+        </div>
+      </div>
+      
+      <!-- Contato -->
+      <div class="profile-section">
+        <h2 class="profile-section-title">
+          <i class="fas fa-address-book"></i> Redes Sociais
+        </h2>
+        <div class="contact-item">
+          <div class="contact-icon" style="background: #E1306C; color: white;">
+            <i class="fab fa-instagram"></i>
+          </div>
+          <div>
+            <div style="font-weight: 600;">@wesleiribeiro.music</div>
+            <div style="font-size: 12px; color: var(--text-muted);">12.5k seguidores</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon" style="background: #1877F2; color: white;">
+            <i class="fab fa-facebook"></i>
+          </div>
+          <div>
+            <div style="font-weight: 600;">/wesleiribeiromusic</div>
+            <div style="font-size: 12px; color: var(--text-muted);">8.2k curtidas</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon" style="background: #1DB954; color: white;">
+            <i class="fab fa-spotify"></i>
+          </div>
+          <div>
+            <div style="font-weight: 600;">Weslei Ribeiro</div>
+            <div style="font-size: 12px; color: var(--text-muted);">4.8k ouvintes mensais</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Próximos Shows -->
+      <div class="profile-section">
+        <h2 class="profile-section-title">
+          <i class="fas fa-calendar"></i> Próximos Shows
+        </h2>
+        <div class="event-card-small" style="background: var(--gray-50); padding: 12px; border-radius: 8px; margin-bottom: 8px;">
+          <div style="font-weight: 600;">Bar do Zé Bigode</div>
+          <div style="font-size: 13px; color: var(--text-muted);">📅 Sábado, 11 Jan • 20h</div>
+        </div>
+        <div class="event-card-small" style="background: var(--gray-50); padding: 12px; border-radius: 8px; margin-bottom: 8px;">
+          <div style="font-weight: 600;">Recanto da Boa Música</div>
+          <div style="font-size: 13px; color: var(--text-muted);">📅 Sexta, 17 Jan • 21h</div>
+        </div>
+        <div class="event-card-small" style="background: var(--gray-50); padding: 12px; border-radius: 8px;">
+          <div style="font-weight: 600;">Pizzaria Bella Napoli</div>
+          <div style="font-size: 13px; color: var(--text-muted);">📅 Sábado, 25 Jan • 20h</div>
+        </div>
+      </div>
+      
+      <!-- Localização -->
+      <div class="profile-section">
+        <h2 class="profile-section-title">
+          <i class="fas fa-map-marker-alt"></i> Localização
+        </h2>
+        <p style="color: var(--text-secondary);">
+          📍 Feira de Santana, BA<br>
+          <small class="text-muted">Atende em toda a cidade e região</small>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer style="background: var(--gray-900); color: white; padding: 40px 0;">
+    <div class="container text-center">
+      <p style="margin: 0; opacity: 0.7;">© 2024 EventosFSA. Todos os direitos reservados. Feira de Santana - BA</p>
+    </div>
+  </footer>
+
+  <!-- Modal de Gorjeta -->
+  <div id="tipModal" class="modal">
+    <div class="modal-overlay" onclick="Modal.close('tipModal')"></div>
+    <div class="modal-content" style="max-width: 450px;">
+      <div class="modal-header">
+        <h3 class="modal-title">💝 Enviar Gorjeta</h3>
+        <button class="modal-close" onclick="Modal.close('tipModal')">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="avatar avatar-xl mx-auto mb-3" style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 4px solid var(--gold);">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Weslei" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <h4 style="margin-bottom: 4px;">Weslei Ribeiro</h4>
+        <p class="text-muted mb-4">Apoie o trabalho deste artista!</p>
+        
+        <div class="d-grid gap-2 mb-4" style="grid-template-columns: repeat(4, 1fr);">
+          <button class="btn btn-outline">R$ 10</button>
+          <button class="btn btn-outline">R$ 20</button>
+          <button class="btn" style="background: var(--gold); color: white;">R$ 50</button>
+          <button class="btn btn-outline">R$ 100</button>
+        </div>
+        
+        <div class="form-group text-left mb-4">
+          <label class="form-label">Ou digite um valor:</label>
+          <input type="number" class="form-input" placeholder="Ex: 25" min="5">
+        </div>
+        
+        <div class="alert alert-info mb-4">
+          <i class="fas fa-info-circle"></i>
+          <span>100% do valor vai para o artista via PIX.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="Modal.close('tipModal')">Cancelar</button>
+        <button class="btn" style="background: var(--gold); color: white;" onclick="sendTip()">
+          <i class="fas fa-heart"></i>
+          Enviar Gorjeta
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../utils/data.js"></script>
+  <script src="../utils/app.js"></script>
+  <script>
+    function openTipModal() {
+      Modal.open('tipModal');
+    }
+    
+    function sendTip() {
+      Toast.success('Gorjeta enviada com sucesso! 💝');
+      Modal.close('tipModal');
+    }
+  </script>
+</body>
+</html>

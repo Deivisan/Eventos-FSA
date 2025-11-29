@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo - EventosFSA</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="../../styles/variables.css">
+  <link rel="stylesheet" href="../../styles/main.css">
+  <link rel="stylesheet" href="../../styles/components.css">
+  <link rel="stylesheet" href="../../styles/responsive.css">
+  
+  <style>
+    .admin-stat-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+    }
+    
+    .admin-stat-card.featured {
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+    }
+    
+    .admin-stat-card.featured .stat-label,
+    .admin-stat-card.featured .stat-change {
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .admin-stat-card.featured .stat-value {
+      color: white;
+    }
+    
+    .activity-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+    
+    .activity-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .activity-icon.new-user {
+      background: var(--success-light);
+      color: var(--success);
+    }
+    
+    .activity-icon.new-event {
+      background: var(--primary-lighter);
+      color: var(--primary);
+    }
+    
+    .activity-icon.payment {
+      background: var(--gold-light);
+      color: #B8860B;
+    }
+    
+    .activity-icon.approval {
+      background: var(--info-light);
+      color: var(--info);
+    }
+    
+    .chart-placeholder {
+      height: 250px;
+      background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+    }
+    
+    .quick-action-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid var(--gray-200);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .quick-action-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .quick-action-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== HEADER ========== -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="../../../public/index.html" class="header-logo">
+        <div class="header-logo-icon">
+          <i class="fas fa-music"></i>
+        </div>
+        <span class="header-logo-text">Eventos<span>FSA</span></span>
+      </a>
+      
+      <div class="header-actions">
+        <div class="header-search">
+          <i class="fas fa-search header-search-icon"></i>
+          <input type="text" class="header-search-input" placeholder="Buscar...">
+        </div>
+        
+        <div class="header-notification dropdown">
+          <button class="btn btn-ghost btn-icon">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">12</span>
+          </button>
+          <div class="dropdown-menu" style="width: 350px;">
+            <div style="padding: 12px 16px; border-bottom: 1px solid var(--gray-200);">
+              <strong>Notificações do Sistema</strong>
+            </div>
+            <div class="dropdown-item" style="flex-direction: column; align-items: flex-start;">
+              <span style="font-weight: 500;">5 novos cadastros</span>
+              <small class="text-muted">Aguardando aprovação</small>
+            </div>
+            <div class="dropdown-item" style="flex-direction: column; align-items: flex-start;">
+              <span style="font-weight: 500;">Pagamento recebido</span>
+              <small class="text-muted">Comissão de R$ 150,00</small>
+            </div>
+            <div class="dropdown-item" style="flex-direction: column; align-items: flex-start;">
+              <span style="font-weight: 500;">Nova denúncia</span>
+              <small class="text-muted">Requer análise</small>
+            </div>
+          </div>
+        </div>
+        
+        <div class="dropdown">
+          <div class="header-user">
+            <div class="header-user-info">
+              <div class="header-user-name">Admin</div>
+              <div class="header-user-role">Administrador</div>
+            </div>
+            <div class="avatar avatar-md" style="background: var(--primary-gradient);">
+              <i class="fas fa-user-shield" style="color: white;"></i>
+            </div>
+          </div>
+          <div class="dropdown-menu">
+            <a href="configuracoes.html" class="dropdown-item">
+              <i class="fas fa-cog dropdown-item-icon"></i>
+              Configurações
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item" onclick="Auth.logout(); return false;">
+              <i class="fas fa-sign-out-alt dropdown-item-icon"></i>
+              Sair
+            </a>
+          </div>
+        </div>
+        
+        <button class="mobile-menu-btn" onclick="Sidebar.toggle()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar">
+    <nav class="sidebar-section">
+      <p class="sidebar-section-title">Principal</p>
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="dashboard.html" class="sidebar-menu-link active">
+            <i class="fas fa-tachometer-alt sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="usuarios.html" class="sidebar-menu-link">
+            <i class="fas fa-users sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Usuários</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="artistas.html" class="sidebar-menu-link">
+            <i class="fas fa-microphone sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Artistas</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="estabelecimentos.html" class="sidebar-menu-link">
+            <i class="fas fa-store sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Estabelecimentos</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="eventos.html" class="sidebar-menu-link">
+            <i class="fas fa-calendar-alt sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Eventos</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+    <nav class="sidebar-section">
+      <p class="sidebar-section-title">Gerenciamento</p>
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="aprovacoes.html" class="sidebar-menu-link">
+            <i class="fas fa-clipboard-check sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Aprovações</span>
+            <span class="sidebar-menu-badge">5</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="financeiro.html" class="sidebar-menu-link">
+            <i class="fas fa-dollar-sign sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Financeiro</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="relatorios.html" class="sidebar-menu-link">
+            <i class="fas fa-chart-bar sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Relatórios</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="denuncias.html" class="sidebar-menu-link">
+            <i class="fas fa-flag sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Denúncias</span>
+            <span class="sidebar-menu-badge" style="background: var(--danger);">2</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+    <nav class="sidebar-section">
+      <p class="sidebar-section-title">Sistema</p>
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="bairros.html" class="sidebar-menu-link">
+            <i class="fas fa-map-marker-alt sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Bairros</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="categorias.html" class="sidebar-menu-link">
+            <i class="fas fa-tags sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Categorias</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="configuracoes.html" class="sidebar-menu-link">
+            <i class="fas fa-cog sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Configurações</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="sidebar-overlay" onclick="Sidebar.close()"></div>
+
+  <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+  <main class="main-content">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="breadcrumb">
+        <span class="breadcrumb-item">
+          <a href="../../../public/index.html"><i class="fas fa-home"></i></a>
+        </span>
+        <i class="fas fa-chevron-right breadcrumb-separator"></i>
+        <span class="breadcrumb-item">Admin</span>
+        <i class="fas fa-chevron-right breadcrumb-separator"></i>
+        <span class="breadcrumb-item">Dashboard</span>
+      </div>
+      <div class="page-header-row">
+        <div>
+          <h1 class="page-title">Painel Administrativo 🛡️</h1>
+          <p class="page-subtitle">Visão geral da plataforma EventosFSA</p>
+        </div>
+        <div class="d-flex gap-3">
+          <a href="relatorios.html" class="btn btn-outline">
+            <i class="fas fa-download"></i>
+            Exportar Relatório
+          </a>
+          <a href="aprovacoes.html" class="btn btn-primary">
+            <i class="fas fa-clipboard-check"></i>
+            Pendências (5)
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="d-grid gap-4 mb-6" style="grid-template-columns: repeat(5, 1fr);">
+      <div class="admin-stat-card featured">
+        <div class="d-flex align-center gap-3 mb-3">
+          <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-dollar-sign" style="font-size: 1.5rem;"></i>
+          </div>
+          <div>
+            <p class="stat-label mb-0">Receita Total</p>
+            <h3 class="stat-value mb-0" style="font-size: 1.5rem;">R$ 45.890</h3>
+          </div>
+        </div>
+        <span class="stat-change stat-change-up">
+          <i class="fas fa-arrow-up"></i> +15% vs mês anterior
+        </span>
+      </div>
+      
+      <div class="admin-stat-card">
+        <div class="d-flex align-center gap-3 mb-3">
+          <div class="stat-icon stat-icon-primary">
+            <i class="fas fa-users"></i>
+          </div>
+          <div>
+            <p class="stat-label mb-0">Usuários</p>
+            <h3 class="stat-value mb-0" style="font-size: 1.5rem;">2.345</h3>
+          </div>
+        </div>
+        <span class="stat-change stat-change-up">
+          <i class="fas fa-arrow-up"></i> +89 este mês
+        </span>
+      </div>
+      
+      <div class="admin-stat-card">
+        <div class="d-flex align-center gap-3 mb-3">
+          <div class="stat-icon stat-icon-success">
+            <i class="fas fa-microphone"></i>
+          </div>
+          <div>
+            <p class="stat-label mb-0">Artistas</p>
+            <h3 class="stat-value mb-0" style="font-size: 1.5rem;">156</h3>
+          </div>
+        </div>
+        <span class="stat-change stat-change-up">
+          <i class="fas fa-arrow-up"></i> +12 ativos
+        </span>
+      </div>
+      
+      <div class="admin-stat-card">
+        <div class="d-flex align-center gap-3 mb-3">
+          <div class="stat-icon stat-icon-warning">
+            <i class="fas fa-store"></i>
+          </div>
+          <div>
+            <p class="stat-label mb-0">Estabelecimentos</p>
+            <h3 class="stat-value mb-0" style="font-size: 1.5rem;">78</h3>
+          </div>
+        </div>
+        <span class="stat-change stat-change-up">
+          <i class="fas fa-arrow-up"></i> +5 novos
+        </span>
+      </div>
+      
+      <div class="admin-stat-card">
+        <div class="d-flex align-center gap-3 mb-3">
+          <div class="stat-icon stat-icon-info">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div>
+            <p class="stat-label mb-0">Eventos</p>
+            <h3 class="stat-value mb-0" style="font-size: 1.5rem;">892</h3>
+          </div>
+        </div>
+        <span class="stat-change">
+          <i class="fas fa-calendar"></i> 45 este mês
+        </span>
+      </div>
+    </div>
+
+    <!-- Ações Rápidas -->
+    <div class="mb-6">
+      <h2 style="font-size: 1.2rem; margin-bottom: 16px;">⚡ Ações Rápidas</h2>
+      <div class="d-grid gap-4" style="grid-template-columns: repeat(6, 1fr);">
+        <a href="aprovacoes.html" class="quick-action-card">
+          <div class="quick-action-icon" style="background: var(--warning-light); color: var(--warning-dark);">
+            <i class="fas fa-user-check"></i>
+          </div>
+          <h4 style="font-size: 14px; margin: 0;">Aprovar Cadastros</h4>
+          <span class="badge badge-warning mt-2">5 pendentes</span>
+        </a>
+        
+        <a href="usuarios.html?new=true" class="quick-action-card">
+          <div class="quick-action-icon" style="background: var(--primary-lighter); color: var(--primary);">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <h4 style="font-size: 14px; margin: 0;">Novo Usuário</h4>
+        </a>
+        
+        <a href="financeiro.html" class="quick-action-card">
+          <div class="quick-action-icon" style="background: var(--success-light); color: var(--success);">
+            <i class="fas fa-wallet"></i>
+          </div>
+          <h4 style="font-size: 14px; margin: 0;">Ver Finanças</h4>
+        </a>
+        
+        <a href="denuncias.html" class="quick-action-card">
+          <div class="quick-action-icon" style="background: var(--danger-light); color: var(--danger);">
+            <i class="fas fa-flag"></i>
+          </div>
+          <h4 style="font-size: 14px; margin: 0;">Denúncias</h4>
+          <span class="badge" style="background: var(--danger); color: white; margin-top: 8px;">2</span>
+        </a>
+        
+        <a href="relatorios.html" class="quick-action-card">
+          <div class="quick-action-icon" style="background: var(--info-light); color: var(--info);">
+            <i class="fas fa-chart-pie"></i>
+          </div>
+          <h4 style="font-size: 14px; margin: 0;">Relatórios</h4>
+        </a>
+        
+        <a href="configuracoes.html" class="quick-action-card">
+          <div class="quick-action-icon" style="background: var(--gray-200); color: var(--gray-600);">
+            <i class="fas fa-cog"></i>
+          </div>
+          <h4 style="font-size: 14px; margin: 0;">Configurações</h4>
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="d-grid gap-6" style="grid-template-columns: 2fr 1fr;">
+      <!-- Left Column -->
+      <div>
+        <!-- Gráfico de Receita -->
+        <div class="card mb-6">
+          <div class="card-header d-flex justify-between align-center">
+            <h3 class="card-title mb-0">📊 Receita Mensal</h3>
+            <select class="form-select" style="width: 150px;">
+              <option>Últimos 6 meses</option>
+              <option>Este ano</option>
+              <option>Ano passado</option>
+            </select>
+          </div>
+          <div class="card-body">
+            <div class="chart-placeholder">
+              <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: 16px; opacity: 0.3;"></i>
+              <p>Gráfico de Receita</p>
+              <small>Jul: R$ 6.200 | Ago: R$ 7.450 | Set: R$ 6.890 | Out: R$ 8.120 | Nov: R$ 9.340 | Dez: R$ 7.890</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Últimos Cadastros -->
+        <div class="card">
+          <div class="card-header d-flex justify-between align-center">
+            <h3 class="card-title mb-0">👥 Últimos Cadastros</h3>
+            <a href="usuarios.html" class="btn btn-ghost btn-sm">Ver Todos</a>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Usuário</th>
+                    <th>Tipo</th>
+                    <th>Bairro</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar avatar-sm">
+                          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50" alt="User">
+                        </div>
+                        <div>
+                          <strong>Lucas Ferreira</strong>
+                          <div class="text-muted" style="font-size: 12px;">lucas@email.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-primary">Artista</span></td>
+                    <td>Centro</td>
+                    <td>há 2 horas</td>
+                    <td><span class="badge badge-warning">Pendente</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-success btn-sm" title="Aprovar">
+                          <i class="fas fa-check"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" title="Rejeitar">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar avatar-sm">
+                          <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=50" alt="User">
+                        </div>
+                        <div>
+                          <strong>Bar do João</strong>
+                          <div class="text-muted" style="font-size: 12px;">joao@bardojoao.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-warning">Estabelecimento</span></td>
+                    <td>Tomba</td>
+                    <td>há 5 horas</td>
+                    <td><span class="badge badge-warning">Pendente</span></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <button class="btn btn-success btn-sm" title="Aprovar">
+                          <i class="fas fa-check"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" title="Rejeitar">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar avatar-sm">
+                          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=50" alt="User">
+                        </div>
+                        <div>
+                          <strong>Amanda Costa</strong>
+                          <div class="text-muted" style="font-size: 12px;">amanda@email.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge" style="background: var(--gray-500); color: white;">Usuário</span></td>
+                    <td>SIM</td>
+                    <td>ontem</td>
+                    <td><span class="badge badge-success">Aprovado</span></td>
+                    <td>
+                      <button class="btn btn-ghost btn-sm" title="Ver">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-center gap-2">
+                        <div class="avatar avatar-sm">
+                          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50" alt="User">
+                        </div>
+                        <div>
+                          <strong>Bruno Silva</strong>
+                          <div class="text-muted" style="font-size: 12px;">bruno@email.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-primary">Artista</span></td>
+                    <td>Capuchinhos</td>
+                    <td>ontem</td>
+                    <td><span class="badge badge-success">Aprovado</span></td>
+                    <td>
+                      <button class="btn btn-ghost btn-sm" title="Ver">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div>
+        <!-- Atividades Recentes -->
+        <div class="card mb-6">
+          <div class="card-header">
+            <h3 class="card-title mb-0">🔔 Atividades Recentes</h3>
+          </div>
+          <div class="card-body">
+            <div class="activity-item">
+              <div class="activity-icon new-user">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <div class="flex-grow-1">
+                <strong>Novo cadastro</strong>
+                <p class="text-muted mb-0" style="font-size: 13px;">Lucas Ferreira se cadastrou como artista</p>
+                <small class="text-muted">há 2 horas</small>
+              </div>
+            </div>
+            
+            <div class="activity-item">
+              <div class="activity-icon payment">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+              <div class="flex-grow-1">
+                <strong>Pagamento recebido</strong>
+                <p class="text-muted mb-0" style="font-size: 13px;">Comissão de R$ 25,00 - A Vendinha</p>
+                <small class="text-muted">há 3 horas</small>
+              </div>
+            </div>
+            
+            <div class="activity-item">
+              <div class="activity-icon new-event">
+                <i class="fas fa-calendar-check"></i>
+              </div>
+              <div class="flex-grow-1">
+                <strong>Evento confirmado</strong>
+                <p class="text-muted mb-0" style="font-size: 13px;">Show no Dom Vicente - 13/12</p>
+                <small class="text-muted">há 4 horas</small>
+              </div>
+            </div>
+            
+            <div class="activity-item">
+              <div class="activity-icon approval">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div class="flex-grow-1">
+                <strong>Cadastro aprovado</strong>
+                <p class="text-muted mb-0" style="font-size: 13px;">Espaço Moringa foi aprovado</p>
+                <small class="text-muted">há 5 horas</small>
+              </div>
+            </div>
+            
+            <div class="activity-item">
+              <div class="activity-icon payment">
+                <i class="fas fa-hand-holding-usd"></i>
+              </div>
+              <div class="flex-grow-1">
+                <strong>Gorjeta enviada</strong>
+                <p class="text-muted mb-0" style="font-size: 13px;">R$ 50 para Weslei Ribeiro</p>
+                <small class="text-muted">há 6 horas</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Distribuição por Bairro -->
+        <div class="card mb-6">
+          <div class="card-header">
+            <h3 class="card-title mb-0">📍 Top Bairros</h3>
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-between align-center mb-3">
+              <span>Centro</span>
+              <div class="d-flex align-center gap-2">
+                <div class="progress" style="width: 100px; height: 8px;">
+                  <div class="progress-bar" style="width: 85%;"></div>
+                </div>
+                <span class="text-muted" style="font-size: 13px;">34 eventos</span>
+              </div>
+            </div>
+            <div class="d-flex justify-between align-center mb-3">
+              <span>Kalilândia</span>
+              <div class="d-flex align-center gap-2">
+                <div class="progress" style="width: 100px; height: 8px;">
+                  <div class="progress-bar" style="width: 70%;"></div>
+                </div>
+                <span class="text-muted" style="font-size: 13px;">28 eventos</span>
+              </div>
+            </div>
+            <div class="d-flex justify-between align-center mb-3">
+              <span>Santa Mônica</span>
+              <div class="d-flex align-center gap-2">
+                <div class="progress" style="width: 100px; height: 8px;">
+                  <div class="progress-bar" style="width: 55%;"></div>
+                </div>
+                <span class="text-muted" style="font-size: 13px;">22 eventos</span>
+              </div>
+            </div>
+            <div class="d-flex justify-between align-center mb-3">
+              <span>SIM</span>
+              <div class="d-flex align-center gap-2">
+                <div class="progress" style="width: 100px; height: 8px;">
+                  <div class="progress-bar" style="width: 45%;"></div>
+                </div>
+                <span class="text-muted" style="font-size: 13px;">18 eventos</span>
+              </div>
+            </div>
+            <div class="d-flex justify-between align-center">
+              <span>Tomba</span>
+              <div class="d-flex align-center gap-2">
+                <div class="progress" style="width: 100px; height: 8px;">
+                  <div class="progress-bar" style="width: 35%;"></div>
+                </div>
+                <span class="text-muted" style="font-size: 13px;">14 eventos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resumo Financeiro -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title mb-0">💰 Resumo Financeiro</h3>
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-between align-center mb-3 pb-3" style="border-bottom: 1px solid var(--gray-100);">
+              <span class="text-muted">Comissões (5%)</span>
+              <span class="fw-bold text-success">+ R$ 3.245</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-3 pb-3" style="border-bottom: 1px solid var(--gray-100);">
+              <span class="text-muted">Taxas PIX</span>
+              <span class="fw-bold text-danger">- R$ 89</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-3 pb-3" style="border-bottom: 1px solid var(--gray-100);">
+              <span class="text-muted">Premium Artistas</span>
+              <span class="fw-bold text-success">+ R$ 450</span>
+            </div>
+            <div class="d-flex justify-between align-center mb-3 pb-3" style="border-bottom: 1px solid var(--gray-100);">
+              <span class="text-muted">Premium Estab.</span>
+              <span class="fw-bold text-success">+ R$ 780</span>
+            </div>
+            <div class="d-flex justify-between align-center pt-2">
+              <strong>Lucro Líquido</strong>
+              <strong class="text-primary" style="font-size: 1.25rem;">R$ 4.386</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../../utils/data.js"></script>
+  <script src="../../utils/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const user = Auth.getCurrentUser();
+      
+      if (!user || user.tipo !== 'admin') {
+        console.log('Modo demonstração ativado');
+      }
+    });
+  </script>
+</body>
+</html>

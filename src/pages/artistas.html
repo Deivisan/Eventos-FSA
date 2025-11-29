@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artistas - EventosFSA</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/responsive.css">
+  
+  <style>
+    body {
+      padding-top: 80px;
+    }
+    
+    .artists-hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      padding: 80px 0;
+      color: white;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .artists-hero h1 {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+    
+    .top-artists {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    
+    .top-artist-podium {
+      text-align: center;
+      padding: 24px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+    
+    .top-artist-podium:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-5px);
+    }
+    
+    .top-artist-podium.first {
+      order: 2;
+      transform: scale(1.1);
+    }
+    
+    .top-artist-podium.second {
+      order: 1;
+    }
+    
+    .top-artist-podium.third {
+      order: 3;
+    }
+    
+    .podium-rank {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    
+    .podium-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      border: 4px solid var(--gold);
+      overflow: hidden;
+    }
+    
+    .first .podium-avatar {
+      border-color: #FFD700;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    }
+    
+    .second .podium-avatar {
+      border-color: #C0C0C0;
+    }
+    
+    .third .podium-avatar {
+      border-color: #CD7F32;
+    }
+    
+    .podium-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .podium-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+    
+    .podium-genre {
+      opacity: 0.7;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .podium-stats {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+    
+    .artist-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .artist-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .artist-card-header {
+      height: 120px;
+      background: var(--primary-gradient);
+      position: relative;
+    }
+    
+    .artist-card-rank {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .artist-card-rank.top-3 {
+      background: var(--gold);
+    }
+    
+    .artist-card-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 4px solid white;
+      margin: -40px auto 0;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      background: white;
+    }
+    
+    .artist-card-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .artist-card-body {
+      padding: 16px 20px 20px;
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .artist-card-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .artist-card-genre {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    
+    .artist-card-rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    
+    .artist-stats {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: var(--gray-50);
+      border-radius: 8px;
+    }
+    
+    .artist-stat {
+      text-align: center;
+    }
+    
+    .artist-stat-value {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+    
+    .artist-stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    
+    .artist-card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+    }
+    
+    .artist-card-actions .btn {
+      flex: 1;
+    }
+    
+    .tip-btn {
+      background: var(--gold);
+      color: white;
+      border: none;
+    }
+    
+    .tip-btn:hover {
+      background: #d4a00a;
+    }
+    
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    
+    @media (max-width: 1200px) {
+      .artists-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .artists-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .top-artists {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .top-artist-podium.first {
+        order: 1;
+        transform: none;
+      }
+      
+      .top-artist-podium.second {
+        order: 2;
+      }
+      
+      .top-artist-podium.third {
+        order: 3;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .artists-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .genre-tabs {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 32px;
+    }
+    
+    .genre-tab {
+      padding: 10px 24px;
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: all 0.3s;
+    }
+    
+    .genre-tab:hover,
+    .genre-tab.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== HEADER ========== -->
+  <header class="main-header" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: var(--shadow-sm);">
+    <div class="header-container">
+      <a href="../../public/index.html" class="header-logo">
+        <div class="header-logo-icon">
+          <i class="fas fa-music"></i>
+        </div>
+        <span class="header-logo-text">Eventos<span>FSA</span></span>
+      </a>
+      
+      <nav class="header-nav">
+        <a href="../../public/index.html" class="header-nav-link">Início</a>
+        <a href="eventos.html" class="header-nav-link">Eventos</a>
+        <a href="artistas.html" class="header-nav-link active">Artistas</a>
+        <a href="estabelecimentos.html" class="header-nav-link">Locais</a>
+      </nav>
+      
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-ghost">Entrar</a>
+        <a href="cadastro.html" class="btn btn-primary">Cadastrar</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO COM RANKING ========== -->
+  <section class="artists-hero">
+    <div class="container">
+      <h1>🎤 Artistas de Feira de Santana</h1>
+      <p style="opacity: 0.9; font-size: 1.1rem;">Conheça os talentos da nossa cidade e apoie a música local</p>
+      
+      <!-- Top 3 Artistas -->
+      <div class="top-artists">
+        <!-- 2º Lugar -->
+        <div class="top-artist-podium second">
+          <div class="podium-rank">🥈</div>
+          <div class="podium-avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Manu">
+          </div>
+          <div class="podium-name">Manu</div>
+          <div class="podium-genre">MPB / Pop</div>
+          <div class="podium-stats">
+            <i class="fas fa-star" style="color: var(--gold);"></i> 4.8 • 178 shows
+          </div>
+        </div>
+        
+        <!-- 1º Lugar -->
+        <div class="top-artist-podium first">
+          <div class="podium-rank">🏆</div>
+          <div class="podium-avatar">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Weslei Ribeiro">
+          </div>
+          <div class="podium-name">Weslei Ribeiro</div>
+          <div class="podium-genre">MPB / Voz e Violão</div>
+          <div class="podium-stats">
+            <i class="fas fa-star" style="color: var(--gold);"></i> 4.9 • 234 shows
+          </div>
+        </div>
+        
+        <!-- 3º Lugar -->
+        <div class="top-artist-podium third">
+          <div class="podium-rank">🥉</div>
+          <div class="podium-avatar">
+            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150" alt="Gustavo Lima">
+          </div>
+          <div class="podium-name">Gustavo Lima</div>
+          <div class="podium-genre">Pagode / Samba</div>
+          <div class="podium-stats">
+            <i class="fas fa-star" style="color: var(--gold);"></i> 4.9 • 267 shows
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LISTAGEM DE ARTISTAS ========== -->
+  <div class="container">
+    <!-- Filtros por Gênero -->
+    <div class="genre-tabs">
+      <div class="genre-tab active" onclick="filterGenre('todos', this)">Todos</div>
+      <div class="genre-tab" onclick="filterGenre('mpb', this)">MPB</div>
+      <div class="genre-tab" onclick="filterGenre('sertanejo', this)">Sertanejo</div>
+      <div class="genre-tab" onclick="filterGenre('forro', this)">Forró</div>
+      <div class="genre-tab" onclick="filterGenre('rock', this)">Rock</div>
+      <div class="genre-tab" onclick="filterGenre('pop', this)">Pop</div>
+      <div class="genre-tab" onclick="filterGenre('pagode', this)">Pagode</div>
+      <div class="genre-tab" onclick="filterGenre('reggae', this)">Reggae</div>
+      <div class="genre-tab" onclick="filterGenre('gospel', this)">Gospel</div>
+    </div>
+    
+    <div class="d-flex justify-between align-center mb-4">
+      <h2 style="font-size: 1.3rem; margin: 0;">🎶 Todos os Artistas (156)</h2>
+      <select class="form-select" style="width: 200px;">
+        <option>Melhor avaliados</option>
+        <option>Mais shows</option>
+        <option>Mais recentes</option>
+        <option>Menor cachê</option>
+        <option>Maior cachê</option>
+      </select>
+    </div>
+    
+    <!-- Grid de Artistas -->
+    <div class="artists-grid">
+      <!-- Artista 1 -->
+      <div class="artist-card">
+        <div class="artist-card-header" style="background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400'); background-size: cover;">
+          <span class="artist-card-rank top-3">#1</span>
+        </div>
+        <div class="artist-card-avatar">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Weslei Ribeiro">
+        </div>
+        <div class="artist-card-body">
+          <h3 class="artist-card-name">Weslei Ribeiro</h3>
+          <div class="artist-card-genre">MPB • Voz e Violão</div>
+          <div class="artist-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.9</strong>
+            <span class="text-muted">(156 avaliações)</span>
+          </div>
+          <div class="artist-stats">
+            <div class="artist-stat">
+              <div class="artist-stat-value">234</div>
+              <div class="artist-stat-label">Shows</div>
+            </div>
+            <div class="artist-stat">
+              <div class="artist-stat-value">R$ 350</div>
+              <div class="artist-stat-label">A partir</div>
+            </div>
+          </div>
+          <div class="artist-card-actions">
+            <button class="btn btn-outline btn-sm" onclick="viewArtist(1)">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn tip-btn btn-sm" onclick="openTipModal(1, 'Weslei Ribeiro')">
+              <i class="fas fa-heart"></i> Gorjeta
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Artista 2 -->
+      <div class="artist-card">
+        <div class="artist-card-header" style="background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400'); background-size: cover;">
+          <span class="artist-card-rank top-3">#2</span>
+        </div>
+        <div class="artist-card-avatar">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Manu">
+        </div>
+        <div class="artist-card-body">
+          <h3 class="artist-card-name">Manu</h3>
+          <div class="artist-card-genre">MPB • Pop</div>
+          <div class="artist-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.8</strong>
+            <span class="text-muted">(89 avaliações)</span>
+          </div>
+          <div class="artist-stats">
+            <div class="artist-stat">
+              <div class="artist-stat-value">178</div>
+              <div class="artist-stat-label">Shows</div>
+            </div>
+            <div class="artist-stat">
+              <div class="artist-stat-value">R$ 380</div>
+              <div class="artist-stat-label">A partir</div>
+            </div>
+          </div>
+          <div class="artist-card-actions">
+            <button class="btn btn-outline btn-sm" onclick="viewArtist(2)">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn tip-btn btn-sm" onclick="openTipModal(2, 'Manu')">
+              <i class="fas fa-heart"></i> Gorjeta
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Artista 3 -->
+      <div class="artist-card">
+        <div class="artist-card-header" style="background-image: url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=400'); background-size: cover;">
+          <span class="artist-card-rank top-3">#3</span>
+        </div>
+        <div class="artist-card-avatar">
+          <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100" alt="Gustavo Lima">
+        </div>
+        <div class="artist-card-body">
+          <h3 class="artist-card-name">Gustavo Lima</h3>
+          <div class="artist-card-genre">Pagode • Samba</div>
+          <div class="artist-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.9</strong>
+            <span class="text-muted">(198 avaliações)</span>
+          </div>
+          <div class="artist-stats">
+            <div class="artist-stat">
+              <div class="artist-stat-value">267</div>
+              <div class="artist-stat-label">Shows</div>
+            </div>
+            <div class="artist-stat">
+              <div class="artist-stat-value">R$ 450</div>
+              <div class="artist-stat-label">A partir</div>
+            </div>
+          </div>
+          <div class="artist-card-actions">
+            <button class="btn btn-outline btn-sm" onclick="viewArtist(3)">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn tip-btn btn-sm" onclick="openTipModal(3, 'Gustavo Lima')">
+              <i class="fas fa-heart"></i> Gorjeta
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Artista 4 -->
+      <div class="artist-card">
+        <div class="artist-card-header" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400'); background-size: cover;">
+          <span class="artist-card-rank">#4</span>
+        </div>
+        <div class="artist-card-avatar">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100" alt="Júnior Almeida">
+        </div>
+        <div class="artist-card-body">
+          <h3 class="artist-card-name">Júnior Almeida</h3>
+          <div class="artist-card-genre">Sertanejo • Universitário</div>
+          <div class="artist-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.7</strong>
+            <span class="text-muted">(234 avaliações)</span>
+          </div>
+          <div class="artist-stats">
+            <div class="artist-stat">
+              <div class="artist-stat-value">312</div>
+              <div class="artist-stat-label">Shows</div>
+            </div>
+            <div class="artist-stat">
+              <div class="artist-stat-value">R$ 500</div>
+              <div class="artist-stat-label">A partir</div>
+            </div>
+          </div>
+          <div class="artist-card-actions">
+            <button class="btn btn-outline btn-sm" onclick="viewArtist(4)">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn tip-btn btn-sm" onclick="openTipModal(4, 'Júnior Almeida')">
+              <i class="fas fa-heart"></i> Gorjeta
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Artista 5 - Banda -->
+      <div class="artist-card">
+        <div class="artist-card-header" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400'); background-size: cover;">
+          <span class="artist-card-rank">#5</span>
+        </div>
+        <div class="artist-card-avatar">
+          <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=100" alt="Banda Somzeira">
+        </div>
+        <div class="artist-card-body">
+          <h3 class="artist-card-name">Banda Somzeira</h3>
+          <div class="artist-card-genre">Forró • Piseiro</div>
+          <div class="artist-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.8</strong>
+            <span class="text-muted">(167 avaliações)</span>
+          </div>
+          <div class="artist-stats">
+            <div class="artist-stat">
+              <div class="artist-stat-value">189</div>
+              <div class="artist-stat-label">Shows</div>
+            </div>
+            <div class="artist-stat">
+              <div class="artist-stat-value">R$ 1.200</div>
+              <div class="artist-stat-label">A partir</div>
+            </div>
+          </div>
+          <div class="artist-card-actions">
+            <button class="btn btn-outline btn-sm" onclick="viewArtist(5)">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn tip-btn btn-sm" onclick="openTipModal(5, 'Banda Somzeira')">
+              <i class="fas fa-heart"></i> Gorjeta
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Artista 6 -->
+      <div class="artist-card">
+        <div class="artist-card-header" style="background-image: url('https://images.unsplash.com/photo-1446057032654-9d8885db76c6?w=400'); background-size: cover;">
+          <span class="artist-card-rank">#6</span>
+        </div>
+        <div class="artist-card-avatar">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100" alt="Pedro Rocha">
+        </div>
+        <div class="artist-card-body">
+          <h3 class="artist-card-name">Pedro Rocha</h3>
+          <div class="artist-card-genre">Rock • Blues</div>
+          <div class="artist-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.7</strong>
+            <span class="text-muted">(67 avaliações)</span>
+          </div>
+          <div class="artist-stats">
+            <div class="artist-stat">
+              <div class="artist-stat-value">89</div>
+              <div class="artist-stat-label">Shows</div>
+            </div>
+            <div class="artist-stat">
+              <div class="artist-stat-value">R$ 400</div>
+              <div class="artist-stat-label">A partir</div>
+            </div>
+          </div>
+          <div class="artist-card-actions">
+            <button class="btn btn-outline btn-sm" onclick="viewArtist(6)">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn tip-btn btn-sm" onclick="openTipModal(6, 'Pedro Rocha')">
+              <i class="fas fa-heart"></i> Gorjeta
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Artista 7 -->
+      <div class="artist-card">
+        <div class="artist-card-header" style="background-image: url('https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400'); background-size: cover;">
+          <span class="artist-card-rank">#7</span>
+        </div>
+        <div class="artist-card-avatar">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100" alt="Larissa Santos">
+        </div>
+        <div class="artist-card-body">
+          <h3 class="artist-card-name">Larissa Santos</h3>
+          <div class="artist-card-genre">Pop • R&B</div>
+          <div class="artist-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.6</strong>
+            <span class="text-muted">(45 avaliações)</span>
+          </div>
+          <div class="artist-stats">
+            <div class="artist-stat">
+              <div class="artist-stat-value">56</div>
+              <div class="artist-stat-label">Shows</div>
+            </div>
+            <div class="artist-stat">
+              <div class="artist-stat-value">R$ 320</div>
+              <div class="artist-stat-label">A partir</div>
+            </div>
+          </div>
+          <div class="artist-card-actions">
+            <button class="btn btn-outline btn-sm" onclick="viewArtist(7)">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn tip-btn btn-sm" onclick="openTipModal(7, 'Larissa Santos')">
+              <i class="fas fa-heart"></i> Gorjeta
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Artista 8 -->
+      <div class="artist-card">
+        <div class="artist-card-header" style="background-image: url('https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=400'); background-size: cover;">
+          <span class="artist-card-rank">#8</span>
+        </div>
+        <div class="artist-card-avatar">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100" alt="Rafael Costa">
+        </div>
+        <div class="artist-card-body">
+          <h3 class="artist-card-name">Rafael Costa</h3>
+          <div class="artist-card-genre">Reggae • MPB</div>
+          <div class="artist-card-rating">
+            <i class="fas fa-star" style="color: var(--gold);"></i>
+            <strong>4.5</strong>
+            <span class="text-muted">(34 avaliações)</span>
+          </div>
+          <div class="artist-stats">
+            <div class="artist-stat">
+              <div class="artist-stat-value">42</div>
+              <div class="artist-stat-label">Shows</div>
+            </div>
+            <div class="artist-stat">
+              <div class="artist-stat-value">R$ 280</div>
+              <div class="artist-stat-label">A partir</div>
+            </div>
+          </div>
+          <div class="artist-card-actions">
+            <button class="btn btn-outline btn-sm" onclick="viewArtist(8)">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn tip-btn btn-sm" onclick="openTipModal(8, 'Rafael Costa')">
+              <i class="fas fa-heart"></i> Gorjeta
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paginação -->
+    <div class="d-flex justify-center mt-6 mb-6">
+      <div class="d-flex gap-2">
+        <button class="btn btn-ghost btn-sm" disabled><i class="fas fa-chevron-left"></i></button>
+        <button class="btn btn-primary btn-sm">1</button>
+        <button class="btn btn-ghost btn-sm">2</button>
+        <button class="btn btn-ghost btn-sm">3</button>
+        <button class="btn btn-ghost btn-sm">...</button>
+        <button class="btn btn-ghost btn-sm">20</button>
+        <button class="btn btn-ghost btn-sm"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MODAL DE GORJETA ========== -->
+  <div id="tipModal" class="modal">
+    <div class="modal-overlay" onclick="Modal.close('tipModal')"></div>
+    <div class="modal-content" style="max-width: 450px;">
+      <div class="modal-header">
+        <h3 class="modal-title">💝 Enviar Gorjeta</h3>
+        <button class="modal-close" onclick="Modal.close('tipModal')">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="avatar avatar-xl mx-auto mb-3" id="tipArtistAvatar">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Artista">
+        </div>
+        <h4 id="tipArtistName" style="margin-bottom: 4px;">Weslei Ribeiro</h4>
+        <p class="text-muted mb-4">Apoie o trabalho deste artista!</p>
+        
+        <div class="d-grid gap-2 mb-4" style="grid-template-columns: repeat(4, 1fr);">
+          <button class="btn btn-outline tip-value" onclick="selectTipValue(10, this)">R$ 10</button>
+          <button class="btn btn-outline tip-value" onclick="selectTipValue(20, this)">R$ 20</button>
+          <button class="btn btn-outline tip-value active" onclick="selectTipValue(50, this)">R$ 50</button>
+          <button class="btn btn-outline tip-value" onclick="selectTipValue(100, this)">R$ 100</button>
+        </div>
+        
+        <div class="form-group text-left mb-4">
+          <label class="form-label">Ou digite um valor personalizado:</label>
+          <input type="number" class="form-input" id="customTipValue" placeholder="Ex: 25" min="5">
+        </div>
+        
+        <div class="form-group text-left mb-4">
+          <label class="form-label">Deixe uma mensagem (opcional)</label>
+          <textarea class="form-input" id="tipMessage" rows="2" placeholder="Parabéns pelo show incrível!"></textarea>
+        </div>
+        
+        <div class="alert alert-info mb-4">
+          <i class="fas fa-info-circle"></i>
+          <span>O pagamento será processado via PIX. 100% do valor vai para o artista.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="Modal.close('tipModal')">Cancelar</button>
+        <button class="btn" style="background: var(--gold); color: white;" onclick="sendTip()">
+          <i class="fas fa-heart"></i>
+          Enviar Gorjeta
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer style="background: var(--gray-900); color: white; padding: 40px 0;">
+    <div class="container">
+      <div class="d-flex justify-between flex-wrap gap-4">
+        <div>
+          <div class="d-flex align-center gap-2 mb-3">
+            <div style="width: 40px; height: 40px; background: var(--primary-gradient); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-music"></i>
+            </div>
+            <span style="font-size: 1.25rem; font-weight: 700;">Eventos<span style="color: var(--primary);">FSA</span></span>
+          </div>
+          <p style="opacity: 0.7; max-width: 300px;">
+            A maior plataforma de eventos e música ao vivo de Feira de Santana, Bahia.
+          </p>
+        </div>
+        
+        <div>
+          <h4 style="color: white; margin-bottom: 16px;">Para Artistas</h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;"><a href="cadastro.html" style="color: rgba(255,255,255,0.7);">Cadastre-se</a></li>
+            <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.7);">Como funciona</a></li>
+            <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.7);">Receber Gorjetas</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 style="color: white; margin-bottom: 16px;">Para Estabelecimentos</h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;"><a href="cadastro.html" style="color: rgba(255,255,255,0.7);">Cadastre seu bar</a></li>
+            <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.7);">Contratar artistas</a></li>
+            <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.7);">Planos Premium</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 style="color: white; margin-bottom: 16px;">Siga-nos</h4>
+          <div class="d-flex gap-3">
+            <a href="#" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 32px; padding-top: 24px; text-align: center; opacity: 0.7;">
+        <p style="margin: 0;">© 2024 EventosFSA. Todos os direitos reservados. Feira de Santana - BA</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../utils/data.js"></script>
+  <script src="../utils/app.js"></script>
+  <script>
+    let selectedArtistId = null;
+    let selectedTipValue = 50;
+    
+    function filterGenre(genre, element) {
+      document.querySelectorAll('.genre-tab').forEach(el => {
+        el.classList.remove('active');
+      });
+      element.classList.add('active');
+      Toast.info('Filtro: ' + genre);
+    }
+    
+    function viewArtist(id) {
+      Toast.info('Abrindo perfil do artista...');
+    }
+    
+    function openTipModal(artistId, artistName) {
+      selectedArtistId = artistId;
+      document.getElementById('tipArtistName').textContent = artistName;
+      Modal.open('tipModal');
+    }
+    
+    function selectTipValue(value, element) {
+      selectedTipValue = value;
+      document.getElementById('customTipValue').value = '';
+      
+      document.querySelectorAll('.tip-value').forEach(el => {
+        el.classList.remove('active');
+        el.style.background = '';
+        el.style.color = '';
+      });
+      
+      element.classList.add('active');
+      element.style.background = 'var(--gold)';
+      element.style.color = 'white';
+    }
+    
+    function sendTip() {
+      const customValue = document.getElementById('customTipValue').value;
+      const message = document.getElementById('tipMessage').value;
+      const finalValue = customValue || selectedTipValue;
+      
+      if (finalValue < 5) {
+        Toast.error('O valor mínimo é R$ 5,00');
+        return;
+      }
+      
+      Toast.success(`Gorjeta de R$ ${finalValue} enviada com sucesso! 💝`);
+      Modal.close('tipModal');
+      
+      // Limpar form
+      document.getElementById('tipMessage').value = '';
+      document.getElementById('customTipValue').value = '';
+    }
+  </script>
+</body>
+</html>

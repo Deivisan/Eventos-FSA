@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gorjetas - EventosFSA</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="../../styles/variables.css">
+  <link rel="stylesheet" href="../../styles/main.css">
+  <link rel="stylesheet" href="../../styles/components.css">
+  <link rel="stylesheet" href="../../styles/responsive.css">
+  
+  <style>
+    .tip-summary-card {
+      background: var(--primary-gradient);
+      color: white;
+      border-radius: 20px;
+      padding: 32px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .tip-summary-card h2 {
+      color: white;
+      opacity: 0.9;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    
+    .tip-amount {
+      font-size: 3rem;
+      font-weight: 800;
+    }
+    
+    .tip-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 24px;
+    }
+    
+    .tip-stat {
+      text-align: center;
+    }
+    
+    .tip-stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .tip-stat-label {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    
+    .tip-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px;
+      background: var(--gray-50);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s;
+    }
+    
+    .tip-item:hover {
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .tip-item-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary-lighter);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    
+    .tip-item-amount {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--success);
+    }
+    
+    .pix-qr-container {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      text-align: center;
+    }
+    
+    .pix-qr-code {
+      width: 200px;
+      height: 200px;
+      background: #f0f0f0;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+    }
+    
+    .pix-key {
+      background: var(--gray-100);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 14px;
+      margin-top: 12px;
+      word-break: break-all;
+    }
+    
+    .chart-container {
+      height: 300px;
+      background: var(--gray-50);
+      border-radius: 12px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 16px;
+      padding: 24px;
+    }
+    
+    .chart-bar {
+      width: 40px;
+      background: var(--primary-gradient);
+      border-radius: 8px 8px 0 0;
+      position: relative;
+    }
+    
+    .chart-bar-label {
+      position: absolute;
+      bottom: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    .chart-bar-value {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== HEADER ========== -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="../../../public/index.html" class="header-logo">
+        <div class="header-logo-icon">
+          <i class="fas fa-music"></i>
+        </div>
+        <span class="header-logo-text">Eventos<span>FSA</span></span>
+      </a>
+      
+      <div class="header-actions">
+        <div class="dropdown">
+          <div class="header-user">
+            <div class="header-user-info">
+              <div class="header-user-name">Weslei Ribeiro</div>
+              <div class="header-user-role">Artista</div>
+            </div>
+            <div class="avatar avatar-md">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Avatar">
+            </div>
+          </div>
+          <div class="dropdown-menu">
+            <a href="perfil.html" class="dropdown-item">
+              <i class="fas fa-user dropdown-item-icon"></i>
+              Meu Perfil
+            </a>
+            <a href="#" class="dropdown-item" onclick="Auth.logout(); return false;">
+              <i class="fas fa-sign-out-alt dropdown-item-icon"></i>
+              Sair
+            </a>
+          </div>
+        </div>
+        
+        <button class="mobile-menu-btn" onclick="Sidebar.toggle()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar">
+    <nav class="sidebar-section">
+      <p class="sidebar-section-title">Menu Principal</p>
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="dashboard.html" class="sidebar-menu-link">
+            <i class="fas fa-tachometer-alt sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="agenda.html" class="sidebar-menu-link">
+            <i class="fas fa-calendar-alt sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Minha Agenda</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="propostas.html" class="sidebar-menu-link">
+            <i class="fas fa-file-contract sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Propostas</span>
+            <span class="sidebar-menu-badge">3</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="gorjetas.html" class="sidebar-menu-link active">
+            <i class="fas fa-hand-holding-heart sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Gorjetas</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="avaliacoes.html" class="sidebar-menu-link">
+            <i class="fas fa-star sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Avaliações</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+    <nav class="sidebar-section">
+      <p class="sidebar-section-title">Configurações</p>
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="perfil.html" class="sidebar-menu-link">
+            <i class="fas fa-user sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Meu Perfil</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="financeiro.html" class="sidebar-menu-link">
+            <i class="fas fa-wallet sidebar-menu-icon"></i>
+            <span class="sidebar-menu-text">Financeiro</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="sidebar-overlay" onclick="Sidebar.close()"></div>
+
+  <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+  <main class="main-content">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="breadcrumb">
+        <span class="breadcrumb-item">
+          <a href="../../../public/index.html"><i class="fas fa-home"></i></a>
+        </span>
+        <i class="fas fa-chevron-right breadcrumb-separator"></i>
+        <span class="breadcrumb-item">Artista</span>
+        <i class="fas fa-chevron-right breadcrumb-separator"></i>
+        <span class="breadcrumb-item">Gorjetas</span>
+      </div>
+      <div class="page-header-row">
+        <div>
+          <h1 class="page-title">💰 Minhas Gorjetas</h1>
+          <p class="page-subtitle">Acompanhe as gorjetas recebidas dos seus fãs</p>
+        </div>
+        <div>
+          <button class="btn btn-primary" onclick="Modal.open('pixModal')">
+            <i class="fas fa-qrcode"></i>
+            Configurar PIX
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Card -->
+    <div class="tip-summary-card">
+      <h2>Total de Gorjetas Recebidas</h2>
+      <div class="tip-amount">R$ 4.520,00</div>
+      <div class="tip-stats">
+        <div class="tip-stat">
+          <div class="tip-stat-value">R$ 350</div>
+          <div class="tip-stat-label">Este mês</div>
+        </div>
+        <div class="tip-stat">
+          <div class="tip-stat-value">156</div>
+          <div class="tip-stat-label">Gorjetas</div>
+        </div>
+        <div class="tip-stat">
+          <div class="tip-stat-value">R$ 29</div>
+          <div class="tip-stat-label">Média</div>
+        </div>
+        <div class="tip-stat">
+          <div class="tip-stat-value">R$ 100</div>
+          <div class="tip-stat-label">Maior gorjeta</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-grid gap-6" style="grid-template-columns: 2fr 1fr;">
+      <!-- Left Column -->
+      <div>
+        <!-- Gráfico de Gorjetas -->
+        <div class="card mb-6">
+          <div class="card-header d-flex justify-between align-center">
+            <h3 class="card-title mb-0">📊 Evolução Mensal</h3>
+            <select class="form-select" style="width: 150px;">
+              <option>Últimos 6 meses</option>
+              <option>Este ano</option>
+              <option>Tudo</option>
+            </select>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <div class="chart-bar" style="height: 60%;">
+                <span class="chart-bar-value">R$ 280</span>
+                <span class="chart-bar-label">Jul</span>
+              </div>
+              <div class="chart-bar" style="height: 80%;">
+                <span class="chart-bar-value">R$ 380</span>
+                <span class="chart-bar-label">Ago</span>
+              </div>
+              <div class="chart-bar" style="height: 50%;">
+                <span class="chart-bar-value">R$ 220</span>
+                <span class="chart-bar-label">Set</span>
+              </div>
+              <div class="chart-bar" style="height: 90%;">
+                <span class="chart-bar-value">R$ 420</span>
+                <span class="chart-bar-label">Out</span>
+              </div>
+              <div class="chart-bar" style="height: 100%;">
+                <span class="chart-bar-value">R$ 490</span>
+                <span class="chart-bar-label">Nov</span>
+              </div>
+              <div class="chart-bar" style="height: 75%;">
+                <span class="chart-bar-value">R$ 350</span>
+                <span class="chart-bar-label">Dez</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lista de Gorjetas -->
+        <div class="card">
+          <div class="card-header d-flex justify-between align-center">
+            <h3 class="card-title mb-0">💝 Histórico de Gorjetas</h3>
+            <select class="form-select" style="width: 150px;">
+              <option>Este mês</option>
+              <option>Últimos 3 meses</option>
+              <option>Este ano</option>
+            </select>
+          </div>
+          <div class="card-body">
+            <!-- Tip 1 -->
+            <div class="tip-item">
+              <div class="tip-item-avatar">JS</div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-between align-center mb-1">
+                  <strong>João Silva</strong>
+                  <span class="tip-item-amount">+ R$ 50,00</span>
+                </div>
+                <p class="text-muted mb-0" style="font-size: 14px;">
+                  "Melhor show que já vi em Feira!"
+                </p>
+                <small class="text-muted">há 5 horas • Show na A Vendinha</small>
+              </div>
+            </div>
+
+            <!-- Tip 2 -->
+            <div class="tip-item">
+              <div class="tip-item-avatar">MS</div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-between align-center mb-1">
+                  <strong>Maria Santos</strong>
+                  <span class="tip-item-amount">+ R$ 20,00</span>
+                </div>
+                <p class="text-muted mb-0" style="font-size: 14px;">
+                  "Show maravilhoso! Parabéns!"
+                </p>
+                <small class="text-muted">ontem • Show no Dom Vicente</small>
+              </div>
+            </div>
+
+            <!-- Tip 3 -->
+            <div class="tip-item">
+              <div class="tip-item-avatar">PO</div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-between align-center mb-1">
+                  <strong>Pedro Oliveira</strong>
+                  <span class="tip-item-amount">+ R$ 30,00</span>
+                </div>
+                <p class="text-muted mb-0" style="font-size: 14px;">
+                  "Continue assim! 🎵"
+                </p>
+                <small class="text-muted">há 2 dias • Show no Espaço Moringa</small>
+              </div>
+            </div>
+
+            <!-- Tip 4 -->
+            <div class="tip-item">
+              <div class="tip-item-avatar">AC</div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-between align-center mb-1">
+                  <strong>Ana Clara</strong>
+                  <span class="tip-item-amount">+ R$ 100,00</span>
+                </div>
+                <p class="text-muted mb-0" style="font-size: 14px;">
+                  "Meu artista favorito de Feira! 💖"
+                </p>
+                <small class="text-muted">há 3 dias • Show na Cidade da Cultura</small>
+              </div>
+            </div>
+
+            <!-- Tip 5 -->
+            <div class="tip-item">
+              <div class="tip-item-avatar">LF</div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-between align-center mb-1">
+                  <strong>Lucas Ferreira</strong>
+                  <span class="tip-item-amount">+ R$ 25,00</span>
+                </div>
+                <p class="text-muted mb-0" style="font-size: 14px;">
+                  "Ótima voz! Repertório excelente."
+                </p>
+                <small class="text-muted">há 5 dias • Show no Buteco do Ney</small>
+              </div>
+            </div>
+
+            <!-- Tip 6 -->
+            <div class="tip-item">
+              <div class="tip-item-avatar">CF</div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-between align-center mb-1">
+                  <strong>Camila Freitas</strong>
+                  <span class="tip-item-amount">+ R$ 15,00</span>
+                </div>
+                <p class="text-muted mb-0" style="font-size: 14px;">
+                  "Amei a apresentação! ❤️"
+                </p>
+                <small class="text-muted">há 1 semana • Show no Velho Quintino</small>
+              </div>
+            </div>
+
+            <div class="text-center mt-4">
+              <button class="btn btn-outline">
+                <i class="fas fa-plus"></i>
+                Carregar mais
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div>
+        <!-- QR Code PIX -->
+        <div class="card mb-6">
+          <div class="card-header">
+            <h3 class="card-title mb-0">📱 Seu QR Code PIX</h3>
+          </div>
+          <div class="card-body">
+            <div class="pix-qr-container">
+              <div class="pix-qr-code">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=00020126580014br.gov.bcb.pix0136weslei.ribeiro@eventosfsa.com.br5204000053039865802BR5913WESLEI%20RIBEIRO6013FEIRA%20DE%20SA6304ABCD" alt="QR Code PIX" style="width: 100%; height: 100%; border-radius: 8px;">
+              </div>
+              <p class="text-muted" style="font-size: 14px;">
+                Escaneie para enviar uma gorjeta
+              </p>
+              <div class="pix-key">
+                weslei.ribeiro@eventosfsa.com.br
+              </div>
+              <button class="btn btn-outline btn-sm mt-3" onclick="copyPixKey()">
+                <i class="fas fa-copy"></i>
+                Copiar chave
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dica de compartilhamento -->
+        <div class="card mb-6">
+          <div class="card-body text-center">
+            <div style="font-size: 48px; margin-bottom: 16px;">💡</div>
+            <h4>Dica: Compartilhe seu link</h4>
+            <p class="text-muted" style="font-size: 14px;">
+              Divulgue seu link de gorjetas nas redes sociais para receber mais contribuições!
+            </p>
+            <div class="pix-key" style="font-size: 12px;">
+              eventosfsa.com.br/artista/weslei-ribeiro/gorjeta
+            </div>
+            <div class="d-flex gap-2 justify-center mt-3">
+              <button class="btn btn-outline btn-sm">
+                <i class="fab fa-instagram"></i>
+              </button>
+              <button class="btn btn-outline btn-sm">
+                <i class="fab fa-whatsapp"></i>
+              </button>
+              <button class="btn btn-outline btn-sm">
+                <i class="fab fa-facebook"></i>
+              </button>
+              <button class="btn btn-outline btn-sm">
+                <i class="fas fa-link"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meta do mês -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title mb-0">🎯 Meta do Mês</h3>
+          </div>
+          <div class="card-body">
+            <div class="text-center mb-4">
+              <div style="font-size: 2rem; font-weight: 700; color: var(--primary);">
+                R$ 350
+                <span style="font-size: 1rem; color: var(--text-muted);">/ R$ 500</span>
+              </div>
+              <p class="text-muted" style="font-size: 14px;">70% da meta</p>
+            </div>
+            <div class="progress mb-4" style="height: 12px;">
+              <div class="progress-bar" style="width: 70%;"></div>
+            </div>
+            <p class="text-muted text-center" style="font-size: 14px;">
+              Faltam <strong>R$ 150</strong> para atingir sua meta! 💪
+            </p>
+            <button class="btn btn-outline" style="width: 100%;" onclick="Modal.open('metaModal')">
+              <i class="fas fa-edit"></i>
+              Editar Meta
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal Configurar PIX -->
+  <div id="pixModal" class="modal">
+    <div class="modal-overlay" onclick="Modal.close('pixModal')"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">⚙️ Configurar PIX</h3>
+        <button class="modal-close" onclick="Modal.close('pixModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted mb-4">Configure sua chave PIX para receber gorjetas diretamente.</p>
+        
+        <div class="form-group">
+          <label class="form-label">Tipo de Chave</label>
+          <select class="form-select">
+            <option>E-mail</option>
+            <option>CPF</option>
+            <option>Celular</option>
+            <option>Chave Aleatória</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Chave PIX</label>
+          <input type="text" class="form-input" value="weslei.ribeiro@eventosfsa.com.br">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Nome do Beneficiário</label>
+          <input type="text" class="form-input" value="Weslei Ribeiro">
+        </div>
+        
+        <div class="alert alert-info">
+          <i class="fas fa-info-circle"></i>
+          Verifique se a chave PIX está correta. As gorjetas serão enviadas diretamente para esta conta.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="Modal.close('pixModal')">Cancelar</button>
+        <button class="btn btn-primary" onclick="Toast.success('Chave PIX atualizada!'); Modal.close('pixModal');">
+          <i class="fas fa-save"></i>
+          Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Meta -->
+  <div id="metaModal" class="modal">
+    <div class="modal-overlay" onclick="Modal.close('metaModal')"></div>
+    <div class="modal-content" style="max-width: 400px;">
+      <div class="modal-header">
+        <h3 class="modal-title">🎯 Definir Meta Mensal</h3>
+        <button class="modal-close" onclick="Modal.close('metaModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Meta de Gorjetas (R$)</label>
+          <input type="number" class="form-input" value="500" min="0" step="50">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="Modal.close('metaModal')">Cancelar</button>
+        <button class="btn btn-primary" onclick="Toast.success('Meta atualizada!'); Modal.close('metaModal');">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../../utils/data.js"></script>
+  <script src="../../utils/app.js"></script>
+  <script>
+    function copyPixKey() {
+      navigator.clipboard.writeText('weslei.ribeiro@eventosfsa.com.br');
+      Toast.success('Chave PIX copiada!');
+    }
+  </script>
+</body>
+</html>
