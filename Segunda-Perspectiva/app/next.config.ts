@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: 'export', // Habilita exportação estática para GitHub Pages
   
+  // GitHub Pages config - subdiretório do repositório
+  basePath: process.env.GITHUB_ACTIONS ? '/Eventos-FSA' : '',
+  assetPrefix: process.env.GITHUB_ACTIONS ? '/Eventos-FSA/' : '',
+  
   // Configurar root do turbopack para evitar conflito com workspace pai
   turbopack: {
     root: process.cwd(),
