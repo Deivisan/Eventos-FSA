@@ -9,14 +9,16 @@ const withPWA = require('next-pwa')({
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  output: 'export', // Habilita exportação estática para GitHub Pages
   
   // Configurar root do turbopack para evitar conflito com workspace pai
   turbopack: {
     root: process.cwd(),
   },
   
-  // Otimizações de imagem
+  // Otimizações de imagem (Desabilitadas para export estático ou usar loader customizado)
   images: {
+    unoptimized: true, // Necessário para GitHub Pages
     remotePatterns: [
       {
         protocol: 'https',

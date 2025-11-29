@@ -85,7 +85,16 @@ function CadastroContent() {
       'estabelecimento': 'venue',
       'publico': 'user'
     }
+
+    // Para o Beta Público, redirecionar para WhatsApp
+    const message = `Olá! Quero me cadastrar no EventosFSA Beta como *${userType.toUpperCase()}*.\n\n*Nome:* ${formData.name}\n*Email:* ${formData.email}\n*Telefone:* ${formData.phone}`
+    const whatsappUrl = `https://wa.me/557591501680?text=${encodeURIComponent(message)}`
     
+    window.open(whatsappUrl, '_blank')
+    setSuccess(true)
+    setStep(3)
+    
+    /* Comentado para o Beta Público (GitHub Pages não tem backend)
     const result = await register({
       email: formData.email,
       password: formData.password,
@@ -98,6 +107,7 @@ function CadastroContent() {
       setSuccess(true)
       setStep(3) // Success step
     }
+    */
   }
 
   const userTypes = [
