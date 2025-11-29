@@ -54,7 +54,6 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
-        with:
           static_site_generator: next
 
       - name: Restore cache
