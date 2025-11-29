@@ -18,6 +18,7 @@ type AuthState = {
   token: string | null
   isLoading: boolean
   error: string | null
+  isAuthenticated: boolean
   
   // Actions
   setUser: (user: User | null) => void
@@ -71,6 +72,10 @@ export const useAuthStore = create<AuthState>()(
       token: null,
       isLoading: false,
       error: null,
+      get isAuthenticated() {
+        const state = get()
+        return !!(state.user && state.token)
+      },
 
       setUser: (user) => set({ user }),
       setToken: (token) => set({ token }),
@@ -87,30 +92,7 @@ export const useAuthStore = create<AuthState>()(
         // Simular delay de rede
         await new Promise(resolve => setTimeout(resolve, 800))
         
-        // Primeiro tentar API (se disponível)
-        try {
-          const res = await fetch('/api/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-          })
-          
-          if (res.ok) {
-            const data = await res.json()
-            set({ 
-              user: data.user, 
-              token: data.token, 
-              isLoading: false,
-              error: null 
-            })
-            return true
-          }
-        } catch (e) {
-          // API não disponível, usar login offline
-          console.log('API indisponível, usando login offline')
-        }
-        
-        // Login offline com dados de demo
+        // Para Beta Público, usar apenas login offline
         const demoUser = demoUsers[email.toLowerCase()]
         
         if (!demoUser) {
