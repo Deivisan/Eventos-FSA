@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">EventosFSA</string>
+    <string name="title_activity_main">EventosFSA</string>
+    <string name="package_name">com.eventosfsa.app</string>
+    <string name="custom_url_scheme">com.eventosfsa.app</string>
+</resources>

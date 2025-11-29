@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
+import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher'
 
 // Header Component
 export function Header() {
@@ -45,6 +46,7 @@ export function Header() {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
+            <ThemeSwitcher />
             <button className="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
               <Search className="w-5 h-5 text-slate-600 dark:text-slate-400" />
             </button>
