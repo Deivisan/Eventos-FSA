@@ -16,9 +16,11 @@ import {
   Heart
 } from 'lucide-react'
 import { Header, BottomNav, Footer } from '@/components/layout'
-import { EventCard, ArtistCard, VenueCard, FilterChips } from '@/components/ui'
+import { EventCard, ArtistCard, VenueCard, FilterChips, TipModal } from '@/components/ui'
 import { FadeIn, StaggerContainer, StaggerItem, AnimatedBackground, RevealOnScroll, Float } from '@/components/animations'
 import { useState } from 'react'
+import { useToast } from '@/components/toast'
+import { formatCurrency } from '@/lib/utils'
 
 // Mock Data
 const featuredEvents = [
@@ -49,6 +51,27 @@ const stats = [
 
 export default function Home() {
   const [selectedStyle, setSelectedStyle] = useState('Todos')
+  const [tipModalOpen, setTipModalOpen] = useState(false)
+  const [selectedArtist, setSelectedArtist] = useState<{ id: string; name: string } | null>(null)
+  const { addToast } = useToast()
+
+  const handleTip = (artistId: string) => {
+    const artist = topArtists.find(a => a.id === artistId)
+    if (artist) {
+      setSelectedArtist({ id: artist.id, name: artist.name })
+      setTipModalOpen(true)
+    }
+  }
+
+  const handleConfirmTip = (amount: number) => {
+    setTipModalOpen(false)
+    addToast({
+      type: 'success',
+      title: '🎉 Gorjeta enviada!',
+      message: `${formatCurrency(amount)} para ${selectedArtist?.name}. Obrigado pelo apoio!`
+    })
+    setSelectedArtist(null)
+  }
   const styles = ['Todos', 'MPB', 'Sertanejo', 'Forró', 'Rock', 'Pagode']
   
   return (
@@ -250,7 +273,7 @@ export default function Home() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <ArtistCard {...artist} />
+                  <ArtistCard {...artist} onTip={() => handleTip(artist.id)} />
                 </motion.div>
               </RevealOnScroll>
             ))}
@@ -388,6 +411,14 @@ export default function Home() {
 
       <Footer />
       <BottomNav />
+
+      {/* Tip Modal */}
+      <TipModal
+        isOpen={tipModalOpen}
+        onClose={() => setTipModalOpen(false)}
+        artistName={selectedArtist?.name || ''}
+        onConfirm={handleConfirmTip}
+      />
     </div>
   )
 }

@@ -4,8 +4,10 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mic2, Star, TrendingUp, Filter, Search } from 'lucide-react'
 import { Header, BottomNav, Footer } from '@/components/layout'
-import { ArtistCard, FilterChips } from '@/components/ui'
+import { ArtistCard, FilterChips, TipModal } from '@/components/ui'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations'
+import { useToast } from '@/components/toast'
+import { formatCurrency } from '@/lib/utils'
 
 // Mock data expandido
 const allArtists = [
@@ -29,6 +31,9 @@ export default function ArtistasPage() {
   const [search, setSearch] = useState('')
   const [selectedStyle, setSelectedStyle] = useState('Todos')
   const [sortBy, setSortBy] = useState<'rating' | 'shows'>('rating')
+  const [tipModalOpen, setTipModalOpen] = useState(false)
+  const [selectedArtist, setSelectedArtist] = useState<{ id: string; name: string } | null>(null)
+  const { addToast } = useToast()
 
   // Filtrar artistas
   const filteredArtists = allArtists
@@ -47,8 +52,21 @@ export default function ArtistasPage() {
     })
 
   const handleTip = (artistId: string) => {
-    console.log('Tip artist:', artistId)
-    // TODO: Implementar modal de gorjeta
+    const artist = allArtists.find(a => a.id === artistId)
+    if (artist) {
+      setSelectedArtist({ id: artist.id, name: artist.name })
+      setTipModalOpen(true)
+    }
+  }
+
+  const handleConfirmTip = (amount: number) => {
+    setTipModalOpen(false)
+    addToast({
+      type: 'success',
+      title: '🎉 Gorjeta enviada!',
+      message: `${formatCurrency(amount)} para ${selectedArtist?.name}. Obrigado pelo apoio!`
+    })
+    setSelectedArtist(null)
   }
 
   return (
@@ -189,6 +207,14 @@ export default function ArtistasPage() {
 
       <Footer />
       <BottomNav />
+
+      {/* Tip Modal */}
+      <TipModal
+        isOpen={tipModalOpen}
+        onClose={() => setTipModalOpen(false)}
+        artistName={selectedArtist?.name || ''}
+        onConfirm={handleConfirmTip}
+      />
     </div>
   )
 }
