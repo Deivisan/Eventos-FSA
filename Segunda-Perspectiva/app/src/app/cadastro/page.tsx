@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { 
@@ -16,20 +16,25 @@ import {
   MapPin,
   Music,
   Beer,
-  Check
+  Check,
+  AlertCircle
 } from 'lucide-react'
 import { FadeIn } from '@/components/animations'
+import useAuthStore from '@/lib/store'
 
 type UserType = 'artista' | 'estabelecimento' | 'publico'
 
-export default function CadastroPage() {
+function CadastroContent() {
   const searchParams = useSearchParams()
+  const router = useRouter()
   const tipoParam = searchParams.get('tipo') as UserType | null
+  
+  const { user, register, isLoading, error, setError } = useAuthStore()
 
   const [step, setStep] = useState(1)
   const [userType, setUserType] = useState<UserType>(tipoParam || 'publico')
   const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
 
   const [formData, setFormData] = useState({
     name: '',
@@ -47,19 +52,52 @@ export default function CadastroPage() {
     address: '',
   })
 
+  // Redirecionar se já logado
+  useEffect(() => {
+    if (user && step !== 3) {
+      router.push('/perfil')
+    }
+  }, [user, router, step])
+
   const updateForm = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
+    setError(null)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
+    setError(null)
     
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    // Validar senhas
+    if (formData.password !== formData.confirmPassword) {
+      setError('As senhas não coincidem')
+      return
+    }
+
+    if (formData.password.length < 6) {
+      setError('A senha deve ter pelo menos 6 caracteres')
+      return
+    }
     
-    console.log('Cadastro:', { userType, ...formData })
-    setIsLoading(false)
-    setStep(3) // Success step
+    // Mapear role
+    const roleMap = {
+      'artista': 'artist',
+      'estabelecimento': 'venue',
+      'publico': 'user'
+    }
+    
+    const result = await register({
+      email: formData.email,
+      password: formData.password,
+      name: formData.name,
+      phone: formData.phone,
+      role: roleMap[userType]
+    })
+    
+    if (result) {
+      setSuccess(true)
+      setStep(3) // Success step
+    }
   }
 
   const userTypes = [
@@ -434,6 +472,18 @@ export default function CadastroPage() {
                   </span>
                 </label>
 
+                {/* Mensagem de erro */}
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-2 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400"
+                  >
+                    <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                    <span className="text-sm">{error}</span>
+                  </motion.div>
+                )}
+
                 {/* Submit */}
                 <button
                   type="submit"
@@ -479,15 +529,11 @@ export default function CadastroPage() {
               </p>
 
               <div className="space-y-3">
-                <Link href="/" className="btn-primary w-full justify-center py-4">
-                  Ir para o início
+                <Link href="/perfil" className="btn-primary w-full justify-center py-4">
+                  Acessar meu perfil
                 </Link>
-                <Link href={
-                  userType === 'artista' ? '/artista/dashboard' :
-                  userType === 'estabelecimento' ? '/estabelecimento/dashboard' :
-                  '/eventos'
-                } className="btn-secondary w-full justify-center py-4">
-                  Acessar painel
+                <Link href="/" className="btn-secondary w-full justify-center py-4">
+                  Ir para o início
                 </Link>
               </div>
             </div>
@@ -495,5 +541,13 @@ export default function CadastroPage() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function CadastroPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Carregando...</div>}>
+      <CadastroContent />
+    </Suspense>
   )
 }

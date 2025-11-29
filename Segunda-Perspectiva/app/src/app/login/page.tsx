@@ -1,27 +1,55 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Mail, Lock, Eye, EyeOff, Mic2, ArrowRight, User, Chrome } from 'lucide-react'
+import { Mail, Lock, Eye, EyeOff, Mic2, ArrowRight, User, Chrome, AlertCircle, CheckCircle } from 'lucide-react'
 import { FadeIn } from '@/components/animations'
+import useAuthStore from '@/lib/store'
 
 export default function LoginPage() {
+  const router = useRouter()
+  const { user, login, isLoading, error, setError } = useAuthStore()
+  
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [rememberMe, setRememberMe] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+
+  // Redirecionar se já logado
+  useEffect(() => {
+    if (user) {
+      router.push('/perfil')
+    }
+  }, [user, router])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
+    setError(null)
     
-    // Simular login
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    const result = await login(email, password)
     
-    console.log('Login:', { email, password, rememberMe })
-    setIsLoading(false)
+    if (result) {
+      setSuccess(true)
+      setTimeout(() => {
+        router.push('/perfil')
+      }, 1000)
+    }
+  }
+
+  // Demo login rápido
+  const handleDemoLogin = async (demoEmail: string, demoPass: string) => {
+    setEmail(demoEmail)
+    setPassword(demoPass)
+    setError(null)
+    
+    const result = await login(demoEmail, demoPass)
+    if (result) {
+      setSuccess(true)
+      setTimeout(() => router.push('/perfil'), 1000)
+    }
   }
 
   return (
@@ -117,6 +145,11 @@ export default function LoginPage() {
                     transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                     className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
                   />
+                ) : success ? (
+                  <>
+                    <CheckCircle className="w-5 h-5 mr-2" />
+                    Entrando...
+                  </>
                 ) : (
                   <>
                     Entrar
@@ -124,10 +157,70 @@ export default function LoginPage() {
                   </>
                 )}
               </button>
+
+              {/* Mensagens de erro/sucesso */}
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400"
+                >
+                  <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-sm">{error}</span>
+                </motion.div>
+              )}
+
+              {success && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2 p-3 rounded-lg bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400"
+                >
+                  <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-sm">Login realizado! Redirecionando...</span>
+                </motion.div>
+              )}
             </form>
           </FadeIn>
 
           <FadeIn delay={0.2}>
+            {/* Demo Accounts */}
+            <div className="mt-6 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 text-center">
+                🔑 Contas de demonstração (clique para entrar):
+              </p>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <button
+                  onClick={() => handleDemoLogin('user@email.com', 'user123')}
+                  className="p-2 rounded-lg bg-white dark:bg-slate-700 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-left"
+                >
+                  <div className="font-medium text-slate-700 dark:text-slate-200">👤 Usuário</div>
+                  <div className="text-slate-400">user@email.com</div>
+                </button>
+                <button
+                  onClick={() => handleDemoLogin('joao.musico@email.com', 'artista123')}
+                  className="p-2 rounded-lg bg-white dark:bg-slate-700 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-left"
+                >
+                  <div className="font-medium text-slate-700 dark:text-slate-200">🎤 Artista</div>
+                  <div className="text-slate-400">joao.musico@...</div>
+                </button>
+                <button
+                  onClick={() => handleDemoLogin('contato@botecocentral.com', 'venue123')}
+                  className="p-2 rounded-lg bg-white dark:bg-slate-700 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-left"
+                >
+                  <div className="font-medium text-slate-700 dark:text-slate-200">🏪 Estabelecimento</div>
+                  <div className="text-slate-400">contato@boteco...</div>
+                </button>
+                <button
+                  onClick={() => handleDemoLogin('admin@eventosfsa.com', 'admin123')}
+                  className="p-2 rounded-lg bg-white dark:bg-slate-700 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-left"
+                >
+                  <div className="font-medium text-slate-700 dark:text-slate-200">👑 Admin</div>
+                  <div className="text-slate-400">admin@eventosfsa</div>
+                </button>
+              </div>
+            </div>
+
             {/* Divider */}
             <div className="relative my-8">
               <div className="absolute inset-0 flex items-center">
