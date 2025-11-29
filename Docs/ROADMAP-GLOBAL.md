@@ -3,14 +3,27 @@
 <div align="center">
 
 ![EventosFSA](https://img.shields.io/badge/EventosFSA-Roadmap%20Master-DC2626?style=for-the-badge)
-![Version](https://img.shields.io/badge/Versão-2.0-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow?style=for-the-badge)
+![Version](https://img.shields.io/badge/Versão-2.1-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-ONLINE-success?style=for-the-badge)
+![Deploy](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen?style=for-the-badge)
 
 **Documento Mestre de Planejamento e Implementação**
+
+🌐 **Site Online:** https://deivisan.github.io/Eventos-FSA/
 
 *Última atualização: 29 de Novembro de 2025*
 
 </div>
+
+---
+
+## 🎉 MARCO ALCANÇADO: DEPLOY NO GITHUB PAGES!
+
+✅ **Site está ONLINE e funcionando!**
+- URL: https://deivisan.github.io/Eventos-FSA/
+- Workflow GitHub Actions configurado e funcionando
+- Build estático otimizado para GitHub Pages
+- Navegação funcionando corretamente com basePath
 
 ---
 
@@ -311,10 +324,94 @@ Recriar toda a plataforma em **Next.js 14** com:
 - [ ] Performance tests (Lighthouse)
 
 #### 📦 Fase 15: Deploy
-- [ ] Configurar Vercel
-- [ ] Configurar domínio
-- [ ] SSL/HTTPS
-- [ ] CDN para assets
+- [x] ~~Configurar Vercel~~ **Usando GitHub Pages**
+- [x] GitHub Pages configurado e funcionando
+- [x] CI/CD com GitHub Actions
+- [x] basePath configurado para subdiretório
+- [ ] Configurar domínio customizado (eventosfsa.com.br)
+- [x] SSL/HTTPS (via GitHub Pages)
+- [x] CDN para assets (via GitHub)
+
+---
+
+## 🚨 PENDÊNCIAS DETALHADAS - SEGUNDA PERSPECTIVA
+
+### 🔴 CRÍTICAS (Bloqueadoras)
+
+| # | Pendência | Descrição | Impacto | Esforço |
+|---|-----------|-----------|---------|---------|
+| 1 | **Ícones PWA faltando** | Apenas `icon.svg` existe em `/public/icons/`. Manifest.json referencia 8 ícones PNG que não existem | PWA não instala corretamente | 1h |
+| 2 | **Portal QR Code vazio** | Pasta `/app/portal/` está vazia - precisa da página | Feature core não funciona | 4h |
+| 3 | **Páginas dinâmicas 404** | Links para `/artistas/1`, `/eventos/1`, `/estabelecimentos/1` dão 404 (não há rotas dinâmicas) | UX quebrada | 3h |
+
+### 🟠 IMPORTANTES (Afetam UX)
+
+| # | Pendência | Descrição | Impacto | Esforço |
+|---|-----------|-----------|---------|---------|
+| 4 | **Encoding UTF-8** | Caracteres especiais exibindo como `??` no HTML (ex: "música" → "m??sica") | Legibilidade | 1h |
+| 5 | **Falta página /sobre** | Link no footer aponta para `/sobre` que não existe | 404 | 1h |
+| 6 | **Falta página /termos** | Link no footer aponta para `/termos` que não existe | 404 | 1h |
+| 7 | **Falta página /privacidade** | Link no footer aponta para `/privacidade` que não existe | 404 | 1h |
+| 8 | **Falta página /ao-vivo** | Seção "Ao Vivo Agora" linka para página inexistente | 404 | 2h |
+| 9 | **Falta página /recuperar-senha** | Link "Esqueci a senha" no login aponta para página inexistente | 404 | 2h |
+| 10 | **OG Image localhost** | Meta tags de Open Graph apontam para `http://localhost:3000/og-image.png` | SEO/Compartilhamento | 30min |
+
+### 🟡 MELHORIAS (Nice to have)
+
+| # | Pendência | Descrição | Impacto | Esforço |
+|---|-----------|-----------|---------|---------|
+| 11 | **Imagens placeholder** | Cards de artistas/venues usam gradientes, não fotos reais | Visual | 2h |
+| 12 | **Dados mockados estáticos** | Todos os dados são hardcoded, não há API real | Funcionalidade | Backend |
+| 13 | **Service Worker** | next-pwa configurado mas precisa testar offline | PWA | 2h |
+| 14 | **Screenshots PWA** | Manifest.json referencia screenshots que não existem | PWA Store | 1h |
+| 15 | **Ícones de shortcuts** | Shortcuts no manifest referenciam ícones inexistentes | PWA | 30min |
+
+### 🟢 ANDROID/CAPACITOR
+
+| # | Pendência | Descrição | Impacto | Esforço |
+|---|-----------|-----------|---------|---------|
+| 16 | **Ícones Android** | Falta configurar ícones adaptativos Android | Play Store | 2h |
+| 17 | **Deep Links** | Não configurado | UX | 3h |
+| 18 | **Push Notifications** | Não implementado | Engajamento | 4h |
+| 19 | **Testar emulador** | APK não testado | QA | 2h |
+| 20 | **Build APK** | Não gerado | Distribuição | 1h |
+
+---
+
+## 📊 RESUMO DE STATUS
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│              SEGUNDA PERSPECTIVA - STATUS ATUAL                 │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ✅ CONCLUÍDO                                                   │
+│  ├─ Deploy GitHub Pages                                         │
+│  ├─ Homepage + Layout                                           │
+│  ├─ Páginas principais (eventos, artistas, estabelecimentos)    │
+│  ├─ Sistema de autenticação (demo mode)                         │
+│  ├─ Dashboards (artista, venue, user, admin)                    │
+│  ├─ Sistema de temas                                            │
+│  ├─ Animações Framer Motion                                     │
+│  └─ PWA manifest.json                                           │
+│                                                                 │
+│  🚧 EM PROGRESSO                                                │
+│  ├─ Rotas dinâmicas (/artistas/[id], etc)                      │
+│  ├─ Portal QR Code                                              │
+│  └─ Ícones PWA                                                  │
+│                                                                 │
+│  📋 PENDENTE                                                    │
+│  ├─ Testes automatizados                                        │
+│  ├─ Build Android                                               │
+│  ├─ Domínio customizado                                         │
+│  └─ Backend real (API + Database)                               │
+│                                                                 │
+│  PROGRESSO GERAL: ████████████████████░░░░ 80%                 │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
 - [ ] Monitoramento (Sentry)
 - [ ] Analytics (Google Analytics)
 
