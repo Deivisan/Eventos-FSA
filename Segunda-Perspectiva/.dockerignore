@@ -1,0 +1,47 @@
+# .dockerignore para Segunda-Perspectiva
+# Ignorar arquivos desnecessários para o container (só precisamos de out/)
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js
+.next/
+out/  # Já copiado no Dockerfile
+
+# Ambiente
+.env*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Capacitor/Android
+android/
+*.apk
+*.aab
+
+# Prisma (não usado em runtime para static)
+prisma/
+*.db
+
+# Logs
+*.log
+build-log.txt
+
+# Documentação
+README.md
+books/
+notebooklm/
+assets/
+screenshots/

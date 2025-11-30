@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - FRONTEND_URL=http://localhost:8081
+    volumes:
+      - ./backend/uploads:/app/uploads
+      - eventosfsa_db:/app/database
+    restart: unless-stopped
+    networks:
+      - eventosfsa
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8081:80"
+    restart: unless-stopped
+    networks:
+      - eventosfsa
+
+volumes:
+  eventosfsa_db:
+
+networks:
+  eventosfsa:
+    driver: bridge
