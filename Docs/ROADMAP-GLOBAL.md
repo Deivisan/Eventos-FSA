@@ -73,7 +73,8 @@ Criar uma plataforma SaaS completa para conectar **artistas**, **estabelecimento
 ```
 Eventos FSA/
 │
-├── 📁 Cliente-Carlos/          ← Materiais para investidor (COMPLETO ✅)
+├── 📁 Primeira-Perspectiva/    ← Marketing & Investidor (COMPLETO ✅)
+│   ├── marketing/              ← Assets de Social Media
 │   ├── books/                  ← 5 PDFs profissionais
 │   ├── screenshots/            ← 11 imagens do sistema
 │   └── README.md
@@ -108,12 +109,14 @@ Eventos FSA/
 
 ---
 
-## 🎨 PERSPECTIVA 1: CLIENTE-CARLOS (COMPLETO ✅)
+## 🎨 PERSPECTIVA 1: PRIMEIRA PERSPECTIVA (MARKETING & INVESTIDOR)
 
 ### Status: ✅ 100% COMPLETO
 
 | Item | Status | Descrição |
 |------|--------|-----------|
+| ✅ | Completo | 45+ Assets de Marketing Gerados |
+| ✅ | Completo | Metodologia de Marketing Definida |
 | ✅ | Completo | 5 Books em PDF profissionais |
 | ✅ | Completo | 11 Screenshots de todas as telas |
 | ✅ | Completo | README.md documentado |
@@ -121,6 +124,8 @@ Eventos FSA/
 | ✅ | Completo | Interface Portal QR Code |
 
 ### Arquivos Entregues
+- `marketing/social-media/*.png`
+- `marketing/Metodologia-Marketing.md`
 - `books/01-visao-geral/book.pdf`
 - `books/02-guia-estabelecimentos/book.pdf`
 - `books/03-guia-artistas/book.pdf`
@@ -502,7 +507,7 @@ Aplicação desktop para gestão administrativa avançada.
 │                         2025 - 2026                                     │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
-│ NOV 2025  ████████████████ Cliente-Carlos COMPLETO ✅                   │
+| NOV 2025  ████████████████ Primeira Perspectiva COMPLETO ✅             |
 │ DEZ 2025  ████████████████ Segunda Perspectiva (Next.js) 🚧             │
 │ JAN 2026  ████████████████ Segunda Perspectiva (PWA + Android)          │
 │ FEV 2026  ████████████████ Terceira Perspectiva (React Native)          │
@@ -518,7 +523,7 @@ Aplicação desktop para gestão administrativa avançada.
 
 | Data | Marco | Descrição |
 |------|-------|-----------|
-| 29/11/2025 | ✅ M1 | Cliente-Carlos package completo |
+| 29/11/2025 | ✅ M1 | Primeira Perspectiva package completo |
 | 15/12/2025 | 🎯 M2 | Segunda Perspectiva MVP |
 | 31/12/2025 | 🎯 M3 | PWA funcional |
 | 15/01/2026 | 🎯 M4 | App Android beta |
@@ -536,7 +541,7 @@ Aplicação desktop para gestão administrativa avançada.
 
 | Perspectiva | Horas Estimadas | Custo Estimado |
 |-------------|-----------------|----------------|
-| Cliente-Carlos | 40h | ✅ Concluído |
+| Primeira Perspectiva | 40h | ✅ Concluído |
 | Segunda (Next.js) | 120h | ~R$ 12.000 |
 | Terceira (React Native) | 100h | ~R$ 10.000 |
 | Quarta (Flutter) | 100h | ~R$ 10.000 |
